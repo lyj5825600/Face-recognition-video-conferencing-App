@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jie.mapper.UserAuthMapper">
+
+    <insert id="adduserAuth" parameterType="com.jie.entity.UserAuth" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user_auth(user_info_id,username,password,login_type,ip_address,ip_source,create_time)
+        VALUES(#{userInfoId},#{username},#{password},#{loginType},#{ipAddress},#{ipSource},#{createTime})
+    </insert>
+    <select id="countUser" resultType="java.lang.Integer">
+        SELECT
+        count( 1 )
+        FROM
+        user_auth ua
+        LEFT JOIN user_info ui ON ua.user_info_id = ui.id
+        <where>
+            <if test="condition.keywords != null">
+                nickname like concat('%',#{condition.keywords},'%')
+            </if>
+        </where>
+    </select>
+    <select id="listUsers" resultType="com.jie.dto.UserBackDTO">
+        SELECT
+        ua.id,
+        user_info_id,
+        avatar,
+        nickname,
+        login_type,
+        r.id as role_id,
+        role_name,
+        ip_address,
+        ip_source,
+        ua.create_time,
+        last_login_time,
+        ui.is_disable
+        FROM
+        (
+        SELECT
+        id,
+        avatar,
+        nickname,
+        is_disable
+        FROM
+        user_info
+        <where>
+            <if test="condition.keywords != null">
+             nickname like concat('%',#{condition.keywords},'%')
+            </if>
+        </where>
+        LIMIT #{current},#{size}
+        )   ui
+        LEFT JOIN user_auth ua ON ua.user_info_id = ui.id
+        LEFT JOIN user_role ur ON ui.id = ur.user_id
+        LEFT JOIN role r ON ur.role_id = r.id
+    </select>
+</mapper>

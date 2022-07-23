@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="42b93b43-e1d6-41ef-ad94-9b98dc694ad3" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../../../.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../blog-mysql8.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../blog-springboot/blog-springboot.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../blog-springboot/src/main/java/com/minzheng/blog/config/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../blog-springboot/src/main/java/com/minzheng/blog/config/SwaggerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../blog-springboot/src/main/java/com/minzheng/blog/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../blog-springboot/src/main/java/com/minzheng/blog/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../blog-springboot/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../blog-springboot/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/menu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../components/tag-cloud.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../layout/components/NavBar.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../layout/components/SideBar.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../layout/index.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../views/about/About.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../views/album/Album.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../views/album/Delete.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../views/album/Photo.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../views/article/Article.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../views/article/ArticleList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../views/category/Category.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../views/comment/Comment.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../views/friendLink/FriendLink.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../views/home/Home.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../views/log/Operation.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../views/login/Login.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../views/menu/Menu.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../views/message/Message.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../views/page/Page.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../views/resource/Resource.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../views/role/Role.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../views/setting/Setting.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../views/tag/Tag.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../views/user/Online.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../views/user/User.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../views/website/Website.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../vue.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/babel.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/assets/css/iconfont.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/assets/css/iconfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/assets/css/iconfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/assets/css/iconfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/assets/css/iconfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/assets/css/iconfont.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/assets/css/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/assets/css/markdown.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/assets/css/vue-social-share/client.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/assets/css/vue-social-share/static/iconfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/assets/css/vue-social-share/static/iconfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/assets/css/vue-social-share/static/iconfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/assets/css/vue-social-share/static/iconfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/assets/js/config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/assets/js/emoji.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/BackTop.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/ChatRoom.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/Comment.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/Emoji.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/OauthLogin.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/Paging.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/Reply.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/layout/Footer.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/layout/SideNavBar.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/layout/TopNavBar.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/model/EmailModel.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/model/ForgetModel.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/model/LoginModel.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/model/RegisterModel.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/model/SearchModel.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/toast/Toast.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/toast/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/zw-player/api/music.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/zw-player/img/add.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/zw-player/img/list_bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/zw-player/img/list_pan.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/zw-player/img/list_play_hover.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/zw-player/img/pan.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/zw-player/img/pause.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/zw-player/img/play.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/zw-player/img/state_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/zw-player/img/state_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/zw-player/img/talkicon1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/zw-player/img/talkicon2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/zw-player/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/zw-player/player.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/zw-player/player.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/components/zw-player/playermobile.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/plugins/vuetify.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/router/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/store/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/views/about/About.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/views/album/Album.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/views/album/Photo.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/views/archive/Archive.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/views/article/Article.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/views/article/ArticleList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/views/category/Category.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/views/home/Home.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/views/link/Link.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/views/message/Message.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/views/tag/Tag.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/src/views/user/User.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../blog/vue.config.js" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="E:/path/maven/apache-maven-3.8.1" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="23jEYoD2UUjkWFBDmE7deSBhKSf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="42b93b43-e1d6-41ef-ad94-9b98dc694ad3" name="变更" comment="" />
+      <created>1642239146222</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1642239146222</updated>
+      <workItem from="1642239147500" duration="1000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

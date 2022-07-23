@@ -1,0 +1,85 @@
+server:
+  port: 8082
+  servlet:
+    session:
+      timeout: 21600
+#mysql
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/meeting?serverTimezone=GMT%2B8&allowMultiQueries=true
+    username: root
+    password: 5825600
+    hikari:
+      minimum-idle: 5
+      # ?????????????600000?10???
+      idle-timeout: 180000
+      # ????????????10
+      maximum-pool-size: 10
+      # ?????????????????????,????true
+      auto-commit: true
+      # ?????
+      pool-name: MyHikariCP
+      # ??????????????????0???????????1800000?30??
+      max-lifetime: 1800000
+      # ?????????,??30???30000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  #redis
+  redis:
+    host: 101.43.253.100
+    port: 6379
+    password: lyj5825600
+  rabbitmq:
+    host: 101.43.253.100
+    port: 5672
+    username: guest
+    password: guest
+  main:
+    allow-bean-definition-overriding: true
+mybatis-plus:
+  mapper-locations: classpath:xml/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+# 上传模式 可选 oss或local
+upload:
+  mode: oss
+  local:
+    # nginx映射本地文件路径，无域名则为 ip +端口
+    url: http://你的文件上传子域名/
+    # 本地文件存储路径
+    path: /usr/local/upload/
+  oss:
+    url: "https://teas-gulixueyuan.oss-cn-hangzhou.aliyuncs.com/"
+    endpoint: "http://oss-cn-hangzhou.aliyuncs.com"
+    accessKeyId: "LTAI5t8rwyqdBHejnMsnR6yh"
+    accessKeySecret: "vABfpr8PUtQ7k4ehIEgQFzClupkmCA"
+    bucketName: "teas-gulixueyuan"
+
+logging:
+  level:
+    com.jie.mapper: debug
+
+jwt:
+  # JWT??????
+  tokenHeader: Authorization
+  # JWT ???????
+  secret: yeb-secret
+  # JWT???????60*60*24*7?
+  expiration: 604800
+  # JWT ???????
+  tokenHead: Bearer
+
+#第三方配置信息
+qq:
+  app-id: QQ APPID
+  check-token-url: https://graph.qq.com/oauth2.0/me?access_token={access_token}
+  user-info-url: https://graph.qq.com/user/get_user_info?openid={openid}&access_token={access_token}&oauth_consumer_key={oauth_consumer_key}
+#视频会议appid(anyRTC SDK)
+anyRTC:
+  trtc:
+    appId: 9e832ae64d960051527051fce57d122b
+faceRecognition:
+  pytorch: C:\\Users\\杰崽\\Desktop\\杂物\\人脸检测\\facenet-retinaface-pytorch-main\\facedataset

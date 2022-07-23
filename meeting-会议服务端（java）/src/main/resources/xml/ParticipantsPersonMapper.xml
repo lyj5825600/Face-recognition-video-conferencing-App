@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jie.mapper.ParticipantsPersonMapper">
+
+    <select id="isNickname" resultType="com.jie.entity.ParticipantsPerson">
+        SELECT
+            id, meeting_id, meeting_number, username, nickname, meeting_nickname, face_photos, meeting_start_time, create_time, update_time, meeting_delete
+        FROM
+            participants_person
+        WHERE
+                meeting_id =(SELECT meeting_id from participants_person where meeting_number=#{meetingNumber} ORDER BY meeting_start_time DESC LIMIT 1)
+          AND
+            meeting_nickname=#{nickname}
+          AND
+            meeting_delete=0;
+    </select>
+
+    <select id="failedPersonList" resultType="com.jie.entity.ParticipantsPerson">
+        SELECT
+            meeting_nickname
+        FROM
+            participants_person p
+        WHERE
+                (
+                    SELECT
+                        COUNT( 1 )
+                    FROM
+                        sign s
+                    WHERE
+                        ( s.meeting_id = p.meeting_id AND s.sign_nickname = p.meeting_nickname ))= 0
+          AND meeting_id = #{meetingId};
+
+
+    </select>
+</mapper>

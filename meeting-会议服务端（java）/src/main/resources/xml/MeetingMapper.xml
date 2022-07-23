@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jie.mapper.MeetingMapper">
+
+    <insert id="saveMeeting" parameterType="com.jie.entity.Meeting" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO meeting
+            (meeting_name,meeting_start_time,meeting_end_time,meeting_number,meeting_type,meeting_address,meeting_longitude,meeting_latitude,username,nickname,meeting_described,meeting_person,create_time)
+             VALUES
+            (#{meetingName},#{meetingStartTime},#{meetingEndTime},#{meetingNumber},#{meetingType},#{meetingAddress},#{meetingLongitude},#{meetingLatitude},#{username},#{nickname},#{meetingDescribed},#{meetingPerson},#{createTime});
+
+    </insert>
+    <!--  根据username查最新会议  -->
+    <select id="latestMetting" resultType="com.jie.entity.Meeting">
+        SELECT
+            *
+        FROM
+            meeting a
+        WHERE
+            username=#{username}
+            and
+            NOT EXISTS ( SELECT 1 FROM meeting m WHERE m.create_time > a.create_time )
+    </select>
+    <!--  根据会议号查看最新会议的信息  -->
+    <select id="getMeetingStatus" resultType="com.jie.entity.Meeting">
+        SELECT
+            *
+        FROM
+            meeting a
+        WHERE
+            meeting_number=#{meetingNumber}
+          and
+            NOT EXISTS ( SELECT 1 FROM meeting m WHERE m.create_time > a.create_time )
+
+    </select>
+    <select id="countDayMeetingNumber" resultType="java.lang.Integer">
+        SELECT COUNT(id) FROM meeting WHERE DATE_FORMAT(create_time,'%Y-%m-%d')=#{date}
+    </select>
+
+
+</mapper>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jie.mapper.CalendarMapper">
+
+    <select id="DataTimeCalendarLists" resultType="com.jie.entity.Calendar">
+        SELECT * FROM calendar where
+            DATE_FORMAT(meeting_start_time,'%Y-%m-%d')=#{date}
+            AND username=#{username}
+            LIMIT #{current},#{size}
+    </select>
+</mapper>
