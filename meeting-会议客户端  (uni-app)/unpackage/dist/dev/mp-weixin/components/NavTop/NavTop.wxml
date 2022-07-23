@@ -1,0 +1,1 @@
+<view class="{{['nav-top','data-v-7608b004',(fixed)?'nav-top-fixed':'']}}" style="{{'height:'+(barHeight.allHeight+'px')+';'+('background-color:'+(bgCr)+';')}}"><view class="status_bar data-v-7608b004" style="{{'height:'+(barHeight.statusBarHeight+'px')+';'}}"></view><slot></slot></view>

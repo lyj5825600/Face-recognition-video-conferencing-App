@@ -1,0 +1,13 @@
+{
+  "component": true,
+  "usingComponents": {
+    "date-picker": "/components/w-picker/date-picker",
+    "range-picker": "/components/w-picker/range-picker",
+    "half-picker": "/components/w-picker/half-picker",
+    "time-picker": "/components/w-picker/time-picker",
+    "selector-picker": "/components/w-picker/selector-picker",
+    "shortterm-picker": "/components/w-picker/shortterm-picker",
+    "region-picker": "/components/w-picker/region-picker",
+    "linkage-picker": "/components/w-picker/linkage-picker"
+  }
+}

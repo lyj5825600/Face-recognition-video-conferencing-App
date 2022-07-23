@@ -1,0 +1,9 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "nav-top": "/components/NavTop/NavTop",
+    "w-picker": "/components/w-picker/w-picker",
+    "popup": "/components/Popup/Popup",
+    "uni-popup": "/uni_modules/uni-popup/components/uni-popup/uni-popup"
+  }
+}
