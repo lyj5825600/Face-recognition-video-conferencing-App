@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "添加参会人",
+  "usingComponents": {
+    "popup": "/components/Popup/Popup",
+    "w-picker": "/components/w-picker/w-picker"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "nav-top": "/components/NavTop/NavTop",
+    "w-picker": "/components/w-picker/w-picker",
+    "popup": "/components/Popup/Popup"
+  }
+}

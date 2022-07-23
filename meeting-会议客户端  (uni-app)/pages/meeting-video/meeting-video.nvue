@@ -1,0 +1,615 @@
+<template>
+  <view :style="{width: windowWidth + 'px',height: windowHeight + 'px', backgroundColor: '#222425'}">
+    <NavTop bgCr="black">
+    	<view class="top-bar" :style="{height: topBarHeight + 'px'}">
+        <view class="sound-box" v-if="peeridInfo.length > 0" @click="setEnableSpeakerphone(Speakerphone)">
+          <image :src="Speakerphone ? '../../static/images/icon/icon_speakers.png' : '../../static/images/icon/icon_speaker.png'" style="width: 60rpx;height: 60rpx;"></image>
+        </view>
+    		<view class="bar-title">
+          <text class="font-color" style="font-size: 32rpx;">{{ meetingNumber }}</text>
+          <text class="font-color" style="font-size: 23rpx;">{{ downCount }}</text>
+        </view>
+    		<view class="end-btn" @click="destroyRtc"><text class="font-color">结束</text></view>
+    	</view>
+    </NavTop>
+<!--    <button @click="callbackFn">初始化回调</button>
+    <button @click="init">初始化实例</button>
+    <button @click="enableVideo">启用视频</button>
+    <button @click="join">加入房间</button>
+    <button @click="destroyRtc">退出页面前记得销毁实例</button>
+    <button @click="destroyRtc">退出页面前记得销毁实例</button -->
+    <scroll-view scroll-y class="canvasView" :style="{width: windowWidth + 'px',height: (windowHeight - 65 - barHeight.allHeight) + 'px', backgroundColor: '#222425'}">
+      <view class="video" :class="peeridInfoStyle">
+        <!-- {{localuid}} -->
+        <AR-CanvasView ref="location" style="flex: 1;" />
+        <!-- 关闭视频后显示 -->
+        <view class="location-none" :style="{left: video ? '-800px' : '0px',backgroundColor:  video ? '':'#222425',opacity: video ? '0':'1'}">
+        	<image :src="localPerson.avatar" class="user-avatar"></image>
+        	<text class="user-name font-color">{{localPerson.nickname}}</text>
+        </view>
+        <view class="cur-username" v-if="video"><text class="font-color txt">{{localPerson.nickname}}</text></view>
+      </view>
+      <!-- 远端用户视频渲染 -->
+      <view v-for="peerid in peeridInfo" :key="peerid.uid" class="video" :class="peeridInfoStyle">
+        <view style="flex: 1;">
+          <AR-CanvasView :ref="'remote'+peerid.uid" style="flex: 1;" />
+          <!-- 关闭视频后显示 -->
+          <view class="location-none" :style="{left: peerid.videoStatus ? '-800px' : '0px',backgroundColor:  peerid.videoStatus ? '':'#222425',opacity: peerid.videoStatus ? '0':'1'}">
+            <image :src="peerid.avatar" class="user-avatar"></image>
+          	<text class="user-name font-color">{{peerid.nickname}}</text>
+          </view>
+          <view class="cur-username" v-if="peerid.videoStatus"><text class="font-color txt">{{peerid.nickname}}</text></view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="btm-tools" :style="{width: windowWidth + 'px'}">
+      <view style="flex-direction: row;justify-content: space-between;">
+        <!-- 切换前后摄像头 -->
+        <view class="icon" v-if="video" @click="switchCamera">
+          <image class="icon_img" src="../../static/images/icon/camera.png"></image>
+          <text class="icon_text">{{ camera ? '摄像前' :'摄像后' }}</text>
+        </view>
+        <!-- 挂断 -->
+        <view class="icon" @click="destroyRtc">
+          <image class="icon_img" src="../../static/images/icon/over.png"></image>
+          <text class="icon_text">挂断</text>
+        </view>
+        <!-- 静音 -->
+        <view class="icon" @click="enableLocalAudio(checked)">
+          <image class="icon_img" :src="checked ? '../../static/images/icon/au_in.png' : '../../static/images/icon/au_on.png'"></image>
+          <text class="icon_text">静音</text>
+        </view>
+        <view class="icon" @click="enableLocalVideo(video)">
+          <image class="icon_img" :src="video ? '../../static/images/icon/vi_on.png' : '../../static/images/icon/vi_in.png'"></image>
+          <text class="icon_text">视频</text>
+        </view>
+        <view class="icon" @click="$refs.participantPopup.open('bottom')">
+          <image class="icon_img icon_list_img" src="../../static/images/icon/list-white.png"></image>
+          <text class="icon_text">管理成员({{participantCount}})</text>
+        </view>
+      </view>
+    </view>
+    <!-- 普通弹窗 -->
+    <uni-popup ref="participantPopup" background-color="#fff">
+      <view class="popup-content" :style="{height: (windowHeight - barHeight.allHeight) + 'px'}">
+        <view class="participant-title">
+          <view class="title">
+            <text class="title-txt">管理成员（{{ participantCount }}人）</text>
+          </view>
+          <uni-icons type="closeempty" size="25" @tap="$refs.participantPopup.close()"></uni-icons>
+        </view>
+        <uni-list>
+          <uni-list-chat v-for="mem in [localPerson, ...peeridInfo]" :key="mem.id" :avatar-circle="true" :title="mem.nickname"  :avatar="mem.avatar" :note="mem.id == originatorUserInfoId ? `（主持人，我）` : '参会人'" time="2020-02-02 20:20">
+            <view class="chat-custom-right" color="#ccc">
+              <uni-icons v-if="mem.videoStatus" type="videocam-filled" size="33"></uni-icons>
+              <image v-else src="../../static/images/icon/mute-camera-gray.png" class="is_video-img"></image>
+            </view>
+          </uni-list-chat>
+        </uni-list>
+      </view>
+    </uni-popup>
+  </view>
+</template>
+
+<script>
+  import { mapState, mapGetters } from 'vuex'
+  import Utils from "../../utils/until.js";
+  import { joinConference, getUserInfoById } from '../../api/index.js'
+  import { showToast } from '../../utils/uniAsync.js'
+  export default {
+    data() {
+      return {
+        // appid标识
+        appid: '',
+        // 房间号
+        channel: '',
+        // 本地用户
+        localuid: '',
+        // 远端用户
+        peeridInfo: [],
+        // 远端视频容器
+        remoteLits: [],
+        windowWidth: 400,
+        windowHeight: 800,
+        noSponsor: '', // 会议发起者是否在线
+        checked: true, // 音频开关
+        // 远端视频容器样式
+        peeridInfoStyle: "video_local",
+        // 房主
+        originatorUserInfoId: '',
+        video: true, // 视频开关
+        // 本人信息对象
+        localPerson: {},
+        // 会议号
+        meetingNumber: '',
+        camera: true, // 默认前置,
+        Speakerphone: false, // 是否免提 
+        startTime: '', // 会议开始时间
+        endTime: '', // 会议结束时间,
+        downCount: '', // 会议倒计时
+        isMeetingEnd: '', // 会议是否结束
+        timer: null, // 倒计时定时器唯一标识
+        timingTimer: null, // 计时器唯一标识
+        timing: 0, // 会议时间已到但房主还未离开房间继续计时
+        // 进入的页面是签到页
+        page: ''
+      }
+    },
+    onShow() {
+      this.timer = setInterval( async () => {
+        // 倒计时
+        const { downCount, isEnd } = getApp().downCount(this.endTime)
+        this.downCount = downCount
+        this.isMeetingEnd = isEnd
+        if (isEnd) {
+          if (this.getOriginatorUserOnline()) {
+            this.timingTimer = setInterval(() => {
+              this.timing++
+              // 正计时
+              const { downCount } = getApp().downCount(this.timing, true)
+              this.downCount = downCount
+              if (!this.getOriginatorUserOnline()) {
+                this.destroyRtc()
+                clearInterval(this.timingTimer)
+                this.timingTimer = null
+              }
+            }, 1000)
+          } else {
+            await showToast({title: '会议时间已到!', icon: 'none', mask: true})
+            // 房主离开房间了,销毁实例,退出房间
+            setTimeout(this.destroyRtc, 1500)
+          }
+          // 清除定时器
+          clearInterval(this.timer)
+          this.timer = null
+        }
+      }, 1000)
+    },
+    onHide() {
+      if (this.timer !== null) clearInterval(this.timer)
+      if (this.timingTimer !== null) clearInterval(this.timingTimer)
+    },
+    onLoad({ meetingNumber, startTime, endTime, page = '' }) {
+      this.meetingNumber = meetingNumber
+      if (page) this.page = page
+      // 初始化信息创建视频RTC所需
+      this.joinConferenceFun(meetingNumber)
+      this.startTime = startTime
+      this.endTime = endTime
+    },
+    computed: {
+      ...mapState(['barHeight', 'RtcModule']),
+      ...mapGetters(['topBarHeight']),
+      // 参会总人数
+      participantCount() {
+        return this.peeridInfo.length + 1
+      }
+    },
+    watch: {
+      peeridInfo: {
+        // 监听远端人数[变换样式]
+        deep: true,
+        immediate: true,
+        handler(newList, oldList) {
+          if (newList.length === 0) {
+            this.peeridInfoStyle = 'video_local'
+          } else {
+            this.peeridInfoStyle = 'video_local_1'
+          }
+        }
+      }
+    },
+    async created() {
+      const oInfo = await Utils.getWidthHeight();
+      this.windowWidth = oInfo.windowWidth;
+      this.windowHeight = oInfo.windowHeight;
+    },
+    methods: {
+      // 判断房主是否在线或当前用户是否为房主
+      getOriginatorUserOnline () {
+        const { peeridInfo, originatorUserInfoId, localuid } = this
+        return peeridInfo.some(item => item.id == originatorUserInfoId) || localuid == originatorUserInfoId
+      },
+      // 获取信息
+      async joinConferenceFun(meetingNumber) {
+        const {obj: res} = await joinConference({meetingNumber})
+        if (res.originatorUserInfoId != res.participantUserId && this.peeridInfo.length == 0) {
+          this.noSponsor = '会议发起者不在线,请等候..'
+          await showToast({title: this.noSponsor, icon: 'none'})
+        }
+        this.appid = res.appId
+        this.localuid = res.participantUserId
+        this.channel = meetingNumber
+        this.originatorUserInfoId = res.originatorUserInfoId
+        console.log(JSON.stringify(res), '@#$#@@#$#@')
+        this.callbackFn()
+        this.init()
+        this.enableVideo()
+        this.join()
+        this.getUserInfoByIdFun(res.participantUserId, true)
+      },
+      // 根据id获取用户信息
+      async getUserInfoByIdFun(id, local) {
+        const { obj: res } = await getUserInfoById({id})
+        console.log(JSON.stringify(res))
+        if (local) {
+          // 本地[本人] // 自加一个是否开启视频
+          this.localPerson = {...res, videoStatus: true}
+        } else {
+          this.peeridInfo.push({
+          	uid: id,
+          	videoStatus: true,
+            ...res
+          });
+          console.log(JSON.stringify(this.peeridInfo))
+          this.$nextTick(() => {
+            const data1 = {
+          		remote: this.$refs['remote' + id],
+          		peerid: id,
+          	}
+            // 本地视频容器
+            if (data1.location) {
+              this.location = data1.location
+            	// 远端视频容器
+            } else if (data1.peerid && data1.remote) {
+            	const oa = this.remoteLits.filter(item => {
+            		return item.peerid == data1.peerid
+            	});
+            	if (oa.length == 0) {
+            		this.remoteLits.push(data1);
+            		setTimeout(() => {
+                  this.remoteLits.map(async item => {
+                  	if (item.peerid == data1.peerid) {
+                  		console.log("频道", this.channel);
+                      console.log(item.peerid, this.remoteLits , this.peeridInfo)
+                  		await item.remote[0].setupRemoteVideo({
+                  			"uid": item.peerid,
+                  			"channelId": this.channel,
+                  			"renderMode": 1,
+                  			"mirrorMode": 0
+                  		}, (res) => {
+                  			console.log('渲染远端视频', res);
+                  		});
+                  		// 本地预览
+                  		await item.remote[0].startPreview((res) => {
+                  			console.log('远端本地预览', res);
+                  		});
+                  	}
+                  })
+            		}, 500);
+            	}
+            }
+          })
+        }
+      },
+      callbackFn() { // 1
+        const that = this
+        this.RtcModule.setCallBack((res) => {
+          switch (res.engineEvent) {
+            case "onWarning": //警告回调
+              console.log('onWarning')
+              break;
+            case "onError": //错误回调
+              console.log('onError')
+              break;
+            case "onJoinChannelSuccess": //用户加入成功
+              console.log('onJoinChannelSuccess')
+              console.log(JSON.stringify(res), '@$@#@$$#@@#onJoinChannelSuccess')
+              that.localVideo()
+              break; 
+            case "onLeaveChannel": //离开频道回调
+              console.log('onLeaveChannel')
+              break;
+            case "onUserJoined": //远端用户加入当前频道回调。
+              console.log('onUserJoined')
+              break;
+            case "onUserOffline": //远端用户离开当前频道回调。
+              console.log('onUserOffline')
+              this.userOffLine(res)
+              break;
+            case "onFirstLocalAudioFrame": //已发送本地音频首帧的回调。（页面上添加音频）
+              console.log('onFirstLocalAudioFrame')
+              break;
+            case "onFirstLocalVideoFrame": //已显示本地视频首帧的回调。（页面添加本地视频）
+              // this.promptFn("error", "已显示本地视频首帧的回调");
+              console.log('onFirstLocalVideoFrame')
+              break;
+            case "onRemoteVideoStateChanged": // 远端用户视频状态发生已变化回调(当频道内的用户超过 17 个时，该回调可能不准确)）
+              console.log("onFirstRemoteVideoDecoded远端用户视频状态发生已变化回调", res)
+              that.videoStateChanged(res)
+              break;
+            case "onFirstRemoteVideoDecoded": //已完成远端视频首帧解码回调。（页面添加远端视频）
+              console.log('onFirstRemoteVideoDecoded', res)
+              // 远端视频渲染
+              that.remotenableVide(res.uid)
+              break;
+          }
+        })
+      },
+      destroyRtc() {
+        this.RtcModule.destroyRtc((res) => {
+        	console.log("销毁实例", this.page);
+          // 如果是从签到页或创建会议页进来的就直接退回首页
+          if (this.page == '1') {
+            uni.switchTab({
+              url: '/pages/index/index'
+            })
+          } else {
+            // 销毁实例说明该用户退出了本次会议
+            uni.navigateBack({
+              delta: 2
+            })
+          }
+        });
+      },
+      // 摄像头（前后）
+      switchCamera() {
+        this.camera = !this.camera;
+      	this.RtcModule.switchCamera((res) => {
+      		console.log('RTC 摄像头前后 switchCamera 方法调用', res.code === 0 ? '成功' : '失败：' + res);
+      	})
+      },
+      // 音频是否免提
+      setEnableSpeakerphone(fase) {
+        const Speakerphone = !fase
+        this.Speakerphone = Speakerphone
+      	// 默认扬声器播放
+      	this.RtcModule.setEnableSpeakerphone({
+      		"enabled": Speakerphone
+      	}, (res) => {
+      		console.log('RTC 远端加入房间后设置' + (Speakerphone ? '开启' : '关闭') + '扬声器播放', res.code === 0 ? '成功' :
+      			'失败：' +
+      			res);
+      	});
+      },
+      // 初始化
+      async init() { // 2
+        console.log(this.RtcModule.create)
+        await this.RtcModule.create({
+          //anyRTC 为 App 开发者签发的 App ID。
+          "appId": this.appid
+        }, (res) => {
+          console.log(JSON.stringify(res))
+        });
+      },
+      enableVideo() { // 3
+        this.RtcModule.enableVideo(res => {
+          console.log('启用视频:' + res.code)
+        })
+      },
+      // 用户离开当前房间时调用
+      userOffLine(data) {
+        if (data) {
+          // 删除当前匹配的远端用户
+        	this.peeridInfo.splice(this.peeridInfo.findIndex(item => item.uid === data.uid), 1);
+        	// 如果推流，需要重新推流
+        	// if (this.liveState) {
+        	// 	this.liveTranscoFn();
+        	// }
+        }
+      },
+      // 转语音
+      toSpeech() {
+      	// 关闭视频模块
+      	this.RtcModule.disableVideo((res) => {
+      		console.log('RTC 关闭视频模块 disableVideo 方法调用', res.code === 0 ? '成功' : '失败：' +
+      			res);
+      	})
+      },
+      // 音频是否关闭
+      enableLocalAudio(checked) {
+        const checkedAudio = !checked
+        this.checked = checkedAudio
+      	this.RtcModule.enableLocalAudio({
+      		"enabled": checkedAudio
+      	}, (res) => {
+      		console.log('RTC 音频' + (checkedAudio ? '开启' : '关闭'), (res.code === 0 ? '成功' : '失败：') + res);
+      	})
+      },
+      async remotenableVide(data) {
+        const that = this
+        if (data) {
+        	const oa = that.peeridInfo.filter((item) => {
+        		return item.uid == data
+        	})
+        	if (oa.length == 0) {
+            if (this.originatorUserInfoId == data) {
+              this.noSponsor = '会议发起者进入房间'
+              await showToast({title: this.noSponsor, icon: 'none'})
+            }
+            // 发请求获取该远端用户信息
+            this.getUserInfoByIdFun(data, false)
+        	}
+        }
+      },
+      join() { // 4
+        // this.localuid = this.randomFn(6)
+        this.RtcModule.joinChannel({
+          "token": "",
+          "channelId": this.channel,
+          "uid": this.localuid
+        }, res => {
+          console.log('加入房间',  + res.code == 0 ? '成功' : '失败' + res)
+        })
+      },
+      videoStateChanged(data) {
+        if (data) {
+          // 数组map方法当数组值为基本类型时不改变其原数组,当值为复杂类型(object)时会改变原数组
+        	this.peeridInfo.map(item => {
+        		if (item.uid == data.uid) {
+        			// 远端用户关闭视频[reason=5和状态state == 0,说明用户关闭了视频]
+        			if (data.reason == 5 && data.state == 0) {
+        				item.videoStatus = false;
+        				// 远端用户开启视频[reason=0和状态state == 2,说明用户开启了视频]
+        			} else if (data.state == 2 && data.reason == 0) {
+        				item.videoStatus = true;
+        			}
+        		}
+        	})
+        }
+      },
+      async localVideo() {
+        await this.$refs.location.setupLocalVideo({
+          "renderMode": 1,
+          "channelId": this.channel,
+          "uid": this.localuid,
+          "mirrorMode": 0
+        }, res => {
+          console.log('视频渲染', res)
+          // 本地预览
+          this.RtcModule.startPreview((res) => {
+            console.log('本地预览', res)
+          });
+        })
+      },
+      // 本地视频是否采集
+      enableLocalVideo(checked) {
+        const videoChecked = !checked
+        this.video = videoChecked
+        this.$set(this.localPerson, 'videoStatus', videoChecked)
+      	this.RtcModule.enableLocalVideo({
+      		"enabled": videoChecked
+      	}, (res) => {
+      		console.log('RTC 视频' + (videoChecked ? '开启' : '关闭'), (res.code === 0 ? '成功' : '失败：') + res);
+      	})
+      },
+      // 随机生成
+      randomFn(len, charSet) {
+        charSet = charSet || 'abcdefghijkImnopqrstuvwxyz0123456789'
+        let randomString = ''
+        for (let i = 0; i < len; i++) {
+          let randomPoz = Math.floor(Math.random() * charSet.length)
+          randomString = charSet.substring(randomPoz, randomPoz + 1)
+        }
+        return randomString
+      }
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+  .txt {
+    font-size: 28rpx;
+    /* 显示省略号 */
+    overflow: hidden;
+    text-overflow: ellipsis; /* 超出部分省略号 */
+    lines: 1; // NVUE下要这个属性,来让文字超出隐藏变省略号
+    text-overflow: ellipsis;
+    width: 300rpx;
+  }
+  .video {
+    position: relative;
+    .location-none {
+      flex: 1;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      justify-content: center;
+      align-items: center;
+      .user-avatar {
+        width: 80rpx;
+        height: 80rpx;
+        border-radius: 50%;
+      }
+      .user-name {
+        margin-top: 10rpx;
+        font-size: 28rpx;
+      }
+    }
+    .cur-username {
+      position: absolute;
+      width: 300rpx;
+      left: 0;
+      bottom: 0;
+      opacity: 0.5;
+      padding: 8rpx 20rpx;
+    }
+  }
+  .font-color {
+    color: #fff;
+  }
+  .top-bar {
+    flex-direction: row;
+    padding: 0 30rpx;
+    justify-content: flex-end;
+    align-items: center;
+    .bar-title {
+      flex: 1;
+      align-items: center;
+    }
+    .end-btn {
+      > .font-color {
+        font-size: 26rpx;
+        color: red;
+      }
+    }
+  }
+  
+  /* 1个视频 */
+  .video_local {
+  	flex: 1;
+  }
+  
+  .canvasView {
+  	flex-wrap: wrap;
+  	flex-direction: row;
+  }
+  /* 4个视频 */
+  .video_local_1 {
+  	width: 375rpx;
+  	height: 420rpx;
+  }
+  
+  /* 相关操作 */
+  .btm-tools {
+  	position: fixed;
+  	bottom: 0;
+  	padding: 10rpx 30rpx;
+  	width: 100%;
+    background-color: black;
+  	flex-direction: column;
+  	justify-content: space-between;
+    .icon {
+    	/* background-color: #007AFF; */
+    	justify-content: center;
+    	align-items: center;
+    }
+    .icon_img {
+    	width: 80rpx;
+    	height: 80rpx;
+    }
+    .icon_list_img {
+      width: 60rpx;
+      height: 60rpx;
+    }
+    .icon_text {
+      font-size: 28rpx;
+      color: #fff;
+    }
+  }
+  .popup-content {
+    .participant-title {
+      flex-direction: row;
+      justify-content: flex-end;
+      padding: 20rpx 30rpx;
+      .title {
+        flex: 1;
+        align-items: center;
+        .title-txt {
+          font-size: 32rpx;
+        }
+      }
+    }
+    .chat-custom-right {
+      align-items: center;
+      width: 50rpx;
+      height: 50rpx;
+      .is_video-img {
+        height: 50rpx;
+        height: 50rpx;
+      }
+    }
+  }
+</style>
