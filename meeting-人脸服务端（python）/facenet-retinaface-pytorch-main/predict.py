@@ -86,17 +86,12 @@ def addImage(imgbase64,username,nickname):
     imagedata = base64.b64decode(imgbase64)
     file = open('facedataset/'+username+'/'+nickname+'.png', "wb")
     file.write(imagedata)
-    # fp1 = open('facedataset/'+username+'/'+nickname+'.png', "rb")
-    # content = fp1.read()
-    # fp1 = open('facedataset/'+'13469321102'+'/'+nickname+'.png', "wb")
-    # fp1.write(content)
     file.close()
     return "上传成功"
 
 # 添加人脸
 @app.post("/addImages")
 async def addImages(request):
-    print(request)
     message=addImage(request.json['imgbase64'],request.json['username'],request.json['nickname'])
     return json({"name": message})
 # 删除人脸方法
@@ -112,7 +107,6 @@ def deleteImage(username,nickname):
 # 删除人脸
 @app.post("/deleteImages")
 async def deleteImages(request):
-    print(request)
     message=deleteImage(request.json['username'],request.json['nickname'])
     return json({"name": message})
 if __name__ == '__main__':

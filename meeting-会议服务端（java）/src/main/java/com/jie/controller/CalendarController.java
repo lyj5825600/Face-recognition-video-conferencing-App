@@ -62,31 +62,6 @@ import static com.jie.enums.ZoneEnum.SHANGHAI;
 public class CalendarController {
     @Autowired
     private CalendarService calendarService;
-    @Autowired
-    private RestTemplate restTemplate;
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
-
-//    @ApiOperation("测试")
-//    @PostMapping("/test")
-//    public RespBean test(Integer time){
-//        String message="我是"+time;
-//        //EXCHANGE_NAME, ROUTE_KEY
-//        rabbitTemplate.convertAndSend(DelayLetterRabbitmqConfig.EXCHANGE_NAME,DelayLetterRabbitmqConfig.ROUTE_KEY,message,(t)->{
-//            //设置延迟时间 毫秒
-//            //会议结束时间-当前时间
-//            Duration duration = Duration.between(LocalDateTime.now(), meeting.getMeetingEndTime());
-//            //设置消息过期时间
-//            message.getMessageProperties().setExpiration(duration.toMillis() + "");
-//            log.info(meeting.getMeetingName() + "成功投递" + "到期时间为" + duration.toMillis()/1000 + "秒");
-//            log.info("异步添加mq延迟队列");
-//            return message;
-//            t.getMessageProperties().setDelay(time);
-//            log.info("设置成功"+time/1000);
-//            return t;
-//        });
-//        return RespBean.success();
-//    }
 
     @ApiOperation("新建日程")
     @PostMapping("/addCalendar")
