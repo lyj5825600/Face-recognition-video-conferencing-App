@@ -3,6 +3,12 @@ server:
   servlet:
     session:
       timeout: 21600
+##python服务地址 例如http://127.0.0.1:5000
+#faceRecognition:
+#  pytorch: http://127.0.0.1:5000/
+faceRecognition:
+  pytorch: https://5r2275o669.goho.co
+
 #mysql
 spring:
   datasource:
@@ -81,5 +87,4 @@ qq:
 anyRTC:
   trtc:
     appId: 9e832ae64d960051527051fce57d122b
-faceRecognition:
-  pytorch: C:\\Users\\杰崽\\Desktop\\杂物\\人脸检测\\facenet-retinaface-pytorch-main\\facedataset
+

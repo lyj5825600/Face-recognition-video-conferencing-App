@@ -1,9 +1,7 @@
 package com.jie.constant;
 /**
  * 公共常量
- *
  * @author yezhiqiu
- * @date 2021/07/27
  */
 public class CommonConst {
 
@@ -83,11 +81,18 @@ public class CommonConst {
     /**
      * python人脸识别接口地址
      */
-    public static final String FACENETURL="http://127.0.0.1:5000/facenet";
+    public static final String FACENETURL="/facenet";
     /**
      * python人脸识别接口刷新
      */
-    public static final String FACEIMGAEREFRESH="http://127.0.0.1:5000/imgaesDataset";
-
+    public static final String FACEIMGAEREFRESH="/imgaesDataset";
+    /**
+     * python添加人脸接口
+     */
+    public static final String ADDFACENETIMAGE="/addImages";
+    /**
+     * python删除人脸接口
+     */
+    public static final String DELETEFACENETIMAGE="/deleteImages";
 
 }

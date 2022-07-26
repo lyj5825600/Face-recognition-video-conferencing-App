@@ -1,6 +1,7 @@
 package com.jie.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.jie.constant.CommonConst;
@@ -12,9 +13,11 @@ import com.jie.service.ParticipantListService;
 import com.jie.strategy.context.UploadStrategyContext;
 import com.jie.util.BASE64DecodedMultipartFile;
 import com.jie.util.BeanCopyUtils;
+import com.jie.util.HttpUtil;
 import com.jie.util.UserUtils;
+import com.jie.vo.FacenetVO;
 import com.jie.vo.ParticipantListVO;
-import org.json.JSONObject;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.system.ApplicationHome;
@@ -42,6 +45,7 @@ import java.util.concurrent.CompletableFuture;
  * @since 2022-04-05
  */
 @Service
+@Slf4j
 public class ParticipantListServiceImpl extends ServiceImpl<ParticipantListMapper, ParticipantList> implements ParticipantListService {
     @Autowired
     private UploadStrategyContext uploadStrategyContext;
@@ -79,54 +83,42 @@ public class ParticipantListServiceImpl extends ServiceImpl<ParticipantListMappe
                 .phone(participantListVO.getPhone())
                 .build();
         //进行异步往深度学习进行图片填充
-        addFacenet(username,participantListVO.getFacePhotos(),participantListVO.getNickname());
-        //异步进行加载
-        imagesFabric();
+//        addFacenet(username,participantListVO.getFacePhotos(),participantListVO.getNickname());
+        addFacenetImage(username,participantListVO.getFacePhotos(),participantListVO.getNickname());
         this.baseMapper.insert(participant);
+        imagesFabric();
     }
 
     @Override
     public void removeParticipantsPersonList(List<Integer> id) {
         for (Integer integer : id) {
             ParticipantList participantList = this.getById(integer);
-            File file = new File(faceRecognition+"\\"+UserUtils.getLoginUser().getUsername()+"\\"+participantList.getNickname()+".jpeg");
-            file.delete();
+            com.alibaba.fastjson.JSONObject json = new com.alibaba.fastjson.JSONObject();
+            json.put("username", UserUtils.getLoginUser().getUsername());
+            json.put("nickname", participantList.getNickname());
+            HttpUtil.sendPost(json, faceRecognition+CommonConst.DELETEFACENETIMAGE);
         }
     }
 
-    //进行异步往深度学习进行图片填充
-    public void addFacenet(String username,String images,String nickname){
-        //base64转格式
+    //python进行异步往深度学习进行图片填充
+    public void addFacenetImage(String username,String images,String nickname){
+        // 人脸识别返回用户nickname
         CompletableFuture.runAsync(() -> {
-        MultipartFile file = BASE64DecodedMultipartFile.base64ToMultipart(images);
-        try {
-            // 获取文件名
-            String fileName = file.getOriginalFilename();
-            // 获取文件的后缀名
-            String suffixName = fileName.substring(fileName.lastIndexOf("."));
-            //文件绝对路径,项目中一般使用相对类路径,即使文件变更路径也会跟着变
-            String filePath =faceRecognition+"\\"+username+"\\";
-            //构造一个路径
-            String path = filePath+nickname+suffixName;
-            File dest = new File(path);
-            // 检测是否存在目录
-            if (!dest.getParentFile().exists()) {
-                dest.getParentFile().mkdirs();// 新建文件夹
-            }
-            file.transferTo(dest);// 文件写入
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            com.alibaba.fastjson.JSONObject json = new com.alibaba.fastjson.JSONObject();
+            json.put("imgbase64", images.substring(22, images.length()));
+            json.put("username", username);
+            json.put("nickname", nickname);
+            String name = JSONObject.parseObject(HttpUtil.sendPost(json, faceRecognition+CommonConst.ADDFACENETIMAGE), FacenetVO.class).getName();
+            log.info("图片" + name);
         });
     }
-
     /**
      * 远程RPC调用刷新接口
      */
     public void imagesFabric(){
-            //你自己的逻辑代码，通过restTemplate.exchange调用外部接口;
-            restTemplate.getForObject(CommonConst.FACEIMGAEREFRESH,String.class);
+        //你自己的逻辑代码，通过restTemplate.exchange调用外部接口;
+        CompletableFuture.runAsync(() -> {
+            restTemplate.getForObject(faceRecognition+CommonConst.FACEIMGAEREFRESH,String.class);
+        });
     }
 }

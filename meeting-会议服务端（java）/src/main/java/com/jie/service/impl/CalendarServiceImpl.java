@@ -59,7 +59,6 @@ public class CalendarServiceImpl extends ServiceImpl<CalendarMapper, Calendar> i
     public List<CalendarDTO> getCalendarList(ConditionVO condition, String username,String dataTime) {
         //年 月 日
         List<Calendar>list=this.baseMapper.DataTimeCalendarLists(condition.getCurrent(),condition.getSize(),username,dataTime);
-        List<CalendarDTO> photoList = BeanCopyUtils.copyList(list, CalendarDTO.class);
-        return photoList;
+        return BeanCopyUtils.copyList(list, CalendarDTO.class);
     }
 }

@@ -1,17 +1,12 @@
 package com.jie.util;
 
 
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
+
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 /**
  * Created by zhangwenchao on 2017/9/29.

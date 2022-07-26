@@ -71,8 +71,6 @@ public class SignServiceImpl extends ServiceImpl<SignMapper, Sign> implements Si
     private RedisTemplate<String, String> redisTemplate;
     @Autowired
     private ParticipantsPersonMapper participantsPersonMapper;
-    @Autowired
-    private RestTemplate restTemplate;
 
     /**
      * 会议号 会议名 会议发起人 会议开始时间
@@ -146,18 +144,17 @@ public class SignServiceImpl extends ServiceImpl<SignMapper, Sign> implements Si
         return false;
     }
 
-    //判断用户是否已经签到
-    public boolean isSign(String nickname, Integer meetingNumber, Integer signWay, String username) {
+    public boolean isSign(String nickname,Integer meetingNumber,Integer signWay,String username){
         //根据当前用户的会议号从redis中查找最新会议信息
         Meeting meeting = JSONObject.parseObject(redisTemplate.opsForValue().get(MeetingConst.MEETING + meetingNumber), Meeting.class);
         //参会人签到key
-        String redisKey = MeetingConst.FREQUENT + meeting.getMeetingNumber();
+        String redisKey=MeetingConst.FREQUENT +meeting.getMeetingNumber();
         //判断是否签到
-        if (redisTemplate.opsForSet().isMember(redisKey, nickname)) {
+        if (redisTemplate.opsForSet().isMember(redisKey,nickname)){
             return false;
         }
-        redisTemplate.opsForSet().add(redisKey, nickname);
-        addSign(meeting, nickname, signWay, username);
+        redisTemplate.opsForSet().add(redisKey,nickname);
+        addSign(meeting,nickname,signWay,username);
         return true;
     }
 
