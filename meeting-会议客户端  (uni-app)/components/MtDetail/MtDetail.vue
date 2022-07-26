@@ -23,7 +23,7 @@
     </view>
     <view class="item top-border-1px" v-if="mtDetail.meetingType === 1">
       <view>会议地址</view>
-      <view class="text_ellipsis">{{ mtDetail.meetingAddress }}</view>
+      <view class="text_2line_ellipsis">{{ mtDetail.meetingAddress }}</view>
     </view>
     <view class="item top-border-1px">
       <text>会议号</text>

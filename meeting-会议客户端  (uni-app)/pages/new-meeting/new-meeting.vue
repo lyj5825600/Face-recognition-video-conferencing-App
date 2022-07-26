@@ -31,9 +31,9 @@
 			<view>会议类型</view>
 			<view>{{ meetingTypeTxt }}</view>
 		</view>
-    <view class="item" v-if="meetingType === 1" @tap="$refs.inputDialog.open()">
+    <view class="item" v-if="meetingType === 1" @tap="$refs.mapPopup.open()">
     	<view>地点</view>
-    	<view v-if="meetingPlace">{{ meetingPlace }}</view>
+    	<view v-if="meetingPlace" class="text_2line_ellipsis">{{ meetingPlace }}</view>
       <text class="iconfont icon-youjiantou" v-else></text>
     </view>
 		<view class="item mb_15 border_none" @tap="$refs.descDialog.open()">
@@ -118,7 +118,7 @@
     	ref="selector" 
     ></w-picker>
     <!-- 输入框弹窗 -->
-    <Popup ref="inputDialog" @inputVal="getInputVal($event, 'place')" :inputVal="meetingPlace" popupType="dialog" popupFormat="2" placeholder="请输入会议地点" inputTitle="编辑会议地点" />
+<!--    <Popup ref="inputDialog" @inputVal="getInputVal($event, 'place')" :inputVal="meetingPlace" popupType="dialog" popupFormat="2" placeholder="请输入会议地点" inputTitle="编辑会议地点" /> -->
     <Popup ref="descDialog" @inputVal="getInputVal($event, 'desc')" :inputVal="meetingDescribed" popupType="dialog" popupFormat="2" placeholder="请输入会议内容" inputTitle="编辑会议内容" />
     <!-- 提示信息弹窗 -->
     <Popup ref="message" :popupType="popupMsgtype" :msgType="popupOptions.msgType" :messageText="popupOptions.messageText" />
@@ -139,6 +139,13 @@
         </scroll-view>
       </view>
     </uni-popup>
+    <!-- 普通弹窗 -->
+    <uni-popup ref="mapPopup" background-color="#fff">
+      <view class="mapPopup-content">
+        <Map :showBtn="true" @getPosition="getPosition" @closeMapPopup="$refs.mapPopup.close()">
+        </Map>
+      </view>
+    </uni-popup>
   </view>
 </template>
 
@@ -146,6 +153,7 @@
   import { mapState, mapGetters } from 'vuex'
   import { date } from '../../common/common.js'
   import { saveMeeting } from '../../api/index.js'
+  import Map from '@/components/Map/Map.vue'
   // @: 弹窗是否显示
 	export default {
 		data() {
@@ -154,6 +162,7 @@
 				selMemberList: [],
         // 线下会议即确定,线上会议即确定
         confirmText: '进入会议室',
+        searchKey: '',
         // 线下会议地址
         meetingPlace: '',
         // 会议描述
@@ -174,6 +183,10 @@
         startTime: '',
         // 结束时间
         endTime: '',
+        // 纬度
+        meetingLatitude: '',
+        // 经度
+        meetingLongitude: '',
         // 会议类型[文字]
         meetingTypeTxt: '在线会议',
         //  会议类型[数字]
@@ -206,6 +219,7 @@
         return this.selMemberList.slice(0, 10)
       }
     },
+    components: { Map },
     watch: {
       selMemberList: {
         handler(newList, oldList) {
@@ -255,6 +269,12 @@
       if(!this.editEndTime) return this.endTime = `${this.dateResult} ${endHour}:${endMinute}`
     },
     methods: {
+      getPosition(options) {
+        this.meetingPlace = options.address
+        this.meetingLatitude = options.latitude
+        this.meetingLongitude = options.longitude
+        console.log(options, 'hhhh');
+      },
       // 去往视频会议页面
       toVideoPage() {
         if (this.confirmText === '确定') {
@@ -328,9 +348,7 @@
       },
       // 当用户弹出层确认时触发
       getInputVal(val, type) {
-        if (type === 'place') {
-          this.meetingPlace = val
-        } else {
+        if (type === 'desc') {
           this.meetingDescribed = val
         }
       },
@@ -357,7 +375,7 @@
       },
       // 创建会议
       handleSaveMeeting() {
-        const { meetingName, startTime, meetingPlace, endTime, dateResult, meetingDescribed, meetingType } = this
+        const { meetingName, startTime, meetingPlace, endTime, dateResult, meetingDescribed, meetingType, meetingLatitude, meetingLongitude } = this
         const meetingStartTime = `${startTime}:00`
         const meetingEndTime = `${endTime}:00`
         const startTimestamp = new Date(meetingStartTime).getTime()
@@ -374,6 +392,8 @@
             meetingName,
             meetingStartTime,
             meetingType,
+            meetingLatitude,
+            meetingLongitude,
             person: [...this.$store.getters.selMemberIdList]
           }
         // 创建会议
@@ -478,5 +498,10 @@
         }
       }
     }
-	}
+    // 地图弹窗
+    .mapPopup-content {
+      width: 100vw;
+      height: 80vh;
+    }
+  }
 </style>

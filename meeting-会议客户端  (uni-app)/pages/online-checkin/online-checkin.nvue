@@ -33,11 +33,11 @@
     <!-- 普通弹窗 -->
     <uni-popup ref="popup1" background-color="#fff" :is-mask-click="false">
       <view class="popup-content">
-        <view><text class="title">签到结果</text></view>
+        <view><text class="title" :style="{color: sucTip === '签到失败，用户不在线下会议地点附近' ? 'red' : '#74d964'}">签到结果</text></view>
         <view><text class="text">{{ sucTip }}</text></view>
         <view class="popup-btn">
-          <view class="popup-btn-content"><text class="txt-btn back-btn" @click="quitCurPage">退出本页</text></view>
-          <view class="popup-btn-content"><text class="txt-btn" @click="toMeetingVideo">进入会议</text></view>
+          <view class="popup-btn-content"><text class="txt-btn back-btn" :class="isSign == 1 ? 'offline-meeting' : ''" @click="quitCurPage">退出本页</text></view>
+          <view class="popup-btn-content" v-if="isSign != 1"><text class="txt-btn" @click="toMeetingVideo">进入会议</text></view>
         </view>
       </view>
     </uni-popup>
@@ -73,6 +73,14 @@
         meetingStartTime: '',
         // 会议结束时间
         meetingEndTime: '',
+        // 线下会议的用户位置纬度
+        userLatitude: '',
+        // 线下会议的用户位置经度
+        userLongitude: '',
+        // 会议类型
+        isSign: '',
+        // 线下会议的会议地址
+        meetingAddress: '',
         popupOptions: {
           msgType: '',
           messageText: ''
@@ -99,13 +107,21 @@
       flag,
       meetingNumber = '',
       startTime = '',
-      endTime = ''
+      endTime = '',
+      userLatitude = '',
+      userLongitude = '',
+      isSign = '',
+      meetingAddress = ''
     }) {
       this.flag = flag
-      if (meetingNumber && startTime && endTime) {
+      if (meetingNumber && startTime && endTime && isSign) {
         this.meetingNumber = meetingNumber
         this.meetingStartTime = startTime
         this.meetingEndTime = endTime
+        this.userLatitude = parseFloat(userLatitude)
+        this.userLongitude = parseFloat(userLongitude)
+        this.isSign = parseInt(isSign)
+        this.meetingAddress = meetingAddress
       }
     },
     onShow() {
@@ -163,7 +179,11 @@
         this.faceRecognitionCheckFun({
           faceImage: '',
           nickname: this.checkinName,
-          meetingNumber: this.meetingNumber
+          meetingNumber: this.meetingNumber,
+          userLatitude: this.userLatitude,
+          userLongitude: this.userLongitude,
+          isSign: this.isSign,
+          meetingAddress: this.meetingAddress
         }, false)
       },
       // 人脸签到
@@ -179,6 +199,9 @@
           this.$store.commit('RESETHISTROYLIST')
           // 再请求
           this.$store.dispatch('getUserHistoryConference', this.historyOptions)
+        } else if (this.isSign == 1 && res.message === '签到失败，用户不在线下会议地点附近') {
+          this.sucTip = res.message
+          this.$refs.popup1.open('center')
         } else {
           // await showToast({title: '签到失败',icon: 'error',mask: true})
           // 不论哪种签到都弹出提示框[签到失败的情况]
@@ -220,7 +243,11 @@
                 _this.faceRecognitionCheckFun({
                   faceImage: src,
                   meetingNumber: _this.meetingNumber,
-                  nickname: ''
+                  nickname: '',
+                  userLatitude: _this.userLatitude,
+                  userLongitude: _this.userLongitude,
+                  isSign: _this.isSign,
+                  meetingAddress: _this.meetingAddress
                 })
               } else {
                 uni.navigateBack({
@@ -382,6 +409,10 @@
               border-right-width: 2rpx;
               border-style: dotted;
               color: red;
+            }
+            &.offline-meeting {
+              width: 620rpx;
+              border: none
             }
           }
         }

@@ -135,6 +135,14 @@
             }
             
         }
+        ,{
+            "path" : "pages/map/map",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "地图"
+            }
+            
+        }
     ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
