@@ -1,6 +1,7 @@
 package com.jie.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.jie.dto.ResourceRoleDTO;
 import com.jie.entity.Role;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -23,5 +24,11 @@ public interface RoleMapper extends BaseMapper<Role> {
      * @return 角色标签
      */
     List<String> listRolesByUserInfoId(Integer userInfoId);
+    /**
+     * 查询路由角色列表
+     *
+     * @return 角色标签
+     */
+    List<ResourceRoleDTO> listResourceRoles();
 
 }

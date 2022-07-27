@@ -54,7 +54,7 @@ public class RoleController {
     @OptLog(optType = UPDATE)
     @ApiOperation(value = "更新角色信息")
     @PostMapping("/updateRole")
-    public RespBean updateRole(@RequestBody Role role){
+    public RespBean<?> updateRole(@RequestBody Role role){
         boolean flag=roleService.updateById(role);
         return flag?RespBean.success("更新成功"):RespBean.error("更新失败");
     }
@@ -66,8 +66,8 @@ public class RoleController {
      */
     @OptLog(optType = SAVE_OR_UPDATE)
     @ApiOperation(value = "保存或更新角色")
-    @PostMapping("/admin/role")
-    public RespBean saveOrUpdateRole(@RequestBody @Valid RoleVO roleVO) {
+    @PostMapping("/admin/saveOrUpdateRole")
+    public RespBean<?> saveOrUpdateRole(@RequestBody @Valid RoleVO roleVO) {
         roleService.saveOrUpdateRole(roleVO);
         return RespBean.success();
     }

@@ -1,6 +1,6 @@
 package com.jie.config.security;
 
-import com.jie.filter.CustomFilter;
+import com.jie.filter.FilterInvocationSecurityMetadataSourceImpl;
 import com.jie.filter.JwtAuthencationTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -33,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private RestfulAccessDenieHandler restfulAccessDenieHandler;
     @Autowired
-    private CustomFilter customFilter;
+    private FilterInvocationSecurityMetadataSourceImpl filterInvocationSecurityMetadataSource;
     @Autowired
     private CustomUrlDecisionManager customUrlDecisionManager;
 
@@ -86,7 +86,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         @Override
                         public <O extends FilterSecurityInterceptor> O postProcess(O o) {
                             o.setAccessDecisionManager(customUrlDecisionManager);
-                            o.setSecurityMetadataSource(customFilter);
+                            o.setSecurityMetadataSource(filterInvocationSecurityMetadataSource);
                             return o;
                         }
                     })

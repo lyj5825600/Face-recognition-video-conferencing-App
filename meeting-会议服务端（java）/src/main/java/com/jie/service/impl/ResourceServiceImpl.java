@@ -7,6 +7,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.jie.dto.LabelOptionDTO;
 import com.jie.dto.ResourceDTO;
 import com.jie.entity.Resource;
+import com.jie.entity.RoleResource;
+import com.jie.exception.BizException;
+import com.jie.filter.FilterInvocationSecurityMetadataSourceImpl;
 import com.jie.mapper.ResourceMapper;
 import com.jie.mapper.RoleResourceMapper;
 import com.jie.service.ResourceService;
@@ -14,6 +17,7 @@ import com.jie.util.BeanCopyUtils;
 import com.jie.vo.ConditionVO;
 import com.jie.vo.ResourceVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -29,23 +33,42 @@ import static com.jie.constant.CommonConst.FALSE;
  *  服务实现类
  * </p>
  *
- * @author zwq
- * @since 2022-01-04
  */
 @Service
 public class ResourceServiceImpl extends ServiceImpl<ResourceMapper, Resource> implements ResourceService {
     @Autowired
     private ResourceMapper resourceDao;
     @Autowired
-    private RoleResourceMapper roleResourceDao;
+    private RoleResourceMapper roleResourceMapper;
+    @Autowired
+    private FilterInvocationSecurityMetadataSourceImpl filterInvocationSecurityMetadataSource;
+
     @Override
     public void saveOrUpdateResource(ResourceVO resourceVO) {
-
+        // 更新资源信息
+        Resource resource = BeanCopyUtils.copyObject(resourceVO, Resource.class);
+        this.saveOrUpdate(resource);
+        // 重新加载角色资源信息
+        filterInvocationSecurityMetadataSource.clearDataSource();
     }
 
     @Override
     public void deleteResource(Integer resourceId) {
-
+        // 查询是否有角色关联
+        Integer count = roleResourceMapper.selectCount(new LambdaQueryWrapper<RoleResource>()
+                .eq(RoleResource::getResourceId, resourceId));
+        if (count > 0) {
+            throw new BizException("该资源下存在角色");
+        }
+        // 删除子资源
+        List<Integer> resourceIdList = resourceDao.selectList(new LambdaQueryWrapper<Resource>()
+                        .select(Resource::getId).
+                        eq(Resource::getParentId, resourceId))
+                .stream()
+                .map(Resource::getId)
+                .collect(Collectors.toList());
+        resourceIdList.add(resourceId);
+        resourceDao.deleteBatchIds(resourceIdList);
     }
     /**
      * 查看资源列表

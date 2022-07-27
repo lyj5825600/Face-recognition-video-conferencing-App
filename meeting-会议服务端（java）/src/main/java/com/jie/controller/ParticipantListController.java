@@ -39,20 +39,20 @@ public class ParticipantListController {
      */
     @ApiOperation(value = "根据当前用户返回已添加的参会人列表")
     @GetMapping("/getParticipantsPersonList")
-    public RespBean getParticipantsPersonList(){
+    public RespBean<?> getParticipantsPersonList(){
         return RespBean.success("personList", participantListService.getParticipantsPersonList(UserUtils.getLoginUser().getUsername()));
     }
 
     @ApiOperation("添加参会人信息")
     @PostMapping("/addOrUpdateParticipantPerson")
-    public RespBean addOrUpdateParticipantPerson(@Valid @RequestBody ParticipantListVO participantPersonVO){
+    public RespBean<?> addOrUpdateParticipantPerson(@Valid @RequestBody ParticipantListVO participantPersonVO){
         //添加参会人信息
         participantListService.saveParticipantPerson(participantPersonVO);
         return RespBean.success("添加成功");
     }
     @ApiOperation("刪除参会人")
     @PostMapping("/deleteParticipantsPersonList")
-    public RespBean deleteParticipantsPersonList(@RequestBody List<Integer> id){
+    public RespBean<?> deleteParticipantsPersonList(@RequestBody List<Integer> id){
         participantListService.removeParticipantsPersonList(id);
         participantListService.removeByIds(id);
         return RespBean.success("删除成功");

@@ -55,12 +55,12 @@ public class UserAuthController {
 
     @ApiOperation("用户app注册")
     @PostMapping("/registered")
-    public RespBean registered(@RequestBody UserRegisteredVO userRegisteredVO){
+    public RespBean<?> registered(@RequestBody UserRegisteredVO userRegisteredVO){
         return userAuthService.registeredUserAuth(userRegisteredVO);
     }
     @ApiOperation("用户app登录")
     @PostMapping("/app/login")
-    public RespBean appLogin(@RequestBody UserLoginParam adminLoginParam, HttpServletRequest request){
+    public RespBean<?> appLogin(@RequestBody UserLoginParam adminLoginParam, HttpServletRequest request){
         return userAuthService.appLogin(adminLoginParam,request);
     }
     /**
@@ -71,7 +71,7 @@ public class UserAuthController {
      */
     @ApiOperation(value = "后台登录")
     @PostMapping("/login")
-    public RespBean login(@RequestBody UserLoginParam adminLoginParam, HttpServletRequest request){
+    public RespBean<?> login(@RequestBody UserLoginParam adminLoginParam, HttpServletRequest request){
         return userAuthService.login(adminLoginParam.getUsername(),adminLoginParam.getPassword(),adminLoginParam.getCode(),request);
     }
 //    @ApiOperation(value = "小程序登录返回Token")
@@ -94,7 +94,7 @@ public class UserAuthController {
 
     @ApiOperation(value = "退出登录")
     @PostMapping("/logout")
-    public RespBean logout(){
+    public RespBean<?> logout(){
         //让前端从请求头删除token
         return RespBean.success("注销成功!");
     }
@@ -136,13 +136,13 @@ public class UserAuthController {
 
     @ApiOperation(value = "管理员修改其他用户密码")
     @PutMapping("/updateAdminPassword")
-    public RespBean updatePassword(@Valid @RequestBody UserVO user) {
+    public RespBean<?> updatePassword(@Valid @RequestBody UserVO user) {
         userAuthService.updatePassword(user);
         return RespBean.success("修改成功");
     }
     @ApiOperation(value = "用户修改密码")
     @PutMapping("/updateUserPassword")
-    public RespBean updateUserPassword(String password) {
+    public RespBean<?> updateUserPassword(String password) {
         userAuthService.updateUserPassword(password);
         return RespBean.success("修改成功");
     }

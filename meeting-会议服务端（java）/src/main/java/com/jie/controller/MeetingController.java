@@ -48,36 +48,36 @@ public class MeetingController {
     }
     @ApiOperation("根据当前用户关闭最新会议")
     @PostMapping("/shutDownMettingByUserName")
-    public RespBean shutDownMettingByUserName(){
+    public RespBean<?> shutDownMettingByUserName(){
         return meetingService.shutDownMetting(UserUtils.getLoginUser());
     }
 
     @ApiOperation("用户查看自己创建的会议记录")
     @GetMapping("/oneselfMeeting")
-    public RespBean oneselfMeeting(ConditionVO condition){
+    public RespBean<?> oneselfMeeting(ConditionVO condition){
         return RespBean.success("oneselfMeeting",meetingService.getOneSelfMeeting(condition, UserUtils.getLoginUser().getUsername()));
     }
 
     @OptLog(optType = SAVE)
     @ApiOperation("当前用户创建会议并交给ai审核")
     @PostMapping("/saveMeeting")
-    public RespBean saveMeeting(@RequestBody MettingVO mettingVO){
+    public RespBean<?> saveMeeting(@RequestBody MettingVO mettingVO){
         return meetingService.saveMeeting(mettingVO);
     }
 
     @ApiOperation("会议号识别会议是否合法流程")
     @PostMapping("/conferenceIdViewTheConferenceStatus")
-    public RespBean conferenceIdViewTheConferenceStatus(Integer meetingNumber){
+    public RespBean<?> conferenceIdViewTheConferenceStatus(Integer meetingNumber){
         return meetingService.getMeetingStatus(meetingNumber);
     }
     @ApiOperation("管理员查看全部会议信息")
     @GetMapping("/viewAllConferenceInformation")
-    public RespBean viewAllConferenceInformation(ConditionVO condition){
+    public RespBean<?> viewAllConferenceInformation(ConditionVO condition){
         return RespBean.success("allConferenceInformation",meetingService.viewAllConferenceInformation(condition));
     }
     @ApiOperation("管理员根据会议号关闭会议")
     @PostMapping("/adminCloseMeeting")
-    public RespBean adminCloseMeeting(Integer meetingNumber){
+    public RespBean<?> adminCloseMeeting(Integer meetingNumber){
         //关闭redis的会议信息和数据库的会议信息
         meetingService.adminShutDownMetting(meetingNumber);
         return RespBean.success("关闭成功");

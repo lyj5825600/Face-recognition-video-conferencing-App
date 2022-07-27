@@ -130,14 +130,14 @@ public class SignServiceImpl extends ServiceImpl<SignMapper, Sign> implements Si
     //判断线下会议的用户是否在会议地址附近，若在则可进行签到
     private boolean isUserIsNextToTheMeetingPlace(SignVO signVO, String username) {
         //先判断是线上会议还是线下
-        if (signVO.isIsSign()) {
+        if (!signVO.isIsSign()) {
             return false;
         }
         //将当前用户地点加入geo中
-        redisTemplate.opsForGeo().add(MeetingConst.MAPADDRESS + signVO.getMeetingNumber(), new GeoLocation(username, new Point(signVO.getMeetingLongitude(), signVO.getMeetingLatitude())));
+        redisTemplate.opsForGeo().add(MeetingConst.MAPADDRESS + signVO.getMeetingNumber(), new GeoLocation(username, new Point(signVO.getUserLongitude(), signVO.getUserLatitude())));
         //判断用户是否在内会议地点1000米内
         Distance userAddress = redisTemplate.opsForGeo().distance(MeetingConst.MAPADDRESS + signVO.getMeetingNumber(), signVO.getMeetingAddress(), username, Metrics.NEUTRAL);
-        log.info("当前用户是：" + username + "距离会议地点" + Objects.requireNonNull(userAddress).getValue() + "米" + userAddress.getMetric());
+//        log.info("当前用户是：" + username + "距离会议地点" + Objects.requireNonNull(userAddress).getValue() + "米" + userAddress.getMetric());
         if (userAddress.getValue() > 1000) {
             return true;
         }

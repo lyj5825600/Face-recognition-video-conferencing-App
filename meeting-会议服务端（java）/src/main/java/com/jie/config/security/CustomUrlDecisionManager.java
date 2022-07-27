@@ -10,6 +10,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 权限控制
@@ -21,26 +23,17 @@ import java.util.Collection;
 public class CustomUrlDecisionManager implements AccessDecisionManager {
     @Override
     public void decide(Authentication authentication, Object o, Collection<ConfigAttribute> collection) throws AccessDeniedException, InsufficientAuthenticationException {
-        for (ConfigAttribute configAttribute : collection) {
-            //当前我们url需要的角色
-            String needRole = configAttribute.getAttribute();
-            //判断角色是否登录即可访问的角色，此角色在CustomFilter中设置
-            if ("ROLE_LOGIN".equals(needRole)){
-                if (authentication instanceof AnonymousAuthenticationToken){
-                    throw new AccessDeniedException("还未登录，请重新登录");
-                }else {
-                    return;
-                }
-            }
-            //判断用户角色是否为url所需角色
-            Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-            for (GrantedAuthority authority : authorities) {
-                if (authority.getAuthority().equals(needRole)){
-                    return;
-                }
+        // 获取用户权限列表
+        List<String> permissionList = authentication.getAuthorities()
+                .stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList());
+        for (ConfigAttribute item : collection) {
+            if (permissionList.contains(item.getAttribute())) {
+                return;
             }
         }
-        throw new AccessDeniedException("权限不足，请联系管理员");
+        throw new AccessDeniedException("没有操作权限");
     }
 
     @Override

@@ -7,14 +7,14 @@ import com.jie.dto.LabelOptionDTO;
 import com.jie.service.ResourceService;
 import com.jie.util.RespBean;
 import com.jie.vo.ConditionVO;
+import com.jie.vo.ResourceVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 
@@ -38,7 +38,7 @@ public class ResourceController {
      */
     @ApiOperation(value = "查看接口资源列表")
     @GetMapping("/admin/resources")
-    public RespBean listResources(ConditionVO conditionVO) {
+    public RespBean<?> listResources(ConditionVO conditionVO) {
         return RespBean.success("resources",resourceService.listResources(conditionVO));
     }
 
@@ -52,6 +52,27 @@ public class ResourceController {
     @GetMapping("/admin/role/resources")
     public RespBean<List<LabelOptionDTO>> listResourceOption() {
         return RespBean.success("resources",resourceService.listResourceOption());
+    }
+    /**
+     * 删除资源
+     * @param resourceId 资源id
+     */
+    @ApiOperation(value = "删除资源")
+    @DeleteMapping("/admin/deleteResource/{resourceId}")
+    public RespBean<?> deleteResource(@PathVariable("resourceId") Integer resourceId) {
+        resourceService.deleteResource(resourceId);
+        return RespBean.success();
+    }
+
+    /**
+     * 新增或修改资源
+     * @param resourceVO 资源信息
+     */
+    @ApiOperation(value = "新增或修改资源")
+    @PostMapping("/admin/saveOrUpdateResource")
+    public RespBean<?> saveOrUpdateResource(@RequestBody @Valid ResourceVO resourceVO) {
+        resourceService.saveOrUpdateResource(resourceVO);
+        return RespBean.success();
     }
 }
 

@@ -33,7 +33,7 @@ public class OperationLogController {
      */
     @ApiOperation(value = "查看操作日志")
     @GetMapping("/admin/operation/logs")
-    public RespBean listOperationLogs(ConditionVO conditionVO) {
+    public RespBean<?> listOperationLogs(ConditionVO conditionVO) {
         return RespBean.success("日志接口调用成功",operationLogService.listOperationLogs(conditionVO));
     }
 
@@ -45,7 +45,7 @@ public class OperationLogController {
      */
     @ApiOperation(value = "删除操作日志")
     @DeleteMapping("/admin/operation/logs")
-    public RespBean deleteOperationLogs(@RequestBody List<Integer> logIdList) {
+    public RespBean<?> deleteOperationLogs(@RequestBody List<Integer> logIdList) {
         operationLogService.removeByIds(logIdList);
         return RespBean.success("刪除成功");
     }

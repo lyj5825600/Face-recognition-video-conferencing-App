@@ -39,12 +39,10 @@ public class UserInfoController {
 
     /**
      * 修改当前登录用户的nickname
-     * @param principal
-     * @return
      */
     @ApiOperation(value = "修改当前登录用户的名称")
     @PostMapping("/updateNickname")
-    public RespBean updateNickname(Principal principal,String nickname){
+    public RespBean<?> updateNickname(Principal principal,String nickname){
 
         //根据username修改nickname
         userInfoService.updateByNickName(principal.getName(),nickname);
@@ -53,7 +51,7 @@ public class UserInfoController {
 
     @ApiOperation(value = "修改用户的头像信息")
     @PostMapping("/updateUserInfoImages")
-    public RespBean updateUserInfoImages(String images){
+    public RespBean<?> updateUserInfoImages(String images){
         userInfoService.updateUserInfoImages(images);
         return RespBean.success("头像修改成功");
     }
@@ -63,21 +61,21 @@ public class UserInfoController {
     @OptLog(optType = UPDATE)
     @ApiOperation(value = "修改用户权限")
     @PutMapping("/role")
-    public RespBean updateUserRole(@Valid @RequestBody UserRoleVO userRoleVO){
+    public RespBean<?> updateUserRole(@Valid @RequestBody UserRoleVO userRoleVO){
         userInfoService.updateUserRole(userRoleVO);
         return RespBean.success();
     }
 
     @ApiOperation("根据用户id获取用户信息")
     @GetMapping("/getUserInfoById")
-    public RespBean getUserInfoById(Integer id){
+    public RespBean<?> getUserInfoById(Integer id){
         UserInfo userInfo = userInfoService.getById(id);
         return RespBean.success("userinfo",userInfo);
     }
 
     @ApiOperation("后台统计接口")
     @GetMapping("/getStatistics")
-    public RespBean statistics(){
+    public RespBean<?> statistics(){
         return RespBean.success("后台统计",userInfoService.statistics());
     }
 

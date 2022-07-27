@@ -4,12 +4,9 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.jie.constant.CommonConst;
 import com.jie.constant.MeetingConst;
 import com.jie.dto.MeetingStatisticalDTO;
+import com.jie.entity.*;
 import com.jie.entity.Calendar;
-import com.jie.entity.Meeting;
-import com.jie.entity.ParticipantsPerson;
-import com.jie.mapper.CalendarMapper;
-import com.jie.mapper.MeetingMapper;
-import com.jie.mapper.ParticipantsPersonMapper;
+import com.jie.mapper.*;
 import com.jie.service.MeetingStatisticalService;
 import com.jie.util.RespBean;
 import com.jie.util.UserUtils;
@@ -40,15 +37,15 @@ import java.util.concurrent.TimeUnit;
 @SpringBootTest
 public class BackApplicationTests {
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RoleResourceMapper roleResourceMapper;
+    @Autowired
+    private ResourceMapper resourceMapper;
     @org.junit.jupiter.api.Test
     public void test(){
-        //模拟用户经纬度数据
-        GeoOperations geoOperations = redisTemplate.opsForGeo();
-        geoOperations.add(MeetingConst.MAPADDRESS + 123,new RedisGeoCommands.GeoLocation("滨河公园",new Point(116.355778,39.898836)));
-        redisTemplate.expire(MeetingConst.MAPADDRESS + 123, 100, TimeUnit.SECONDS);
+        for (Resource resource : resourceMapper.selectList(null)) {
+            roleResourceMapper.insert(RoleResource.builder().roleId(1).resourceId(resource.getId()).build());
+        }
 
-        //        System.out.println(geoOperations.distance("map:13222", "测试", "滨河公园", Metrics.NEUTRAL));
     }
     public void arrayMaxCount(int[]arr){
         int maxCount=0;

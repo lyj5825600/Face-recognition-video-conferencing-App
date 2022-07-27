@@ -26,11 +26,11 @@ public class SignVO {
     //当前的会议线下地址名称
     private String meetingAddress;
     /**
-     会议地址经度
+     用户签到地址经度
      */
-    private Double meetingLongitude;
+    private Double userLongitude;
     /*
-     *会议地址纬度
+     *用户签到纬度
      */
-    private Double meetingLatitude;
+    private Double userLatitude;
 }

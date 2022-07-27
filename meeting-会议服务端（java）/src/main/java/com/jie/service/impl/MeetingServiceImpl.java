@@ -121,6 +121,8 @@ public class MeetingServiceImpl extends ServiceImpl<MeetingMapper, Meeting> impl
         redisTemplate.delete(MeetingConst.MEETING + user.getMeetingNumber());
         //删除redis签到set信息
         redisTemplate.delete(MeetingConst.FREQUENT + meeting.getMeetingNumber());
+        //删除redis的签到位置信息
+        redisTemplate.delete(MeetingConst.MAPADDRESS + meeting.getMeetingNumber());
         return RespBean.success("会议关闭成功");
     }
 

@@ -65,24 +65,24 @@ public class CalendarController {
 
     @ApiOperation("新建日程")
     @PostMapping("/addCalendar")
-    public RespBean addCalendar(@RequestBody CalendarVO calendarVO){
+    public RespBean<?> addCalendar(@RequestBody CalendarVO calendarVO){
         return calendarService.addCalendar(calendarVO,UserUtils.getLoginUser().getUsername());
     }
     @ApiOperation("删除日程")
-    @PostMapping("/deleteCalendars")
-    public RespBean deleteCalendars(@RequestBody List<Integer> ids){
+    @DeleteMapping("/deleteCalendars")
+    public RespBean<?> deleteCalendars(@RequestBody List<Integer> ids){
         calendarService.removeByIds(ids);
         return RespBean.success("删除成功");
     }
     @ApiOperation("根据日期查看本用户日程信息")
     @GetMapping("/getCalendar")
-    public RespBean getCalendar(ConditionVO condition,String dataTime){
+    public RespBean<?> getCalendar(ConditionVO condition,String dataTime){
         //根据用户名获取用户历史会议信息
         return RespBean.success("calendar",calendarService.getCalendarList(condition, UserUtils.getLoginUser().getUsername(),dataTime));
     }
     @ApiOperation("根据日期id查询本用户日程信息")
     @GetMapping("/getCalendarId")
-    public RespBean getCalendarId(Integer id){
+    public RespBean<?> getCalendarId(Integer id){
         return RespBean.success("CalendarId",calendarService.getById(id));
     }
 
