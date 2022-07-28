@@ -47,6 +47,7 @@ public class ResourceServiceImpl extends ServiceImpl<ResourceMapper, Resource> i
     public void saveOrUpdateResource(ResourceVO resourceVO) {
         // 更新资源信息
         Resource resource = BeanCopyUtils.copyObject(resourceVO, Resource.class);
+
         this.saveOrUpdate(resource);
         // 重新加载角色资源信息
         filterInvocationSecurityMetadataSource.clearDataSource();

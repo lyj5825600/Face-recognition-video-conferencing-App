@@ -42,9 +42,9 @@ public class BackApplicationTests {
     private ResourceMapper resourceMapper;
     @org.junit.jupiter.api.Test
     public void test(){
-        for (Resource resource : resourceMapper.selectList(null)) {
-            roleResourceMapper.insert(RoleResource.builder().roleId(1).resourceId(resource.getId()).build());
-        }
+//        for (Resource resource : resourceMapper.selectList(null)) {
+//            roleResourceMapper.insert(RoleResource.builder().roleId(2).resourceId(resource.getId()).build());
+//        }
 
     }
     public void arrayMaxCount(int[]arr){

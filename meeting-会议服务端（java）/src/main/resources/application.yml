@@ -87,4 +87,7 @@ qq:
 anyRTC:
   trtc:
     appId: 9e832ae64d960051527051fce57d122b
+#百度地图sdk
+baiduSDK:
+  ak: ksGXOp0q7PWuHaSSD3tVBVoGNVapmOCK
 

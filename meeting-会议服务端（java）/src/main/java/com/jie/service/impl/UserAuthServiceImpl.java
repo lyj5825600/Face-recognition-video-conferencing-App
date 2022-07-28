@@ -13,6 +13,7 @@ import com.jie.entity.UserAuth;
 import com.jie.entity.UserInfo;
 import com.jie.entity.UserRole;
 import com.jie.enums.LoginTypeEnum;
+import com.jie.filter.FilterInvocationSecurityMetadataSourceImpl;
 import com.jie.mapper.RoleMapper;
 import com.jie.mapper.UserAuthMapper;
 import com.jie.mapper.UserInfoMapper;
@@ -76,6 +77,8 @@ public class UserAuthServiceImpl extends ServiceImpl<UserAuthMapper, UserAuth> i
     private UserAuthMapper userAuthDao;
     @Autowired
     private UserRoleMapper userRoleDao;
+    @Autowired
+    private FilterInvocationSecurityMetadataSourceImpl filterInvocationSecurityMetadataSource;
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -174,7 +177,7 @@ public class UserAuthServiceImpl extends ServiceImpl<UserAuthMapper, UserAuth> i
      * @param userDetails
      * @return
      */
-    public  RespBean token(UserDetails userDetails){
+    public RespBean token(UserDetails userDetails){
         //更新security登录对象
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
@@ -205,6 +208,7 @@ public class UserAuthServiceImpl extends ServiceImpl<UserAuthMapper, UserAuth> i
         }
         //这个东西其实就相当于我们的根据用户名获取用户信息，因为admin实现类UserDetails接口
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+
         //这里要考虑我们前端传过来的是明文密码，我们这里判断的是加密的所有要这样判断
         //使用springsecurity提供的加密工具
         if (userDetails == null || !passwordEncoder.matches(password, userDetails.getPassword())) {

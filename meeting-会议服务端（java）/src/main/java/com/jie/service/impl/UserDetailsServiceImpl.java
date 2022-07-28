@@ -65,7 +65,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         // 查询账号信息
         UserInfo userInfo = userInfoDao.selectById(user.getUserInfoId());
         // 查询账号角色
-        List<String> roleList = roleDao.listRolesByUserInfoId(userInfo.getId());
+        List<String> roleList = roleDao.listRolesByUserInfoId(user.getId());
         // 获取设备信息
         String ipAddress = IpUtils.getIpAddress(request);
         String ipSource = IpUtils.getIpSource(ipAddress);

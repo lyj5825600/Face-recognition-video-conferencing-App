@@ -12,27 +12,21 @@
         </collection>
     </resultMap>
     <select id="listRolesByUserInfoId" resultType="java.lang.String">
-        SELECT
-            role_label
-        FROM
-            role r,
-            user_role ur
-        WHERE
-            r.id = ur.role_id
+        SELECT role_label
+        FROM role r,
+             user_role ur
+        WHERE r.id = ur.role_id
           AND ur.user_id = #{userInfoId}
     </select>
     <select id="listResourceRoles" resultMap="RolePermissionMap">
-        SELECT
-            re.id,
-            url,
-            request_method,
-            role_label
-        FROM
-            resource re
-                LEFT JOIN role_resource rep on re.id = rep.resource_id
-                LEFT JOIN role r on rep.role_id = r.id
-        WHERE
-            parent_id is NOT NULL
+        SELECT re.id,
+               url,
+               request_method,
+               role_label
+        FROM resource re
+                 LEFT JOIN role_resource rep on re.id = rep.resource_id
+                 LEFT JOIN role r on rep.role_id = r.id
+        WHERE parent_id is NOT NULL
           AND is_anonymous = 0
     </select>
 </mapper>

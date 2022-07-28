@@ -44,7 +44,7 @@ public class ResourceVO {
     /**
      * 请求方式
      */
-    @ApiModelProperty(name = "url", value = "资源路径", required = true, dataType = "String")
+    @ApiModelProperty(name = "requestMethod", value = "请求方式", required = true, dataType = "String")
     private String requestMethod;
 
     /**

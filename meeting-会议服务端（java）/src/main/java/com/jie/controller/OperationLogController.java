@@ -21,7 +21,7 @@ import java.util.List;
  */
 @RestController
 @Api(tags = "日志模块")
-@RequestMapping("/api/log")
+@RequestMapping("/log")
 public class OperationLogController {
     @Autowired
     private OperationLogService operationLogService;

@@ -2,6 +2,7 @@ package com.jie.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.api.R;
 import com.jie.annotation.OptLog;
 import com.jie.entity.UserInfo;
 import com.jie.service.UserInfoService;
@@ -12,6 +13,7 @@ import com.jie.vo.UserRoleVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -36,6 +38,8 @@ public class UserInfoController {
 
     @Autowired
     private UserInfoService userInfoService;
+    @Value("${baiduSDK.ak}")
+    private String baiduSDKAk;
 
     /**
      * 修改当前登录用户的nickname
@@ -77,6 +81,12 @@ public class UserInfoController {
     @GetMapping("/getStatistics")
     public RespBean<?> statistics(){
         return RespBean.success("后台统计",userInfoService.statistics());
+    }
+
+    @ApiOperation("查询百度地图ak")
+    @GetMapping("/getbaiduSDKAk")
+    public RespBean<?> getbaiduSDKAk(){
+        return RespBean.success("百度地图ak",baiduSDKAk);
     }
 
 
