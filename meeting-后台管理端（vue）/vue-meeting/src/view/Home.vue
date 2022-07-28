@@ -16,11 +16,23 @@
               <el-col :span="6">
                 <div class="grid-content bg-purple">
                   <div class="grid-content-left">
-                    <i class="el-icon-user-solid" style="color: rgb(64, 201, 198);"></i>
+                    <i class="el-icon-data-line" style="color: rgb(64, 201, 240);"></i>
                   </div>
                   <div class="grid-content-right">
                     <div class="r-desc">访问量</div>
-                    <div class="r-count">101902</div>
+                    <div class="r-count">{{visitCount}}</div>
+                  </div>
+                </div>
+              </el-col>
+              <el-col :span="6">
+                <div class="grid-content bg-purple">
+                  <div class="grid-content-left">
+                    <i class="el-icon-set-up" style="color: #f4516c;"></i>
+                  </div>
+                  <div class="grid-content-right">
+                    <div class="r-desc">会议量</div>
+
+                    <div class="r-count">{{meetingData}}</div>
                   </div>
                 </div>
               </el-col>
@@ -31,29 +43,18 @@
                   </div>
                   <div class="grid-content-right">
                     <div class="r-desc">用户量</div>
-                    <div class="r-count">1019</div>
+                    <div class="r-count">{{ userCount }}</div>
                   </div>
                 </div>
               </el-col>
               <el-col :span="6">
                 <div class="grid-content bg-purple">
                   <div class="grid-content-left">
-                    <i class="el-icon-user-solid" style="color: #f4516c;"></i>
+                    <i class="el-icon-edit-outline" style="color: #2080f0;"></i>
                   </div>
                   <div class="grid-content-right">
-                    <div class="r-desc">文章量</div>
-                    <div class="r-count">101</div>
-                  </div>
-                </div>
-              </el-col>
-              <el-col :span="6">
-                <div class="grid-content bg-purple">
-                  <div class="grid-content-left">
-                    <i class="el-icon-user-solid" style="color: #2080f0;"></i>
-                  </div>
-                  <div class="grid-content-right">
-                    <div class="r-desc">留言量</div>
-                    <div class="r-count">1019</div>
+                    <div class="r-desc">签到量</div>
+                    <div class="r-count">{{signCount}}</div>
                   </div>
                 </div>
               </el-col>
@@ -100,6 +101,10 @@ export default {
   name: 'Home',
   data() {
     return {
+      visitCount:211,
+      userCount: 21,
+      meetingData: 212,
+      signCount: 235,
       user: JSON.parse(window.sessionStorage.getItem('user')),
       viewCount: {
         tooltip: {
@@ -120,7 +125,7 @@ export default {
           containLabel: true
         },
         xAxis: {
-          data: ['2022-6-01', '2022-6-02', '2022-6-03', '2022-6-04', '2022-6-05', '2022-6-06'],
+          data: ['2022-6-15', '2022-6-16', '2022-6-17', '2022-6-18', '2022-6-19', '2022-6-20'],
           axisLine: {
             lineStyle: {
               // 设置x轴颜色
@@ -148,7 +153,7 @@ export default {
       category: {
         color: ['#7EC0EE', '#FF9F7F', '#FFD700', '#C9C9C9', '#E066FF', '#C0FF3E'],
         legend: {
-          data: ['项目介绍', '生活随笔', '设计模式', '多线程'],
+          data: ['人脸签到','手动签到'],
           bottom: 'bottom'
         },
         tooltip: {
@@ -156,14 +161,12 @@ export default {
         },
         series: [
           {
-            name: '文章分类',
+            name: '会议签到',
             type: 'pie',
             roseType: 'radius',
             data: [
-              { value: 5, name: '项目介绍' },
-              { value: 3, name: '生活随笔' },
-              { value: 1, name: '设计模式' },
-              { value: 0, name: '多线程' }
+              {value: 210, name: '人脸签到'},
+              {value: 132, name: '手动签到'},
             ]
           }
         ]
@@ -171,7 +174,7 @@ export default {
       type: 1,
       userAreaMap: {
         tooltip: {
-          formatter: function(e) {
+          formatter: function (e) {
             var value = e.value ? e.value : 0
             return e.seriesName + '<br />' + e.name + '：' + value
           }
@@ -238,40 +241,40 @@ export default {
             type: 'map',
             geoIndex: 0,
             data: [
-              { name: '北京', value: Math.round(Math.random() * 100) },
-              { name: '天津', value: Math.round(Math.random() * 100) },
-              { name: '上海', value: Math.round(Math.random() * 300) },
-              { name: '重庆', value: Math.round(Math.random() * 100) },
-              { name: '河北', value: Math.round(Math.random() * 100) },
-              { name: '河南', value: Math.round(Math.random() * 100) },
-              { name: '云南', value: Math.round(Math.random() * 100) },
-              { name: '辽宁', value: Math.round(Math.random() * 100) },
-              { name: '黑龙江', value: Math.round(Math.random() * 100) },
-              { name: '湖南', value: Math.round(Math.random() * 100) },
-              { name: '安徽', value: Math.round(Math.random() * 100) },
-              { name: '山东', value: Math.round(Math.random() * 100) },
-              { name: '新疆', value: Math.round(Math.random() * 100) },
-              { name: '江苏', value: Math.round(Math.random() * 200) },
-              { name: '浙江', value: Math.round(Math.random() * 100) },
-              { name: '江西', value: Math.round(Math.random() * 100) },
-              { name: '湖北', value: Math.round(Math.random() * 100) },
-              { name: '广西', value: Math.round(Math.random() * 100) },
-              { name: '甘肃', value: Math.round(Math.random() * 100) },
-              { name: '山西', value: Math.round(Math.random() * 100) },
-              { name: '内蒙古', value: Math.round(Math.random() * 100) },
-              { name: '陕西', value: Math.round(Math.random() * 100) },
-              { name: '吉林', value: Math.round(Math.random() * 400) },
-              { name: '福建', value: Math.round(Math.random() * 100) },
-              { name: '贵州', value: Math.round(Math.random() * 100) },
-              { name: '广东', value: Math.round(Math.random() * 200) },
-              { name: '青海', value: Math.round(Math.random() * 100) },
-              { name: '西藏', value: Math.round(Math.random() * 100) },
-              { name: '四川', value: Math.round(Math.random() * 100) },
-              { name: '宁夏', value: Math.round(Math.random() * 200) },
-              { name: '海南', value: Math.round(Math.random() * 100) },
-              { name: '台湾', value: Math.round(Math.random() * 100) },
-              { name: '香港', value: Math.round(Math.random() * 100) },
-              { name: '澳门', value: Math.round(Math.random() * 300) }
+              {name: '北京', value: Math.round(Math.random() * 10)},
+              {name: '天津', value: Math.round(Math.random() * 10)},
+              {name: '上海', value: Math.round(Math.random() * 30)},
+              {name: '重庆', value: Math.round(Math.random() * 10)},
+              {name: '河北', value: Math.round(Math.random() * 10)},
+              {name: '河南', value: Math.round(Math.random() * 10)},
+              {name: '云南', value: Math.round(Math.random() * 10)},
+              {name: '辽宁', value: Math.round(Math.random() * 10)},
+              {name: '黑龙江', value: Math.round(Math.random() * 10)},
+              {name: '湖南', value: Math.round(Math.random() * 10)},
+              {name: '安徽', value: Math.round(Math.random() * 10)},
+              {name: '山东', value: Math.round(Math.random() * 10)},
+              {name: '新疆', value: Math.round(Math.random() * 10)},
+              {name: '江苏', value: Math.round(Math.random() * 20)},
+              {name: '浙江', value: Math.round(Math.random() * 10)},
+              {name: '江西', value: Math.round(Math.random() * 10)},
+              {name: '湖北', value: Math.round(Math.random() * 10)},
+              {name: '广西', value: Math.round(Math.random() * 10)},
+              {name: '甘肃', value: Math.round(Math.random() * 10)},
+              {name: '山西', value: Math.round(Math.random() * 10)},
+              {name: '内蒙古', value: Math.round(Math.random() * 10)},
+              {name: '陕西', value: Math.round(Math.random() * 10)},
+              {name: '吉林', value: Math.round(Math.random() * 40)},
+              {name: '福建', value: Math.round(Math.random() * 10)},
+              {name: '贵州', value: Math.round(Math.random() * 10)},
+              {name: '广东', value: Math.round(Math.random() * 20)},
+              {name: '青海', value: Math.round(Math.random() * 10)},
+              {name: '西藏', value: Math.round(Math.random() * 10)},
+              {name: '四川', value: Math.round(Math.random() * 10)},
+              {name: '宁夏', value: Math.round(Math.random() * 20)},
+              {name: '海南', value: Math.round(Math.random() * 10)},
+              {name: '台湾', value: Math.round(Math.random() * 10)},
+              {name: '香港', value: Math.round(Math.random() * 10)},
+              {name: '澳门', value: Math.round(Math.random() * 30)}
             ],
             areaColor: '#0FB8F0'
           }
@@ -284,83 +287,106 @@ export default {
       return this.$store.state.collapse ? 'hideSideBar' : ''
     }
   },
+  created() {
+    this.getStatistics()
+  },
   methods: {
     change(selType) {
       if (selType === 1) {
         this.userAreaMap.series[0].data = [
-          { name: '北京', value: Math.round(Math.random() * 100) },
-          { name: '天津', value: Math.round(Math.random() * 100) },
-          { name: '上海', value: Math.round(Math.random() * 300) },
-          { name: '重庆', value: Math.round(Math.random() * 100) },
-          { name: '河北', value: Math.round(Math.random() * 100) },
-          { name: '河南', value: Math.round(Math.random() * 100) },
-          { name: '云南', value: Math.round(Math.random() * 100) },
-          { name: '辽宁', value: Math.round(Math.random() * 100) },
-          { name: '黑龙江', value: Math.round(Math.random() * 100) },
-          { name: '湖南', value: Math.round(Math.random() * 100) },
-          { name: '安徽', value: Math.round(Math.random() * 100) },
-          { name: '山东', value: Math.round(Math.random() * 100) },
-          { name: '新疆', value: Math.round(Math.random() * 100) },
-          { name: '江苏', value: Math.round(Math.random() * 200) },
-          { name: '浙江', value: Math.round(Math.random() * 100) },
-          { name: '江西', value: Math.round(Math.random() * 100) },
-          { name: '湖北', value: Math.round(Math.random() * 100) },
-          { name: '广西', value: Math.round(Math.random() * 100) },
-          { name: '甘肃', value: Math.round(Math.random() * 100) },
-          { name: '山西', value: Math.round(Math.random() * 100) },
-          { name: '内蒙古', value: Math.round(Math.random() * 100) },
-          { name: '陕西', value: Math.round(Math.random() * 100) },
-          { name: '吉林', value: Math.round(Math.random() * 400) },
-          { name: '福建', value: Math.round(Math.random() * 100) },
-          { name: '贵州', value: Math.round(Math.random() * 100) },
-          { name: '广东', value: Math.round(Math.random() * 200) },
-          { name: '青海', value: Math.round(Math.random() * 100) },
-          { name: '西藏', value: Math.round(Math.random() * 100) },
-          { name: '四川', value: Math.round(Math.random() * 100) },
-          { name: '宁夏', value: Math.round(Math.random() * 200) },
-          { name: '海南', value: Math.round(Math.random() * 100) },
-          { name: '台湾', value: Math.round(Math.random() * 100) },
-          { name: '香港', value: Math.round(Math.random() * 100) },
-          { name: '澳门', value: Math.round(Math.random() * 300) }
+          {name: '北京', value: Math.round(Math.random() * 100)},
+          {name: '天津', value: Math.round(Math.random() * 100)},
+          {name: '上海', value: Math.round(Math.random() * 300)},
+          {name: '重庆', value: Math.round(Math.random() * 100)},
+          {name: '河北', value: Math.round(Math.random() * 100)},
+          {name: '河南', value: Math.round(Math.random() * 100)},
+          {name: '云南', value: Math.round(Math.random() * 100)},
+          {name: '辽宁', value: Math.round(Math.random() * 100)},
+          {name: '黑龙江', value: Math.round(Math.random() * 100)},
+          {name: '湖南', value: Math.round(Math.random() * 100)},
+          {name: '安徽', value: Math.round(Math.random() * 100)},
+          {name: '山东', value: Math.round(Math.random() * 100)},
+          {name: '新疆', value: Math.round(Math.random() * 100)},
+          {name: '江苏', value: Math.round(Math.random() * 200)},
+          {name: '浙江', value: Math.round(Math.random() * 100)},
+          {name: '江西', value: Math.round(Math.random() * 100)},
+          {name: '湖北', value: Math.round(Math.random() * 100)},
+          {name: '广西', value: Math.round(Math.random() * 100)},
+          {name: '甘肃', value: Math.round(Math.random() * 100)},
+          {name: '山西', value: Math.round(Math.random() * 100)},
+          {name: '内蒙古', value: Math.round(Math.random() * 100)},
+          {name: '陕西', value: Math.round(Math.random() * 100)},
+          {name: '吉林', value: Math.round(Math.random() * 400)},
+          {name: '福建', value: Math.round(Math.random() * 100)},
+          {name: '贵州', value: Math.round(Math.random() * 100)},
+          {name: '广东', value: Math.round(Math.random() * 200)},
+          {name: '青海', value: Math.round(Math.random() * 100)},
+          {name: '西藏', value: Math.round(Math.random() * 100)},
+          {name: '四川', value: Math.round(Math.random() * 100)},
+          {name: '宁夏', value: Math.round(Math.random() * 200)},
+          {name: '海南', value: Math.round(Math.random() * 100)},
+          {name: '台湾', value: Math.round(Math.random() * 100)},
+          {name: '香港', value: Math.round(Math.random() * 100)},
+          {name: '澳门', value: Math.round(Math.random() * 300)}
         ]
       } else {
         this.userAreaMap.series[0].data = [
-          { name: '北京1111', value: Math.round(Math.random() * 100) },
-          { name: '天津222', value: Math.round(Math.random() * 100) },
-          { name: '上海', value: Math.round(Math.random() * 0) },
-          { name: '重庆', value: Math.round(Math.random() * 100) },
-          { name: '河北', value: Math.round(Math.random() * 40) },
-          { name: '河南', value: Math.round(Math.random() * 100) },
-          { name: '云南', value: Math.round(Math.random() * 100) },
-          { name: '辽宁', value: Math.round(Math.random() * 30) },
-          { name: '黑龙江', value: Math.round(Math.random() * 100) },
-          { name: '湖南', value: Math.round(Math.random() * 100) },
-          { name: '安徽', value: Math.round(Math.random() * 100) },
-          { name: '山东', value: Math.round(Math.random() * 100) },
-          { name: '新疆', value: Math.round(Math.random() * 100) },
-          { name: '江苏', value: Math.round(Math.random() * 200) },
-          { name: '浙江', value: Math.round(Math.random() * 100) },
-          { name: '江西', value: Math.round(Math.random() * 100) },
-          { name: '湖北', value: Math.round(Math.random() * 100) },
-          { name: '广西', value: Math.round(Math.random() * 100) },
-          { name: '甘肃', value: Math.round(Math.random() * 100) },
-          { name: '山西', value: Math.round(Math.random() * 100) },
-          { name: '内蒙古', value: Math.round(Math.random() * 100) },
-          { name: '陕西', value: Math.round(Math.random() * 100) },
-          { name: '吉林', value: Math.round(Math.random() * 0) },
-          { name: '福建', value: Math.round(Math.random() * 100) },
-          { name: '贵州', value: Math.round(Math.random() * 100) },
-          { name: '广东', value: Math.round(Math.random() * 200) },
-          { name: '青海', value: Math.round(Math.random() * 0) },
-          { name: '西藏', value: Math.round(Math.random() * 55) },
-          { name: '四川', value: Math.round(Math.random() * 30) },
-          { name: '宁夏', value: Math.round(Math.random() * 20) },
-          { name: '海南', value: Math.round(Math.random() * 10) },
-          { name: '台湾', value: Math.round(Math.random() * 5) },
-          { name: '香港', value: Math.round(Math.random() * 10) },
-          { name: '澳门', value: Math.round(Math.random() * 50) }
+          {name: '北京1111', value: Math.round(Math.random() * 100)},
+          {name: '天津222', value: Math.round(Math.random() * 100)},
+          {name: '上海', value: Math.round(Math.random() * 0)},
+          {name: '重庆', value: Math.round(Math.random() * 100)},
+          {name: '河北', value: Math.round(Math.random() * 40)},
+          {name: '河南', value: Math.round(Math.random() * 100)},
+          {name: '云南', value: Math.round(Math.random() * 100)},
+          {name: '辽宁', value: Math.round(Math.random() * 30)},
+          {name: '黑龙江', value: Math.round(Math.random() * 100)},
+          {name: '湖南', value: Math.round(Math.random() * 100)},
+          {name: '安徽', value: Math.round(Math.random() * 100)},
+          {name: '山东', value: Math.round(Math.random() * 100)},
+          {name: '新疆', value: Math.round(Math.random() * 100)},
+          {name: '江苏', value: Math.round(Math.random() * 200)},
+          {name: '浙江', value: Math.round(Math.random() * 100)},
+          {name: '江西', value: Math.round(Math.random() * 100)},
+          {name: '湖北', value: Math.round(Math.random() * 100)},
+          {name: '广西', value: Math.round(Math.random() * 100)},
+          {name: '甘肃', value: Math.round(Math.random() * 100)},
+          {name: '山西', value: Math.round(Math.random() * 100)},
+          {name: '内蒙古', value: Math.round(Math.random() * 100)},
+          {name: '陕西', value: Math.round(Math.random() * 100)},
+          {name: '吉林', value: Math.round(Math.random() * 0)},
+          {name: '福建', value: Math.round(Math.random() * 100)},
+          {name: '贵州', value: Math.round(Math.random() * 100)},
+          {name: '广东', value: Math.round(Math.random() * 200)},
+          {name: '青海', value: Math.round(Math.random() * 0)},
+          {name: '西藏', value: Math.round(Math.random() * 55)},
+          {name: '四川', value: Math.round(Math.random() * 30)},
+          {name: '宁夏', value: Math.round(Math.random() * 20)},
+          {name: '海南', value: Math.round(Math.random() * 10)},
+          {name: '台湾', value: Math.round(Math.random() * 5)},
+          {name: '香港', value: Math.round(Math.random() * 10)},
+          {name: '澳门', value: Math.round(Math.random() * 50)}
         ]
       }
+    },
+    getStatistics() {
+      this.axios.get("/api/user-info/getStatistics").then((data) => {
+        this.userCount = data.obj.userCount
+        this.meetingData = data.obj.meetingCount
+        this.signCount = data.obj.signCount
+        this.visitCount=data.obj.userCount+data.obj.signCount
+        var dayCount=[];
+        var dayMeetingCount=[];
+        for (var i=0;i<data.obj.meetingsAddedWithinSevenDays.length;i++){
+          dayCount[i]=data.obj.meetingsAddedWithinSevenDays[i].day;
+          dayMeetingCount[i]=data.obj.meetingsAddedWithinSevenDays[i].meetingCount;
+        }
+        this.viewCount.xAxis.data=dayCount
+        this.viewCount.series[0].data=dayMeetingCount
+        //人脸签到
+        // this.category.series[0].data[0].value=data.obj.faceSign;
+        //手动签到
+        // this.category.series[0].data[1].value=data.obj.sign;
+      });
     }
   }
 }
