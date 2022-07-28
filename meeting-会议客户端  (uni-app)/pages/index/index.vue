@@ -82,6 +82,7 @@
         backgroundRepeat: 'repeat'
       })
       this.$store.dispatch('getAdminInfo')
+      this.$store.dispatch('getbaiduSDKAkFun')
       this.$store.dispatch('getUserHistoryConference', this.historyOptions)
       this.animation = uni.createAnimation({
         duration: 1000,

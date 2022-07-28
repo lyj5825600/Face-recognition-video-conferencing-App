@@ -10,6 +10,10 @@
 					</view>
 					<view>
 						<view class="contact-name">{{ item.nickname }}</view>
+            <view class="btm-info">
+              <text class="sex">性别: 男 </text>
+              <text> 联系方式: 15567563456</text>
+            </view>
 					</view>
 				</view>
 			</label>
@@ -96,6 +100,13 @@
 				.contact-name {
 					font-size: $uni-font-size-base;
 				}
+        .btm-info {
+          font-size: 25rpx;
+          color: #ccc;
+          .sex {
+            margin-right: 10rpx;
+          }
+        }
 				.contact-status {
 					font-size: 26rpx;
 					color: $uni-color-theme;

@@ -1,4 +1,4 @@
-const BaseUrl = 'https://5r2275o669.goho.co' // http://101.43.253.100:8082
+const BaseUrl = 'http://101.43.253.100:8082'
 let ajaxTimes = 0
 export default function request(params) {
 	// 每触发一次请求就加1

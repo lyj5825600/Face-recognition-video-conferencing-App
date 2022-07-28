@@ -7,11 +7,11 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__(/*! uni-pages */ 1);var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ 267));
-var _until = _interopRequireDefault(__webpack_require__(/*! ./utils/until.js */ 270));
-var _store = _interopRequireDefault(__webpack_require__(/*! ./store */ 272));
+__webpack_require__(/*! uni-pages */ 1);var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ 264));
+var _until = _interopRequireDefault(__webpack_require__(/*! ./utils/until.js */ 267));
+var _store = _interopRequireDefault(__webpack_require__(/*! ./store */ 269));
 
-var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 273));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 270));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
 _vue.default.config.productionTip = false;
 _vue.default.prototype.$Utils = _until.default;
 _vue.default.prototype.$isBarHeight = function () {var _this = this;
@@ -105,8 +105,6 @@ __definePage('pages/index/historical-meeting/historical-meeting', function () {r
 __definePage('pages/index/meeting-details/meeting-details', function () {return Vue.extend(__webpack_require__(/*! pages/index/meeting-details/meeting-details.vue?mpType=page */ 244).default);});
 __definePage('pages/schedule/schedule-details/schedule-details', function () {return Vue.extend(__webpack_require__(/*! pages/schedule/schedule-details/schedule-details.vue?mpType=page */ 254).default);});
 __definePage('pages/join-meeting/meeting-detail/meeting-detail', function () {return Vue.extend(__webpack_require__(/*! pages/join-meeting/meeting-detail/meeting-detail.vue?mpType=page */ 259).default);});
-
-__definePage('pages/map/map', function () {return Vue.extend(__webpack_require__(/*! pages/map/map.vue?mpType=page */ 264).default);});
 
 /***/ }),
 /* 2 */
@@ -6989,7 +6987,7 @@ if (hadRuntime) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getCalendarId = exports.getCalendar = exports.addCalendar = exports.getUserInfoById = exports.joinConference = exports.faceRecognitionCheck = exports.conferenceIdViewTheConferenceStatus = exports.addOrUpdateParticipantPerson = exports.deleteParticipantsPersonList = exports.getParticipantsPersonList = exports.updateUserInfoImages = exports.updateNickname = exports.adminInfo = exports.closeMeeting = exports.saveMeeting = exports.viewConferenceInformationBasedTheId = exports.removeHistoryConference = exports.oneselfMeeting = exports.userHistoryConferencePull = exports.userHistoryConference = exports.logout = exports.register = exports.login = void 0;var _request = _interopRequireWildcard(__webpack_require__(/*! ./request.js */ 58));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getbaiduSDKAk = exports.getCalendarId = exports.getCalendar = exports.addCalendar = exports.getUserInfoById = exports.joinConference = exports.faceRecognitionCheck = exports.conferenceIdViewTheConferenceStatus = exports.addOrUpdateParticipantPerson = exports.deleteParticipantsPersonList = exports.getParticipantsPersonList = exports.updateUserInfoImages = exports.updateNickname = exports.adminInfo = exports.closeMeeting = exports.saveMeeting = exports.viewConferenceInformationBasedTheId = exports.removeHistoryConference = exports.oneselfMeeting = exports.userHistoryConferencePull = exports.userHistoryConference = exports.logout = exports.register = exports.login = void 0;var _request = _interopRequireWildcard(__webpack_require__(/*! ./request.js */ 58));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
 
 // 1.登录
 var login = function login(data) {return (0, _request.request1)({ url: '/app/login', data: data, method: 'post' });};
@@ -7047,7 +7045,9 @@ exports.getUserInfoById = getUserInfoById;var addCalendar = function addCalendar
 // 1.查看本用户的日程
 exports.addCalendar = addCalendar;var getCalendar = function getCalendar(data) {return (0, _request.default)({ url: '/calendar/getCalendar', data: data });};
 // 2.日程详情
-exports.getCalendar = getCalendar;var getCalendarId = function getCalendarId(id) {return (0, _request.default)({ url: '/calendar/getCalendarId', data: { id: id } });};exports.getCalendarId = getCalendarId;
+exports.getCalendar = getCalendar;var getCalendarId = function getCalendarId(id) {return (0, _request.default)({ url: '/calendar/getCalendarId', data: { id: id } });};
+// 3.获取百度地图ak
+exports.getCalendarId = getCalendarId;var getbaiduSDKAk = function getbaiduSDKAk() {return (0, _request.default)({ url: '/user-info/getbaiduSDKAk' });};exports.getbaiduSDKAk = getbaiduSDKAk;
 
 /***/ }),
 /* 58 */
@@ -8218,6 +8218,7 @@ var _BackTop = _interopRequireDefault(__webpack_require__(/*! ../../components/B
       backgroundRepeat: 'repeat' });
 
     this.$store.dispatch('getAdminInfo');
+    this.$store.dispatch('getbaiduSDKAkFun');
     this.$store.dispatch('getUserHistoryConference', this.historyOptions);
     this.animation = uni.createAnimation({
       duration: 1000,
@@ -8225,7 +8226,7 @@ var _BackTop = _interopRequireDefault(__webpack_require__(/*! ../../components/B
 
   },
   onShow: function onShow() {
-    this.RtcModule && this.RtcModule.destroyRtc(function (res) {__f__("log", '先销毁!!!', " at pages/index/index.vue:92");});
+    this.RtcModule && this.RtcModule.destroyRtc(function (res) {__f__("log", '先销毁!!!', " at pages/index/index.vue:93");});
     // 页面显示清空选中成员列表和其清除选中
     var memberList = this.memberList;
     memberList.forEach(function (v) {
@@ -14307,7 +14308,11 @@ var render = function() {
             },
             [
               _c("Map", {
-                attrs: { showBtn: true, _i: 58 },
+                attrs: {
+                  showBtn: true,
+                  checkInOptions: { flag: true, ak: _vm.$store.state.ak },
+                  _i: 58
+                },
                 on: {
                   getPosition: _vm.getPosition,
                   closeMapPopup: function($event) {
@@ -19450,7 +19455,7 @@ var _default2 =
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Map_vue_vue_type_template_id_6f79cdfe_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMTAyLCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjoxMDIwM319___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Map.vue?vue&type=template&id=6f79cdfe&scoped=true&filter-modules=eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMTAyLCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjoxMDIwM319& */ 185);
+/* harmony import */ var _Map_vue_vue_type_template_id_6f79cdfe_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMDA2LCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjo5OTg5fX0_3D___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Map.vue?vue&type=template&id=6f79cdfe&scoped=true&filter-modules=eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMDA2LCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjo5OTg5fX0%3D& */ 185);
 /* harmony import */ var _Map_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Map.vue?vue&type=script&lang=js& */ 187);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Map_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Map_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var _wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 12);
@@ -19464,14 +19469,14 @@ var renderjs
 
 var component = Object(_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _Map_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Map_vue_vue_type_template_id_6f79cdfe_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMTAyLCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjoxMDIwM319___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Map_vue_vue_type_template_id_6f79cdfe_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMTAyLCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjoxMDIwM319___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Map_vue_vue_type_template_id_6f79cdfe_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMDA2LCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjo5OTg5fX0_3D___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Map_vue_vue_type_template_id_6f79cdfe_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMDA2LCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjo5OTg5fX0_3D___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   "6f79cdfe",
   null,
   false,
-  _Map_vue_vue_type_template_id_6f79cdfe_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMTAyLCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjoxMDIwM319___WEBPACK_IMPORTED_MODULE_0__["components"],
+  _Map_vue_vue_type_template_id_6f79cdfe_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMDA2LCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjo5OTg5fX0_3D___WEBPACK_IMPORTED_MODULE_0__["components"],
   renderjs
 )
 
@@ -19480,30 +19485,30 @@ component.options.__file = "components/Map/Map.vue"
 
 /***/ }),
 /* 185 */
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** D:/WebStudyProject/uniapp-project/newPropject/meeting-jie/meeting-会议客户端  (uni-app)/components/Map/Map.vue?vue&type=template&id=6f79cdfe&scoped=true&filter-modules=eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMTAyLCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjoxMDIwM319& ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** D:/WebStudyProject/uniapp-project/newPropject/meeting-jie/meeting-会议客户端  (uni-app)/components/Map/Map.vue?vue&type=template&id=6f79cdfe&scoped=true&filter-modules=eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMDA2LCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjo5OTg5fX0%3D& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_10_0_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Map_vue_vue_type_template_id_6f79cdfe_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMTAyLCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjoxMDIwM319___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--10-0!../../../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!../../../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!../../../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./Map.vue?vue&type=template&id=6f79cdfe&scoped=true&filter-modules=eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMTAyLCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjoxMDIwM319& */ 186);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_10_0_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Map_vue_vue_type_template_id_6f79cdfe_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMTAyLCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjoxMDIwM319___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_10_0_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Map_vue_vue_type_template_id_6f79cdfe_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMDA2LCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjo5OTg5fX0_3D___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--10-0!../../../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!../../../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!../../../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./Map.vue?vue&type=template&id=6f79cdfe&scoped=true&filter-modules=eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMDA2LCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjo5OTg5fX0%3D& */ 186);
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_10_0_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Map_vue_vue_type_template_id_6f79cdfe_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMDA2LCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjo5OTg5fX0_3D___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_10_0_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Map_vue_vue_type_template_id_6f79cdfe_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMTAyLCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjoxMDIwM319___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_10_0_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Map_vue_vue_type_template_id_6f79cdfe_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMDA2LCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjo5OTg5fX0_3D___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return _wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_10_0_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Map_vue_vue_type_template_id_6f79cdfe_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMTAyLCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjoxMDIwM319___WEBPACK_IMPORTED_MODULE_0__["recyclableRender"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return _wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_10_0_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Map_vue_vue_type_template_id_6f79cdfe_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMDA2LCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjo5OTg5fX0_3D___WEBPACK_IMPORTED_MODULE_0__["recyclableRender"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "components", function() { return _wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_10_0_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Map_vue_vue_type_template_id_6f79cdfe_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMTAyLCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjoxMDIwM319___WEBPACK_IMPORTED_MODULE_0__["components"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "components", function() { return _wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_10_0_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_Map_vue_vue_type_template_id_6f79cdfe_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMDA2LCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjo5OTg5fX0_3D___WEBPACK_IMPORTED_MODULE_0__["components"]; });
 
 
 
 /***/ }),
 /* 186 */
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--10-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!D:/WebStudyProject/uniapp-project/newPropject/meeting-jie/meeting-会议客户端  (uni-app)/components/Map/Map.vue?vue&type=template&id=6f79cdfe&scoped=true&filter-modules=eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMTAyLCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjoxMDIwM319& ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--10-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!D:/WebStudyProject/uniapp-project/newPropject/meeting-jie/meeting-会议客户端  (uni-app)/components/Map/Map.vue?vue&type=template&id=6f79cdfe&scoped=true&filter-modules=eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMDA2LCJhdHRycyI6eyJtb2R1bGUiOiJhbGxtYXAiLCJsYW5nIjoianMifSwiZW5kIjo5OTg5fX0%3D& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -19660,15 +19665,10 @@ var _default2 =
       type: Boolean } },
 
 
-  created: function created() {var _this = this;
-    setTimeout(function () {
-      _this.address = '不详';
-    }, 3000);
-  },
   methods: {
     // 接收renderjs发回的数据
     receiveRenderData: function receiveRenderData(options) {
-      __f__("log", 'receiveRenderData-->', options, " at components/Map/Map.vue:49");
+      __f__("log", 'receiveRenderData-->', options, " at components/Map/Map.vue:44");
       this.address = options.address;
       this.$emit('getPosition', options);
       this.$emit('closeMapPopup');
@@ -19689,7 +19689,7 @@ var _default2 =
       this.inputVal = '';
     },
     searchPlace: function searchPlace(val) {
-      __f__("log", val, " at components/Map/Map.vue:70");
+      __f__("log", val, " at components/Map/Map.vue:65");
     } } };exports.default = _default2;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/lib/format-log.js */ 30)["default"]))
 
@@ -22492,6 +22492,20 @@ var render = function() {
                           _vm._$s("9-" + $30, "t0-0", _vm._s(item.nickname))
                         )
                       ]
+                    ),
+                    _c(
+                      "view",
+                      {
+                        staticClass: _vm._$s("10-" + $30, "sc", "btm-info"),
+                        attrs: { _i: "10-" + $30 }
+                      },
+                      [
+                        _c("text", {
+                          staticClass: _vm._$s("11-" + $30, "sc", "sex"),
+                          attrs: { _i: "11-" + $30 }
+                        }),
+                        _c("text")
+                      ]
                     )
                   ])
                 ]
@@ -22554,6 +22568,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
 var _vuex = __webpack_require__(/*! vuex */ 10);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
 {
   name: "ParticipantList",
@@ -22573,7 +22591,7 @@ var _vuex = __webpack_require__(/*! vuex */ 10);function ownKeys(object, enumera
   watch: {
     memberList: {
       handler: function handler(newList, oldList) {
-        __f__("log", 'asdiaksdalka', " at components/ParticipantList/ParticipantList.vue:40");var
+        __f__("log", 'asdiaksdalka', " at components/ParticipantList/ParticipantList.vue:44");var
         manageShowImgList = this.manageShowImgList;
         // 新旧数据长度
         var newLen = newList.length;
@@ -25996,33 +26014,36 @@ var render = function() {
     },
     [
       _c("MtDetail", { attrs: { mtDetail: _vm.mtDetail, _i: 1 } }),
-      _c(
-        "view",
-        {
-          staticClass: _vm._$s(2, "sc", "map-wrap"),
-          class: _vm._$s(2, "c", _vm.bigMap ? "big-map-wrap" : ""),
-          attrs: { _i: 2 }
-        },
-        [
-          _c("Map", {
-            attrs: {
-              allMap: true,
-              showBtn: false,
-              checkInOptions: {
-                flag: false,
-                longitude: _vm.mtDetail.meetingLongitude,
-                latitude: _vm.mtDetail.meetingLatitude
-              },
-              _i: 3
+      _vm._$s(2, "i", _vm.mtDetail.meetingType === 1)
+        ? _c(
+            "view",
+            {
+              staticClass: _vm._$s(2, "sc", "map-wrap"),
+              class: _vm._$s(2, "c", _vm.bigMap ? "big-map-wrap" : ""),
+              attrs: { _i: 2 }
             },
-            on: {
-              openBigMap: _vm.openBigMap,
-              getUserPosition: _vm.getUserPosition
-            }
-          })
-        ],
-        1
-      ),
+            [
+              _c("Map", {
+                attrs: {
+                  allMap: true,
+                  showBtn: false,
+                  checkInOptions: {
+                    flag: false,
+                    longitude: _vm.mtDetail.meetingLongitude,
+                    latitude: _vm.mtDetail.meetingLatitude,
+                    ak: _vm.$store.state.ak
+                  },
+                  _i: 3
+                },
+                on: {
+                  openBigMap: _vm.openBigMap,
+                  getUserPosition: _vm.getUserPosition
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _c("navigator", {
         staticClass: _vm._$s(4, "sc", "join-btn"),
         attrs: {
@@ -26120,104 +26141,6 @@ var _Map = _interopRequireDefault(__webpack_require__(/*! ../../../components/Ma
 
 /***/ }),
 /* 264 */
-/*!************************************************************************************************************************!*\
-  !*** D:/WebStudyProject/uniapp-project/newPropject/meeting-jie/meeting-会议客户端  (uni-app)/pages/map/map.vue?mpType=page ***!
-  \************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _map_vue_vue_type_template_id_e3293ae0_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMjEsImF0dHJzIjp7Im1vZHVsZSI6ImFsbG1hcCIsImxhbmciOiJqcyJ9LCJlbmQiOjMxMjF9fQ_3D_3D_mpType_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./map.vue?vue&type=template&id=e3293ae0&scoped=true&filter-modules=eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMjEsImF0dHJzIjp7Im1vZHVsZSI6ImFsbG1hcCIsImxhbmciOiJqcyJ9LCJlbmQiOjMxMjF9fQ%3D%3D&mpType=page */ 265);
-/* harmony import */ var _wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 12);
-
-var renderjs
-var script = {}
-
-
-/* normalize component */
-
-var component = Object(_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
-  _map_vue_vue_type_template_id_e3293ae0_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMjEsImF0dHJzIjp7Im1vZHVsZSI6ImFsbG1hcCIsImxhbmciOiJqcyJ9LCJlbmQiOjMxMjF9fQ_3D_3D_mpType_page__WEBPACK_IMPORTED_MODULE_0__["render"],
-  _map_vue_vue_type_template_id_e3293ae0_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMjEsImF0dHJzIjp7Im1vZHVsZSI6ImFsbG1hcCIsImxhbmciOiJqcyJ9LCJlbmQiOjMxMjF9fQ_3D_3D_mpType_page__WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  "e3293ae0",
-  null,
-  false,
-  _map_vue_vue_type_template_id_e3293ae0_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMjEsImF0dHJzIjp7Im1vZHVsZSI6ImFsbG1hcCIsImxhbmciOiJqcyJ9LCJlbmQiOjMxMjF9fQ_3D_3D_mpType_page__WEBPACK_IMPORTED_MODULE_0__["components"],
-  renderjs
-)
-
-component.options.__file = "pages/map/map.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-/* 265 */
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** D:/WebStudyProject/uniapp-project/newPropject/meeting-jie/meeting-会议客户端  (uni-app)/pages/map/map.vue?vue&type=template&id=e3293ae0&scoped=true&filter-modules=eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMjEsImF0dHJzIjp7Im1vZHVsZSI6ImFsbG1hcCIsImxhbmciOiJqcyJ9LCJlbmQiOjMxMjF9fQ%3D%3D&mpType=page ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns, recyclableRender, components */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_10_0_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_map_vue_vue_type_template_id_e3293ae0_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMjEsImF0dHJzIjp7Im1vZHVsZSI6ImFsbG1hcCIsImxhbmciOiJqcyJ9LCJlbmQiOjMxMjF9fQ_3D_3D_mpType_page__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--10-0!../../../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!../../../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!../../../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./map.vue?vue&type=template&id=e3293ae0&scoped=true&filter-modules=eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMjEsImF0dHJzIjp7Im1vZHVsZSI6ImFsbG1hcCIsImxhbmciOiJqcyJ9LCJlbmQiOjMxMjF9fQ%3D%3D&mpType=page */ 266);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_10_0_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_map_vue_vue_type_template_id_e3293ae0_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMjEsImF0dHJzIjp7Im1vZHVsZSI6ImFsbG1hcCIsImxhbmciOiJqcyJ9LCJlbmQiOjMxMjF9fQ_3D_3D_mpType_page__WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_10_0_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_map_vue_vue_type_template_id_e3293ae0_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMjEsImF0dHJzIjp7Im1vZHVsZSI6ImFsbG1hcCIsImxhbmciOiJqcyJ9LCJlbmQiOjMxMjF9fQ_3D_3D_mpType_page__WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return _wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_10_0_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_map_vue_vue_type_template_id_e3293ae0_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMjEsImF0dHJzIjp7Im1vZHVsZSI6ImFsbG1hcCIsImxhbmciOiJqcyJ9LCJlbmQiOjMxMjF9fQ_3D_3D_mpType_page__WEBPACK_IMPORTED_MODULE_0__["recyclableRender"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "components", function() { return _wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_10_0_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_map_vue_vue_type_template_id_e3293ae0_scoped_true_filter_modules_eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMjEsImF0dHJzIjp7Im1vZHVsZSI6ImFsbG1hcCIsImxhbmciOiJqcyJ9LCJlbmQiOjMxMjF9fQ_3D_3D_mpType_page__WEBPACK_IMPORTED_MODULE_0__["components"]; });
-
-
-
-/***/ }),
-/* 266 */
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--10-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!D:/WebStudyProject/uniapp-project/newPropject/meeting-jie/meeting-会议客户端  (uni-app)/pages/map/map.vue?vue&type=template&id=e3293ae0&scoped=true&filter-modules=eyJhbGxtYXAiOnsidHlwZSI6InJlbmRlcmpzIiwiY29udGVudCI6IiIsInN0YXJ0IjoyMjEsImF0dHJzIjp7Im1vZHVsZSI6ImFsbG1hcCIsImxhbmciOiJqcyJ9LCJlbmQiOjMxMjF9fQ%3D%3D&mpType=page ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns, recyclableRender, components */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
-var components
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "view",
-    { staticClass: _vm._$s(0, "sc", "global"), attrs: { _i: 0 } },
-    [
-      _c(
-        "view",
-        { staticClass: _vm._$s(1, "sc", "header"), attrs: { _i: 1 } },
-        [
-          _c("view", {
-            staticClass: _vm._$s(2, "sc", "map"),
-            attrs: { id: "allmap", _i: 2 }
-          })
-        ]
-      )
-    ]
-  )
-}
-var recyclableRender = false
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-/* 267 */
 /*!**************************************************************************************************!*\
   !*** D:/WebStudyProject/uniapp-project/newPropject/meeting-jie/meeting-会议客户端  (uni-app)/App.vue ***!
   \**************************************************************************************************/
@@ -26226,7 +26149,7 @@ render._withStripped = true
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App.vue?vue&type=script&lang=js& */ 268);
+/* harmony import */ var _App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App.vue?vue&type=script&lang=js& */ 265);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var _wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 12);
 var render, staticRenderFns, recyclableRender, components
@@ -26254,7 +26177,7 @@ component.options.__file = "App.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
-/* 268 */
+/* 265 */
 /*!***************************************************************************************************************************!*\
   !*** D:/WebStudyProject/uniapp-project/newPropject/meeting-jie/meeting-会议客户端  (uni-app)/App.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************************/
@@ -26263,13 +26186,13 @@ component.options.__file = "App.vue"
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wz_App_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_1_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-1!../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./App.vue?vue&type=script&lang=js& */ 269);
+/* harmony import */ var _wz_App_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_1_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-1!../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!../../../../../wz App/HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./App.vue?vue&type=script&lang=js& */ 266);
 /* harmony import */ var _wz_App_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_1_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_1_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _wz_App_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_1_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _wz_App_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_1_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_1_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_wz_App_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
-/* 269 */
+/* 266 */
 /*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!D:/WebStudyProject/uniapp-project/newPropject/meeting-jie/meeting-会议客户端  (uni-app)/App.vue?vue&type=script&lang=js& ***!
   \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -26438,7 +26361,7 @@ __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/lib/format-log.js */ 30)["default"]))
 
 /***/ }),
-/* 270 */
+/* 267 */
 /*!*********************************************************************************************************!*\
   !*** D:/WebStudyProject/uniapp-project/newPropject/meeting-jie/meeting-会议客户端  (uni-app)/utils/until.js ***!
   \*********************************************************************************************************/
@@ -26446,7 +26369,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 54));var _permission = _interopRequireDefault(__webpack_require__(/*! ../js_sdk/wa-permission/permission.js */ 271));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 54));var _permission = _interopRequireDefault(__webpack_require__(/*! ../js_sdk/wa-permission/permission.js */ 268));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
 var Utils = {
   // 平台分类查询权限
   equipment: function equipment() {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var oa, ob, _oa, _ob;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (!(
@@ -26506,7 +26429,7 @@ var Utils = {
 Utils;exports.default = _default;
 
 /***/ }),
-/* 271 */
+/* 268 */
 /*!*****************************************************************************************************************************!*\
   !*** D:/WebStudyProject/uniapp-project/newPropject/meeting-jie/meeting-会议客户端  (uni-app)/js_sdk/wa-permission/permission.js ***!
   \*****************************************************************************************************************************/
@@ -26787,7 +26710,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/lib/format-log.js */ 30)["default"]))
 
 /***/ }),
-/* 272 */
+/* 269 */
 /*!*********************************************************************************************************!*\
   !*** D:/WebStudyProject/uniapp-project/newPropject/meeting-jie/meeting-会议客户端  (uni-app)/store/index.js ***!
   \*********************************************************************************************************/
@@ -26796,7 +26719,8 @@ module.exports = {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(__f__) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 54));
-var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 273));
+var _util = __webpack_require__(/*! util */ 271);
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 270));
 
 var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 10));
 
@@ -26835,25 +26759,32 @@ var state = {
   // 创建会议是否成功标识
   sucCreateMt: false,
   mtDetail: {},
+  // 百度地图ak
+  ak: '',
   // rtc 音视频引入
   RtcModule: uni.requireNativePlugin('AR-RtcModule') };
 
 var actions = {
+  // 获取百度地图ak
+  getbaiduSDKAkFun: function getbaiduSDKAkFun(_ref) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var commit, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:commit = _ref.commit;_context.next = 3;return (
+                (0, _index.getbaiduSDKAk)());case 3:res = _context.sent;
+              commit('GETBAIDUSDKAK', res.obj);case 5:case "end":return _context.stop();}}}, _callee);}))();
+  },
   // 获取用户信息
-  getAdminInfo: function getAdminInfo(_ref) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var commit, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:commit = _ref.commit;_context.next = 3;return (
-                (0, _index.adminInfo)());case 3:res = _context.sent;
-              commit('GETADMININFO', res);case 5:case "end":return _context.stop();}}}, _callee);}))();
+  getAdminInfo: function getAdminInfo(_ref2) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var commit, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:commit = _ref2.commit;_context2.next = 3;return (
+                (0, _index.adminInfo)());case 3:res = _context2.sent;
+              commit('GETADMININFO', res);case 5:case "end":return _context2.stop();}}}, _callee2);}))();
   },
-  getUserHistoryConference: function getUserHistoryConference(_ref2, options) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var commit, _yield$userHistoryCon, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:commit = _ref2.commit;_context2.next = 3;return (
-                (0, _index.userHistoryConference)(options));case 3:_yield$userHistoryCon = _context2.sent;res = _yield$userHistoryCon.obj;
-              commit('SETHISTROYLIST', res);case 6:case "end":return _context2.stop();}}}, _callee2);}))();
-  },
-  userHistoryConferencePull: function userHistoryConferencePull(_ref3, options) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var commit, _yield$_userHistoryCo, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:commit = _ref3.commit;_context3.next = 3;return (
-                (0, _index.userHistoryConferencePull)(options));case 3:_yield$_userHistoryCo = _context3.sent;res = _yield$_userHistoryCo.obj;
+  getUserHistoryConference: function getUserHistoryConference(_ref3, options) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var commit, _yield$userHistoryCon, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:commit = _ref3.commit;_context3.next = 3;return (
+                (0, _index.userHistoryConference)(options));case 3:_yield$userHistoryCon = _context3.sent;res = _yield$userHistoryCon.obj;
               commit('SETHISTROYLIST', res);case 6:case "end":return _context3.stop();}}}, _callee3);}))();
   },
+  userHistoryConferencePull: function userHistoryConferencePull(_ref4, options) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var commit, _yield$_userHistoryCo, res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:commit = _ref4.commit;_context4.next = 3;return (
+                (0, _index.userHistoryConferencePull)(options));case 3:_yield$_userHistoryCo = _context4.sent;res = _yield$_userHistoryCo.obj;
+              commit('SETHISTROYLIST', res);case 6:case "end":return _context4.stop();}}}, _callee4);}))();
+  },
   // 获取历史会议记录
-  pathToBase64App: function pathToBase64App(_ref4, path) {var commit = _ref4.commit;
+  pathToBase64App: function pathToBase64App(_ref5, path) {var commit = _ref5.commit;
     return new Promise(function (resolve, reject) {
       // 通过URL参数获取目录对象或文件对象
       plus.io.resolveLocalFileSystemURL(path, function (entry) {
@@ -26885,6 +26816,9 @@ var mutations = {
   // 初始化相机组件[是否加载完毕]
   initCamera: function initCamera(state, data) {
     state.initCamera = data;
+  },
+  GETBAIDUSDKAK: function GETBAIDUSDKAK(state, data) {
+    state.ak = data;
   },
   // 改变人脸识别临时图片路径
   CHANGEIMGURL: function CHANGEIMGURL(state, url) {
@@ -26923,7 +26857,7 @@ var mutations = {
   },
   // 设置要删除的人员id列表
   SETDELIDS: function SETDELIDS(state, ids) {
-    __f__("log", ids, " at store/index.js:129");
+    __f__("log", ids, " at store/index.js:140");
     state.delIds = ids;
   },
   // 更新base64格式的图片地址
@@ -26957,7 +26891,7 @@ new _vuex.default.Store({
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/lib/format-log.js */ 30)["default"]))
 
 /***/ }),
-/* 273 */
+/* 270 */
 /*!**********************!*\
   !*** external "Vue" ***!
   \**********************/
@@ -26965,6 +26899,1129 @@ new _vuex.default.Store({
 /***/ (function(module, exports) {
 
 module.exports = Vue;
+
+/***/ }),
+/* 271 */
+/*!***********************************!*\
+  !*** ./node_modules/util/util.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+var getOwnPropertyDescriptors = Object.getOwnPropertyDescriptors ||
+  function getOwnPropertyDescriptors(obj) {
+    var keys = Object.keys(obj);
+    var descriptors = {};
+    for (var i = 0; i < keys.length; i++) {
+      descriptors[keys[i]] = Object.getOwnPropertyDescriptor(obj, keys[i]);
+    }
+    return descriptors;
+  };
+
+var formatRegExp = /%[sdj%]/g;
+exports.format = function(f) {
+  if (!isString(f)) {
+    var objects = [];
+    for (var i = 0; i < arguments.length; i++) {
+      objects.push(inspect(arguments[i]));
+    }
+    return objects.join(' ');
+  }
+
+  var i = 1;
+  var args = arguments;
+  var len = args.length;
+  var str = String(f).replace(formatRegExp, function(x) {
+    if (x === '%%') return '%';
+    if (i >= len) return x;
+    switch (x) {
+      case '%s': return String(args[i++]);
+      case '%d': return Number(args[i++]);
+      case '%j':
+        try {
+          return JSON.stringify(args[i++]);
+        } catch (_) {
+          return '[Circular]';
+        }
+      default:
+        return x;
+    }
+  });
+  for (var x = args[i]; i < len; x = args[++i]) {
+    if (isNull(x) || !isObject(x)) {
+      str += ' ' + x;
+    } else {
+      str += ' ' + inspect(x);
+    }
+  }
+  return str;
+};
+
+
+// Mark that a method should not be used.
+// Returns a modified function which warns once by default.
+// If --no-deprecation is set, then it is a no-op.
+exports.deprecate = function(fn, msg) {
+  if (typeof process !== 'undefined' && process.noDeprecation === true) {
+    return fn;
+  }
+
+  // Allow for deprecating things in the process of starting up.
+  if (typeof process === 'undefined') {
+    return function() {
+      return exports.deprecate(fn, msg).apply(this, arguments);
+    };
+  }
+
+  var warned = false;
+  function deprecated() {
+    if (!warned) {
+      if (process.throwDeprecation) {
+        throw new Error(msg);
+      } else if (process.traceDeprecation) {
+        console.trace(msg);
+      } else {
+        console.error(msg);
+      }
+      warned = true;
+    }
+    return fn.apply(this, arguments);
+  }
+
+  return deprecated;
+};
+
+
+var debugs = {};
+var debugEnviron;
+exports.debuglog = function(set) {
+  if (isUndefined(debugEnviron))
+    debugEnviron = Object({"VUE_APP_NAME":"糖果云","VUE_APP_PLATFORM":"app-plus","NODE_ENV":"development","BASE_URL":"/"}).NODE_DEBUG || '';
+  set = set.toUpperCase();
+  if (!debugs[set]) {
+    if (new RegExp('\\b' + set + '\\b', 'i').test(debugEnviron)) {
+      var pid = process.pid;
+      debugs[set] = function() {
+        var msg = exports.format.apply(exports, arguments);
+        console.error('%s %d: %s', set, pid, msg);
+      };
+    } else {
+      debugs[set] = function() {};
+    }
+  }
+  return debugs[set];
+};
+
+
+/**
+ * Echos the value of a value. Trys to print the value out
+ * in the best way possible given the different types.
+ *
+ * @param {Object} obj The object to print out.
+ * @param {Object} opts Optional options object that alters the output.
+ */
+/* legacy: obj, showHidden, depth, colors*/
+function inspect(obj, opts) {
+  // default options
+  var ctx = {
+    seen: [],
+    stylize: stylizeNoColor
+  };
+  // legacy...
+  if (arguments.length >= 3) ctx.depth = arguments[2];
+  if (arguments.length >= 4) ctx.colors = arguments[3];
+  if (isBoolean(opts)) {
+    // legacy...
+    ctx.showHidden = opts;
+  } else if (opts) {
+    // got an "options" object
+    exports._extend(ctx, opts);
+  }
+  // set default options
+  if (isUndefined(ctx.showHidden)) ctx.showHidden = false;
+  if (isUndefined(ctx.depth)) ctx.depth = 2;
+  if (isUndefined(ctx.colors)) ctx.colors = false;
+  if (isUndefined(ctx.customInspect)) ctx.customInspect = true;
+  if (ctx.colors) ctx.stylize = stylizeWithColor;
+  return formatValue(ctx, obj, ctx.depth);
+}
+exports.inspect = inspect;
+
+
+// http://en.wikipedia.org/wiki/ANSI_escape_code#graphics
+inspect.colors = {
+  'bold' : [1, 22],
+  'italic' : [3, 23],
+  'underline' : [4, 24],
+  'inverse' : [7, 27],
+  'white' : [37, 39],
+  'grey' : [90, 39],
+  'black' : [30, 39],
+  'blue' : [34, 39],
+  'cyan' : [36, 39],
+  'green' : [32, 39],
+  'magenta' : [35, 39],
+  'red' : [31, 39],
+  'yellow' : [33, 39]
+};
+
+// Don't use 'blue' not visible on cmd.exe
+inspect.styles = {
+  'special': 'cyan',
+  'number': 'yellow',
+  'boolean': 'yellow',
+  'undefined': 'grey',
+  'null': 'bold',
+  'string': 'green',
+  'date': 'magenta',
+  // "name": intentionally not styling
+  'regexp': 'red'
+};
+
+
+function stylizeWithColor(str, styleType) {
+  var style = inspect.styles[styleType];
+
+  if (style) {
+    return '\u001b[' + inspect.colors[style][0] + 'm' + str +
+           '\u001b[' + inspect.colors[style][1] + 'm';
+  } else {
+    return str;
+  }
+}
+
+
+function stylizeNoColor(str, styleType) {
+  return str;
+}
+
+
+function arrayToHash(array) {
+  var hash = {};
+
+  array.forEach(function(val, idx) {
+    hash[val] = true;
+  });
+
+  return hash;
+}
+
+
+function formatValue(ctx, value, recurseTimes) {
+  // Provide a hook for user-specified inspect functions.
+  // Check that value is an object with an inspect function on it
+  if (ctx.customInspect &&
+      value &&
+      isFunction(value.inspect) &&
+      // Filter out the util module, it's inspect function is special
+      value.inspect !== exports.inspect &&
+      // Also filter out any prototype objects using the circular check.
+      !(value.constructor && value.constructor.prototype === value)) {
+    var ret = value.inspect(recurseTimes, ctx);
+    if (!isString(ret)) {
+      ret = formatValue(ctx, ret, recurseTimes);
+    }
+    return ret;
+  }
+
+  // Primitive types cannot have properties
+  var primitive = formatPrimitive(ctx, value);
+  if (primitive) {
+    return primitive;
+  }
+
+  // Look up the keys of the object.
+  var keys = Object.keys(value);
+  var visibleKeys = arrayToHash(keys);
+
+  if (ctx.showHidden) {
+    keys = Object.getOwnPropertyNames(value);
+  }
+
+  // IE doesn't make error fields non-enumerable
+  // http://msdn.microsoft.com/en-us/library/ie/dww52sbt(v=vs.94).aspx
+  if (isError(value)
+      && (keys.indexOf('message') >= 0 || keys.indexOf('description') >= 0)) {
+    return formatError(value);
+  }
+
+  // Some type of object without properties can be shortcutted.
+  if (keys.length === 0) {
+    if (isFunction(value)) {
+      var name = value.name ? ': ' + value.name : '';
+      return ctx.stylize('[Function' + name + ']', 'special');
+    }
+    if (isRegExp(value)) {
+      return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');
+    }
+    if (isDate(value)) {
+      return ctx.stylize(Date.prototype.toString.call(value), 'date');
+    }
+    if (isError(value)) {
+      return formatError(value);
+    }
+  }
+
+  var base = '', array = false, braces = ['{', '}'];
+
+  // Make Array say that they are Array
+  if (isArray(value)) {
+    array = true;
+    braces = ['[', ']'];
+  }
+
+  // Make functions say that they are functions
+  if (isFunction(value)) {
+    var n = value.name ? ': ' + value.name : '';
+    base = ' [Function' + n + ']';
+  }
+
+  // Make RegExps say that they are RegExps
+  if (isRegExp(value)) {
+    base = ' ' + RegExp.prototype.toString.call(value);
+  }
+
+  // Make dates with properties first say the date
+  if (isDate(value)) {
+    base = ' ' + Date.prototype.toUTCString.call(value);
+  }
+
+  // Make error with message first say the error
+  if (isError(value)) {
+    base = ' ' + formatError(value);
+  }
+
+  if (keys.length === 0 && (!array || value.length == 0)) {
+    return braces[0] + base + braces[1];
+  }
+
+  if (recurseTimes < 0) {
+    if (isRegExp(value)) {
+      return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');
+    } else {
+      return ctx.stylize('[Object]', 'special');
+    }
+  }
+
+  ctx.seen.push(value);
+
+  var output;
+  if (array) {
+    output = formatArray(ctx, value, recurseTimes, visibleKeys, keys);
+  } else {
+    output = keys.map(function(key) {
+      return formatProperty(ctx, value, recurseTimes, visibleKeys, key, array);
+    });
+  }
+
+  ctx.seen.pop();
+
+  return reduceToSingleString(output, base, braces);
+}
+
+
+function formatPrimitive(ctx, value) {
+  if (isUndefined(value))
+    return ctx.stylize('undefined', 'undefined');
+  if (isString(value)) {
+    var simple = '\'' + JSON.stringify(value).replace(/^"|"$/g, '')
+                                             .replace(/'/g, "\\'")
+                                             .replace(/\\"/g, '"') + '\'';
+    return ctx.stylize(simple, 'string');
+  }
+  if (isNumber(value))
+    return ctx.stylize('' + value, 'number');
+  if (isBoolean(value))
+    return ctx.stylize('' + value, 'boolean');
+  // For some reason typeof null is "object", so special case here.
+  if (isNull(value))
+    return ctx.stylize('null', 'null');
+}
+
+
+function formatError(value) {
+  return '[' + Error.prototype.toString.call(value) + ']';
+}
+
+
+function formatArray(ctx, value, recurseTimes, visibleKeys, keys) {
+  var output = [];
+  for (var i = 0, l = value.length; i < l; ++i) {
+    if (hasOwnProperty(value, String(i))) {
+      output.push(formatProperty(ctx, value, recurseTimes, visibleKeys,
+          String(i), true));
+    } else {
+      output.push('');
+    }
+  }
+  keys.forEach(function(key) {
+    if (!key.match(/^\d+$/)) {
+      output.push(formatProperty(ctx, value, recurseTimes, visibleKeys,
+          key, true));
+    }
+  });
+  return output;
+}
+
+
+function formatProperty(ctx, value, recurseTimes, visibleKeys, key, array) {
+  var name, str, desc;
+  desc = Object.getOwnPropertyDescriptor(value, key) || { value: value[key] };
+  if (desc.get) {
+    if (desc.set) {
+      str = ctx.stylize('[Getter/Setter]', 'special');
+    } else {
+      str = ctx.stylize('[Getter]', 'special');
+    }
+  } else {
+    if (desc.set) {
+      str = ctx.stylize('[Setter]', 'special');
+    }
+  }
+  if (!hasOwnProperty(visibleKeys, key)) {
+    name = '[' + key + ']';
+  }
+  if (!str) {
+    if (ctx.seen.indexOf(desc.value) < 0) {
+      if (isNull(recurseTimes)) {
+        str = formatValue(ctx, desc.value, null);
+      } else {
+        str = formatValue(ctx, desc.value, recurseTimes - 1);
+      }
+      if (str.indexOf('\n') > -1) {
+        if (array) {
+          str = str.split('\n').map(function(line) {
+            return '  ' + line;
+          }).join('\n').substr(2);
+        } else {
+          str = '\n' + str.split('\n').map(function(line) {
+            return '   ' + line;
+          }).join('\n');
+        }
+      }
+    } else {
+      str = ctx.stylize('[Circular]', 'special');
+    }
+  }
+  if (isUndefined(name)) {
+    if (array && key.match(/^\d+$/)) {
+      return str;
+    }
+    name = JSON.stringify('' + key);
+    if (name.match(/^"([a-zA-Z_][a-zA-Z_0-9]*)"$/)) {
+      name = name.substr(1, name.length - 2);
+      name = ctx.stylize(name, 'name');
+    } else {
+      name = name.replace(/'/g, "\\'")
+                 .replace(/\\"/g, '"')
+                 .replace(/(^"|"$)/g, "'");
+      name = ctx.stylize(name, 'string');
+    }
+  }
+
+  return name + ': ' + str;
+}
+
+
+function reduceToSingleString(output, base, braces) {
+  var numLinesEst = 0;
+  var length = output.reduce(function(prev, cur) {
+    numLinesEst++;
+    if (cur.indexOf('\n') >= 0) numLinesEst++;
+    return prev + cur.replace(/\u001b\[\d\d?m/g, '').length + 1;
+  }, 0);
+
+  if (length > 60) {
+    return braces[0] +
+           (base === '' ? '' : base + '\n ') +
+           ' ' +
+           output.join(',\n  ') +
+           ' ' +
+           braces[1];
+  }
+
+  return braces[0] + base + ' ' + output.join(', ') + ' ' + braces[1];
+}
+
+
+// NOTE: These type checking functions intentionally don't use `instanceof`
+// because it is fragile and can be easily faked with `Object.create()`.
+function isArray(ar) {
+  return Array.isArray(ar);
+}
+exports.isArray = isArray;
+
+function isBoolean(arg) {
+  return typeof arg === 'boolean';
+}
+exports.isBoolean = isBoolean;
+
+function isNull(arg) {
+  return arg === null;
+}
+exports.isNull = isNull;
+
+function isNullOrUndefined(arg) {
+  return arg == null;
+}
+exports.isNullOrUndefined = isNullOrUndefined;
+
+function isNumber(arg) {
+  return typeof arg === 'number';
+}
+exports.isNumber = isNumber;
+
+function isString(arg) {
+  return typeof arg === 'string';
+}
+exports.isString = isString;
+
+function isSymbol(arg) {
+  return typeof arg === 'symbol';
+}
+exports.isSymbol = isSymbol;
+
+function isUndefined(arg) {
+  return arg === void 0;
+}
+exports.isUndefined = isUndefined;
+
+function isRegExp(re) {
+  return isObject(re) && objectToString(re) === '[object RegExp]';
+}
+exports.isRegExp = isRegExp;
+
+function isObject(arg) {
+  return typeof arg === 'object' && arg !== null;
+}
+exports.isObject = isObject;
+
+function isDate(d) {
+  return isObject(d) && objectToString(d) === '[object Date]';
+}
+exports.isDate = isDate;
+
+function isError(e) {
+  return isObject(e) &&
+      (objectToString(e) === '[object Error]' || e instanceof Error);
+}
+exports.isError = isError;
+
+function isFunction(arg) {
+  return typeof arg === 'function';
+}
+exports.isFunction = isFunction;
+
+function isPrimitive(arg) {
+  return arg === null ||
+         typeof arg === 'boolean' ||
+         typeof arg === 'number' ||
+         typeof arg === 'string' ||
+         typeof arg === 'symbol' ||  // ES6 symbol
+         typeof arg === 'undefined';
+}
+exports.isPrimitive = isPrimitive;
+
+exports.isBuffer = __webpack_require__(/*! ./support/isBuffer */ 274);
+
+function objectToString(o) {
+  return Object.prototype.toString.call(o);
+}
+
+
+function pad(n) {
+  return n < 10 ? '0' + n.toString(10) : n.toString(10);
+}
+
+
+var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep',
+              'Oct', 'Nov', 'Dec'];
+
+// 26 Feb 16:19:34
+function timestamp() {
+  var d = new Date();
+  var time = [pad(d.getHours()),
+              pad(d.getMinutes()),
+              pad(d.getSeconds())].join(':');
+  return [d.getDate(), months[d.getMonth()], time].join(' ');
+}
+
+
+// log is just a thin wrapper to console.log that prepends a timestamp
+exports.log = function() {
+  console.log('%s - %s', timestamp(), exports.format.apply(exports, arguments));
+};
+
+
+/**
+ * Inherit the prototype methods from one constructor into another.
+ *
+ * The Function.prototype.inherits from lang.js rewritten as a standalone
+ * function (not on Function.prototype). NOTE: If this file is to be loaded
+ * during bootstrapping this function needs to be rewritten using some native
+ * functions as prototype setup using normal JavaScript does not work as
+ * expected during bootstrapping (see mirror.js in r114903).
+ *
+ * @param {function} ctor Constructor function which needs to inherit the
+ *     prototype.
+ * @param {function} superCtor Constructor function to inherit prototype from.
+ */
+exports.inherits = __webpack_require__(/*! inherits */ 275);
+
+exports._extend = function(origin, add) {
+  // Don't do anything if add isn't an object
+  if (!add || !isObject(add)) return origin;
+
+  var keys = Object.keys(add);
+  var i = keys.length;
+  while (i--) {
+    origin[keys[i]] = add[keys[i]];
+  }
+  return origin;
+};
+
+function hasOwnProperty(obj, prop) {
+  return Object.prototype.hasOwnProperty.call(obj, prop);
+}
+
+var kCustomPromisifiedSymbol = typeof Symbol !== 'undefined' ? Symbol('util.promisify.custom') : undefined;
+
+exports.promisify = function promisify(original) {
+  if (typeof original !== 'function')
+    throw new TypeError('The "original" argument must be of type Function');
+
+  if (kCustomPromisifiedSymbol && original[kCustomPromisifiedSymbol]) {
+    var fn = original[kCustomPromisifiedSymbol];
+    if (typeof fn !== 'function') {
+      throw new TypeError('The "util.promisify.custom" argument must be of type Function');
+    }
+    Object.defineProperty(fn, kCustomPromisifiedSymbol, {
+      value: fn, enumerable: false, writable: false, configurable: true
+    });
+    return fn;
+  }
+
+  function fn() {
+    var promiseResolve, promiseReject;
+    var promise = new Promise(function (resolve, reject) {
+      promiseResolve = resolve;
+      promiseReject = reject;
+    });
+
+    var args = [];
+    for (var i = 0; i < arguments.length; i++) {
+      args.push(arguments[i]);
+    }
+    args.push(function (err, value) {
+      if (err) {
+        promiseReject(err);
+      } else {
+        promiseResolve(value);
+      }
+    });
+
+    try {
+      original.apply(this, args);
+    } catch (err) {
+      promiseReject(err);
+    }
+
+    return promise;
+  }
+
+  Object.setPrototypeOf(fn, Object.getPrototypeOf(original));
+
+  if (kCustomPromisifiedSymbol) Object.defineProperty(fn, kCustomPromisifiedSymbol, {
+    value: fn, enumerable: false, writable: false, configurable: true
+  });
+  return Object.defineProperties(
+    fn,
+    getOwnPropertyDescriptors(original)
+  );
+}
+
+exports.promisify.custom = kCustomPromisifiedSymbol
+
+function callbackifyOnRejected(reason, cb) {
+  // `!reason` guard inspired by bluebird (Ref: https://goo.gl/t5IS6M).
+  // Because `null` is a special error value in callbacks which means "no error
+  // occurred", we error-wrap so the callback consumer can distinguish between
+  // "the promise rejected with null" or "the promise fulfilled with undefined".
+  if (!reason) {
+    var newReason = new Error('Promise was rejected with a falsy value');
+    newReason.reason = reason;
+    reason = newReason;
+  }
+  return cb(reason);
+}
+
+function callbackify(original) {
+  if (typeof original !== 'function') {
+    throw new TypeError('The "original" argument must be of type Function');
+  }
+
+  // We DO NOT return the promise as it gives the user a false sense that
+  // the promise is actually somehow related to the callback's execution
+  // and that the callback throwing will reject the promise.
+  function callbackified() {
+    var args = [];
+    for (var i = 0; i < arguments.length; i++) {
+      args.push(arguments[i]);
+    }
+
+    var maybeCb = args.pop();
+    if (typeof maybeCb !== 'function') {
+      throw new TypeError('The last argument must be of type Function');
+    }
+    var self = this;
+    var cb = function() {
+      return maybeCb.apply(self, arguments);
+    };
+    // In true node style we process the callback on `nextTick` with all the
+    // implications (stack, `uncaughtException`, `async_hooks`)
+    original.apply(this, args)
+      .then(function(ret) { process.nextTick(cb, null, ret) },
+            function(rej) { process.nextTick(callbackifyOnRejected, rej, cb) });
+  }
+
+  Object.setPrototypeOf(callbackified, Object.getPrototypeOf(original));
+  Object.defineProperties(callbackified,
+                          getOwnPropertyDescriptors(original));
+  return callbackified;
+}
+exports.callbackify = callbackify;
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/mock/process.js */ 272)))
+
+/***/ }),
+/* 272 */
+/*!********************************************************!*\
+  !*** ./node_modules/node-libs-browser/mock/process.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports.nextTick = function nextTick(fn) {
+    var args = Array.prototype.slice.call(arguments);
+    args.shift();
+    setTimeout(function () {
+        fn.apply(null, args);
+    }, 0);
+};
+
+exports.platform = exports.arch = 
+exports.execPath = exports.title = 'browser';
+exports.pid = 1;
+exports.browser = true;
+exports.env = {};
+exports.argv = [];
+
+exports.binding = function (name) {
+	throw new Error('No such module. (Possibly not yet loaded)')
+};
+
+(function () {
+    var cwd = '/';
+    var path;
+    exports.cwd = function () { return cwd };
+    exports.chdir = function (dir) {
+        if (!path) path = __webpack_require__(/*! path */ 273);
+        cwd = path.resolve(dir, cwd);
+    };
+})();
+
+exports.exit = exports.kill = 
+exports.umask = exports.dlopen = 
+exports.uptime = exports.memoryUsage = 
+exports.uvCounters = function() {};
+exports.features = {};
+
+
+/***/ }),
+/* 273 */
+/*!***********************************************!*\
+  !*** ./node_modules/path-browserify/index.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process) {// .dirname, .basename, and .extname methods are extracted from Node.js v8.11.1,
+// backported and transplited with Babel, with backwards-compat fixes
+
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+// resolves . and .. elements in a path array with directory names there
+// must be no slashes, empty elements, or device names (c:\) in the array
+// (so also no leading and trailing slashes - it does not distinguish
+// relative and absolute paths)
+function normalizeArray(parts, allowAboveRoot) {
+  // if the path tries to go above the root, `up` ends up > 0
+  var up = 0;
+  for (var i = parts.length - 1; i >= 0; i--) {
+    var last = parts[i];
+    if (last === '.') {
+      parts.splice(i, 1);
+    } else if (last === '..') {
+      parts.splice(i, 1);
+      up++;
+    } else if (up) {
+      parts.splice(i, 1);
+      up--;
+    }
+  }
+
+  // if the path is allowed to go above the root, restore leading ..s
+  if (allowAboveRoot) {
+    for (; up--; up) {
+      parts.unshift('..');
+    }
+  }
+
+  return parts;
+}
+
+// path.resolve([from ...], to)
+// posix version
+exports.resolve = function() {
+  var resolvedPath = '',
+      resolvedAbsolute = false;
+
+  for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
+    var path = (i >= 0) ? arguments[i] : process.cwd();
+
+    // Skip empty and invalid entries
+    if (typeof path !== 'string') {
+      throw new TypeError('Arguments to path.resolve must be strings');
+    } else if (!path) {
+      continue;
+    }
+
+    resolvedPath = path + '/' + resolvedPath;
+    resolvedAbsolute = path.charAt(0) === '/';
+  }
+
+  // At this point the path should be resolved to a full absolute path, but
+  // handle relative paths to be safe (might happen when process.cwd() fails)
+
+  // Normalize the path
+  resolvedPath = normalizeArray(filter(resolvedPath.split('/'), function(p) {
+    return !!p;
+  }), !resolvedAbsolute).join('/');
+
+  return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';
+};
+
+// path.normalize(path)
+// posix version
+exports.normalize = function(path) {
+  var isAbsolute = exports.isAbsolute(path),
+      trailingSlash = substr(path, -1) === '/';
+
+  // Normalize the path
+  path = normalizeArray(filter(path.split('/'), function(p) {
+    return !!p;
+  }), !isAbsolute).join('/');
+
+  if (!path && !isAbsolute) {
+    path = '.';
+  }
+  if (path && trailingSlash) {
+    path += '/';
+  }
+
+  return (isAbsolute ? '/' : '') + path;
+};
+
+// posix version
+exports.isAbsolute = function(path) {
+  return path.charAt(0) === '/';
+};
+
+// posix version
+exports.join = function() {
+  var paths = Array.prototype.slice.call(arguments, 0);
+  return exports.normalize(filter(paths, function(p, index) {
+    if (typeof p !== 'string') {
+      throw new TypeError('Arguments to path.join must be strings');
+    }
+    return p;
+  }).join('/'));
+};
+
+
+// path.relative(from, to)
+// posix version
+exports.relative = function(from, to) {
+  from = exports.resolve(from).substr(1);
+  to = exports.resolve(to).substr(1);
+
+  function trim(arr) {
+    var start = 0;
+    for (; start < arr.length; start++) {
+      if (arr[start] !== '') break;
+    }
+
+    var end = arr.length - 1;
+    for (; end >= 0; end--) {
+      if (arr[end] !== '') break;
+    }
+
+    if (start > end) return [];
+    return arr.slice(start, end - start + 1);
+  }
+
+  var fromParts = trim(from.split('/'));
+  var toParts = trim(to.split('/'));
+
+  var length = Math.min(fromParts.length, toParts.length);
+  var samePartsLength = length;
+  for (var i = 0; i < length; i++) {
+    if (fromParts[i] !== toParts[i]) {
+      samePartsLength = i;
+      break;
+    }
+  }
+
+  var outputParts = [];
+  for (var i = samePartsLength; i < fromParts.length; i++) {
+    outputParts.push('..');
+  }
+
+  outputParts = outputParts.concat(toParts.slice(samePartsLength));
+
+  return outputParts.join('/');
+};
+
+exports.sep = '/';
+exports.delimiter = ':';
+
+exports.dirname = function (path) {
+  if (typeof path !== 'string') path = path + '';
+  if (path.length === 0) return '.';
+  var code = path.charCodeAt(0);
+  var hasRoot = code === 47 /*/*/;
+  var end = -1;
+  var matchedSlash = true;
+  for (var i = path.length - 1; i >= 1; --i) {
+    code = path.charCodeAt(i);
+    if (code === 47 /*/*/) {
+        if (!matchedSlash) {
+          end = i;
+          break;
+        }
+      } else {
+      // We saw the first non-path separator
+      matchedSlash = false;
+    }
+  }
+
+  if (end === -1) return hasRoot ? '/' : '.';
+  if (hasRoot && end === 1) {
+    // return '//';
+    // Backwards-compat fix:
+    return '/';
+  }
+  return path.slice(0, end);
+};
+
+function basename(path) {
+  if (typeof path !== 'string') path = path + '';
+
+  var start = 0;
+  var end = -1;
+  var matchedSlash = true;
+  var i;
+
+  for (i = path.length - 1; i >= 0; --i) {
+    if (path.charCodeAt(i) === 47 /*/*/) {
+        // If we reached a path separator that was not part of a set of path
+        // separators at the end of the string, stop now
+        if (!matchedSlash) {
+          start = i + 1;
+          break;
+        }
+      } else if (end === -1) {
+      // We saw the first non-path separator, mark this as the end of our
+      // path component
+      matchedSlash = false;
+      end = i + 1;
+    }
+  }
+
+  if (end === -1) return '';
+  return path.slice(start, end);
+}
+
+// Uses a mixed approach for backwards-compatibility, as ext behavior changed
+// in new Node.js versions, so only basename() above is backported here
+exports.basename = function (path, ext) {
+  var f = basename(path);
+  if (ext && f.substr(-1 * ext.length) === ext) {
+    f = f.substr(0, f.length - ext.length);
+  }
+  return f;
+};
+
+exports.extname = function (path) {
+  if (typeof path !== 'string') path = path + '';
+  var startDot = -1;
+  var startPart = 0;
+  var end = -1;
+  var matchedSlash = true;
+  // Track the state of characters (if any) we see before our first dot and
+  // after any path separator we find
+  var preDotState = 0;
+  for (var i = path.length - 1; i >= 0; --i) {
+    var code = path.charCodeAt(i);
+    if (code === 47 /*/*/) {
+        // If we reached a path separator that was not part of a set of path
+        // separators at the end of the string, stop now
+        if (!matchedSlash) {
+          startPart = i + 1;
+          break;
+        }
+        continue;
+      }
+    if (end === -1) {
+      // We saw the first non-path separator, mark this as the end of our
+      // extension
+      matchedSlash = false;
+      end = i + 1;
+    }
+    if (code === 46 /*.*/) {
+        // If this is our first dot, mark it as the start of our extension
+        if (startDot === -1)
+          startDot = i;
+        else if (preDotState !== 1)
+          preDotState = 1;
+    } else if (startDot !== -1) {
+      // We saw a non-dot and non-path separator before our dot, so we should
+      // have a good chance at having a non-empty extension
+      preDotState = -1;
+    }
+  }
+
+  if (startDot === -1 || end === -1 ||
+      // We saw a non-dot character immediately before the dot
+      preDotState === 0 ||
+      // The (right-most) trimmed path component is exactly '..'
+      preDotState === 1 && startDot === end - 1 && startDot === startPart + 1) {
+    return '';
+  }
+  return path.slice(startDot, end);
+};
+
+function filter (xs, f) {
+    if (xs.filter) return xs.filter(f);
+    var res = [];
+    for (var i = 0; i < xs.length; i++) {
+        if (f(xs[i], i, xs)) res.push(xs[i]);
+    }
+    return res;
+}
+
+// String.prototype.substr - negative index don't work in IE8
+var substr = 'ab'.substr(-1) === 'b'
+    ? function (str, start, len) { return str.substr(start, len) }
+    : function (str, start, len) {
+        if (start < 0) start = str.length + start;
+        return str.substr(start, len);
+    }
+;
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/mock/process.js */ 272)))
+
+/***/ }),
+/* 274 */
+/*!******************************************************!*\
+  !*** ./node_modules/util/support/isBufferBrowser.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = function isBuffer(arg) {
+  return arg && typeof arg === 'object'
+    && typeof arg.copy === 'function'
+    && typeof arg.fill === 'function'
+    && typeof arg.readUInt8 === 'function';
+}
+
+/***/ }),
+/* 275 */
+/*!***************************************************!*\
+  !*** ./node_modules/inherits/inherits_browser.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+if (typeof Object.create === 'function') {
+  // implementation from standard node.js 'util' module
+  module.exports = function inherits(ctor, superCtor) {
+    if (superCtor) {
+      ctor.super_ = superCtor
+      ctor.prototype = Object.create(superCtor.prototype, {
+        constructor: {
+          value: ctor,
+          enumerable: false,
+          writable: true,
+          configurable: true
+        }
+      })
+    }
+  };
+} else {
+  // old school shim for old browsers
+  module.exports = function inherits(ctor, superCtor) {
+    if (superCtor) {
+      ctor.super_ = superCtor
+      var TempCtor = function () {}
+      TempCtor.prototype = superCtor.prototype
+      ctor.prototype = new TempCtor()
+      ctor.prototype.constructor = ctor
+    }
+  }
+}
+
 
 /***/ })
 ],[[0,"app-config"]]]);

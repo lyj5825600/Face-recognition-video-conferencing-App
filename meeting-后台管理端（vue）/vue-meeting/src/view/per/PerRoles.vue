@@ -10,7 +10,7 @@
       </el-button>
       <!-- 条件筛选 -->
       <div style="margin-left:auto">
-        <el-input prefix-icon="el-icon-search" size="small" placeholder="请输入角色名" style="width:200px" />
+        <el-input prefix-icon="el-icon-search" v-model="searchRole" size="small" placeholder="请输入角色名" style="width:200px" />
         <el-button type="primary" size="small" icon="el-icon-search" style="margin-left:1rem">
           搜索
         </el-button>
@@ -34,14 +34,58 @@
           </el-table-column>
           <el-table-column prop="createTime" label="创建时间" width="170"> </el-table-column>
           <el-table-column label="操作">
-            <el-button type="text" size="mini"> <i class="el-icon-edit" /> 菜单权限 </el-button>
-            <el-button type="text" size="mini"> <i class="el-icon-folder-checked" /> 资源权限 </el-button>
-            <el-popconfirm title="确定删除吗？" style="margin-left:10px">
-              <el-button size="mini" type="text" slot="reference"> <i class="el-icon-delete" /> 删除 </el-button>
-            </el-popconfirm>
+            <template slot-scope="scope">
+              <el-button type="text" size="mini" @click="openMenuModel(scope.row)"> <i class="el-icon-edit" /> 菜单权限 </el-button>
+              <el-button type="text" size="mini" @click="openResourceModel(scope.row)"> <i class="el-icon-folder-checked" /> 资源权限 </el-button>
+              <el-popconfirm title="确定删除吗？" style="margin-left:10px">
+                <el-button size="mini" type="text" slot="reference"> <i class="el-icon-delete" /> 删除 </el-button>
+              </el-popconfirm>
+            </template>
           </el-table-column>
         </el-table>
       </div>
+      <!-- 菜单对话框 -->
+      <el-dialog :visible.sync="roleMenu" width="30%">
+        <div class="dialog-title-container" slot="title" ref="roleTitle" />
+        <el-form label-width="80px" size="medium" :model="roleForm">
+          <el-form-item label="角色名">
+            <el-input v-model="roleForm.roleName" style="width:250px" />
+          </el-form-item>
+          <el-form-item label="权限标签">
+            <el-input v-model="roleForm.roleLabel" style="width:250px" />
+          </el-form-item>
+          <el-form-item label="菜单权限">
+            <el-tree :data="menuList" :props="menuProps" :default-checked-keys="menuIdList" check-strictly show-checkbox node-key="id" ref="menuTree" />
+          </el-form-item>
+        </el-form>
+        <div slot="footer">
+          <el-button @click="roleMenu = false">取 消</el-button>
+          <el-button type="primary">
+            确 定
+          </el-button>
+        </div>
+      </el-dialog>
+      <!-- 资源对话框 -->
+      <el-dialog :visible.sync="roleResource" width="30%" top="9vh">
+        <div class="dialog-title-container" slot="title">修改资源权限</div>
+        <el-form label-width="80px" size="medium" :model="roleForm">
+          <el-form-item label="角色名">
+            <el-input v-model="roleForm.roleName" style="width:250px" />
+          </el-form-item>
+          <el-form-item label="权限标签">
+            <el-input v-model="roleForm.roleLabel" style="width:250px" />
+          </el-form-item>
+          <el-form-item label="资源权限">
+            <el-tree :data="resourceList" :default-checked-keys="resourceIdList" show-checkbox node-key="id" ref="resourceTree" />
+          </el-form-item>
+        </el-form>
+        <div slot="footer">
+          <el-button @click="roleResource = false">取 消</el-button>
+          <el-button type="primary" @click="saveOrUpdateRoleResource">
+            确 定
+          </el-button>
+        </div>
+      </el-dialog>
       <el-dialog title="编辑角色" :visible.sync="dialogVisible" width="30%">
         <div>
           <table>
@@ -98,10 +142,17 @@ export default {
   name: 'PerRoles',
   data() {
     return {
+      roleResource: false,
+      roleMenu: false,
+      searchRole: '',
       jl: {
         name: '',
         titleLevel: ''
       },
+      resourceList: [],
+      resourceIdList: [],
+      menuList: [],
+      menuIdList: [],
       role: [],
       updateJl: {
         roleName: '',
@@ -110,14 +161,38 @@ export default {
       },
       dialogVisible: false,
       isDelete: false,
+      roleForm: {},
       multipleSelection: [],
-      titleLevels: ['admin', 'user', 'test']
+      titleLevels: ['admin', 'user', 'test'],
+      menuProps: {
+        children: 'children',
+        label: 'name'
+      }
     }
   },
   mounted() {
     this.initJls()
+    this.getMenu()
   },
   methods: {
+    saveOrUpdateRoleResource() {
+      this.resourceIdList = this.$refs.resourceTree.getCheckedKeys()
+      console.log(this.$refs.resourceTree.getCheckedKeys())
+    },
+    openMenuModel(role) {
+      this.$nextTick(function() {
+        this.$refs.menuTree.setCheckedKeys([])
+      })
+      if (role != null) {
+        this.roleForm = JSON.parse(JSON.stringify(role))
+      }
+      this.roleMenu = true
+    },
+    openResourceModel(role) {
+      this.getResources()
+      this.roleForm = JSON.parse(JSON.stringify(role))
+      this.roleResource = true
+    },
     handleSelectionChange(val) {
       this.multipleSelection = val
       console.log(this.multipleSelection)
@@ -163,6 +238,18 @@ export default {
         if (resp) {
           this.role = resp
         }
+      })
+    },
+    getResources() {
+      this.axios.get('/api/resource/admin/role/resources').then(res => {
+        this.resourceList = res.obj
+        this.resourceIdList = res.obj.map(item => item.id)
+      })
+    },
+    getMenu() {
+      this.axios.get('/api/system/cfg/menu').then(res => {
+        this.menuList = res
+        this.menuIdList = res.map(item => item.id)
       })
     }
   }

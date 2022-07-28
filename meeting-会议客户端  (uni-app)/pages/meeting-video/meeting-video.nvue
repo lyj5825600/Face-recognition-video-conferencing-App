@@ -79,7 +79,7 @@
           <uni-icons type="closeempty" size="25" @tap="$refs.participantPopup.close()"></uni-icons>
         </view>
         <uni-list>
-          <uni-list-chat v-for="mem in [localPerson, ...peeridInfo]" :key="mem.id" :avatar-circle="true" :title="mem.nickname"  :avatar="mem.avatar" :note="mem.id == originatorUserInfoId ? `（主持人，我）` : '参会人'" time="2020-02-02 20:20">
+          <uni-list-chat v-for="mem in [localPerson, ...peeridInfo]" :key="mem.id" :avatar-circle="true" :title="mem.nickname"  :avatar="mem.avatar" :note="mem.id == originatorUserInfoId ? `（主持人，我）` : '参会人'">
             <view class="chat-custom-right" color="#ccc">
               <uni-icons v-if="mem.videoStatus" type="videocam-filled" size="33"></uni-icons>
               <image v-else src="../../static/images/icon/mute-camera-gray.png" class="is_video-img"></image>

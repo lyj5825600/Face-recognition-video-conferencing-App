@@ -38,11 +38,6 @@
         type: Boolean
       }
     },
-    created() {
-      setTimeout(() => {
-        this.address = '不详'
-      }, 3000)
-    },
     methods: {
       // 接收renderjs发回的数据
       receiveRenderData(options) {
@@ -88,16 +83,10 @@
   let suggestBox
   export default {
     name: 'Map',
-    data() {
-      return {
-        ak: 'ksGXOp0q7PWuHaSSD3tVBVoGNVapmOCK'
-      }
-    },
     mounted() {
       const _this = this
-      console.log(this.flag, 'kkk');
       // ================百度地图==================
-      mymap(this.ak).then((mymap) => {
+      mymap(this.checkInOptions.ak).then((mymap) => {
         // 创建百度地图实例				
         bmap = new BMapGL.Map("allmap");
         console.log(bmap, 'this.map ')

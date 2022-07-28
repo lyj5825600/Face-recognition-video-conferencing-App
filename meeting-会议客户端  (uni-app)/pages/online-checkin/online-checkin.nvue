@@ -412,7 +412,8 @@
             }
             &.offline-meeting {
               width: 620rpx;
-              border: none
+              border: 0;
+              border-color: #fff;
             }
           }
         }

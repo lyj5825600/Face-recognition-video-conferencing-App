@@ -1,10 +1,11 @@
 // 导入vue
+import { log } from 'util'
 import Vue from 'vue'
 // 导入Vuex
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
-import { userHistoryConference, adminInfo, userHistoryConferencePull } from '../api/index.js'
+import { userHistoryConference, adminInfo, userHistoryConferencePull, getbaiduSDKAk } from '../api/index.js'
 const state = {
   // 自定义顶部导航的兼容高度信息
   barHeight: {},
@@ -38,10 +39,17 @@ const state = {
   // 创建会议是否成功标识
   sucCreateMt: false,
   mtDetail: {},
+  // 百度地图ak
+  ak: '',
   // rtc 音视频引入
   RtcModule: uni.requireNativePlugin('AR-RtcModule')
 }
 const actions = {
+  // 获取百度地图ak
+  async getbaiduSDKAkFun({ commit }) {
+    const res = await getbaiduSDKAk()
+    commit('GETBAIDUSDKAK', res.obj)
+  },
   // 获取用户信息
   async getAdminInfo({ commit }) {
     const res = await adminInfo()
@@ -88,6 +96,9 @@ const mutations = {
   // 初始化相机组件[是否加载完毕]
   initCamera(state, data) {
     state.initCamera = data
+  },
+  GETBAIDUSDKAK(state, data) {
+    state.ak = data
   },
   // 改变人脸识别临时图片路径
   CHANGEIMGURL(state, url) {

@@ -4,7 +4,7 @@
     <div class="operation-container">
       <el-button type="primary" size="small" icon="el-icon-plus">新增</el-button>
       <div style="margin-left: auto;">
-        <el-input size="small" type="text" prefix-icon="el-icon-search" style="width: 200px"></el-input>
+        <el-input size="small" v-model="searchApi" type="text" prefix-icon="el-icon-search" style="width: 200px"></el-input>
         <el-button type="primary" size="small" icon="el-icon-search" style="margin-left:1rem">
           搜索
         </el-button>
@@ -33,7 +33,7 @@
       </el-table-column>
       <el-table-column label="操作" align="center" width="200">
         <template slot-scope="scope">
-          <el-button v-if="scope.row.children" type="text" size="mini">
+          <el-button v-if="scope.row.children" type="text" size="mini" @click="openAddResource(scope.row)">
             <i class="el-icon-plus" />
             新增
           </el-button>
@@ -47,6 +47,32 @@
         </template>
       </el-table-column>
     </el-table>
+    <!-- 新增模态框 -->
+    <el-dialog :visible.sync="addResource" width="30%">
+      <div class="dialog-title-container" slot="title" ref="resourceTitle" />
+      <el-form label-width="80px" size="medium" :model="resourceForm">
+        <el-form-item label="资源名">
+          <el-input v-model="resourceForm.resourceName" style="width:220px" />
+        </el-form-item>
+        <el-form-item label="资源路径">
+          <el-input v-model="resourceForm.url" style="width:220px" />
+        </el-form-item>
+        <el-form-item label="请求方式">
+          <el-radio-group v-model="resourceForm.requestMethod" style="height: 36px;display: flex;align-items: center">
+            <el-radio :label="'GET'">GET</el-radio>
+            <el-radio :label="'POST'">POST</el-radio>
+            <el-radio :label="'PUT'">PUT</el-radio>
+            <el-radio :label="'DELETE'">DELETE</el-radio>
+          </el-radio-group>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="addResource = false">取 消</el-button>
+        <el-button type="primary" @click="addOrEditResource">
+          确 定
+        </el-button>
+      </span>
+    </el-dialog>
   </el-card>
 </template>
 
@@ -55,6 +81,15 @@ export default {
   name: 'PerInterface',
   data() {
     return {
+      addResource: false,
+      resourceForm: {
+        requestMethod: '',
+        resourceName: '',
+        url: '',
+        parentId: '',
+        isAnonymous: ''
+      },
+      searchApi: '',
       loading: true,
       tableData: [],
       options: {
@@ -91,9 +126,24 @@ export default {
       const { obj: res } = await this.getRequest('/api/resource/admin/resources', this.options)
       this.loading = false
       this.tableData = res
+    },
+    openAddResource(resource) {
+      this.resourceForm = {
+        requestMethod: resource.requestMethod,
+        resourceName: resource.resourceName,
+        url: resource.url,
+        parentId: resource.id,
+        isAnonymous: resource.isAnonymous
+      }
+      this.$refs.resourceTitle.innerHTML = '修改资源'
+      this.addResource = true
+    },
+    addOrEditResource() {
+      this.postRequest('/api/resource/admin/saveOrUpdateResource', this.resourceForm).then(res => {
+        this.getResources()
+        this.addResource = false
+      })
     }
   }
 }
 </script>
-
-<style scoped></style>

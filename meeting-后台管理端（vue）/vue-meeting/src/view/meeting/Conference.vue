@@ -7,7 +7,7 @@
       </el-button>
       <!-- 条件筛选 -->
       <div style="margin-left:auto">
-        <el-input prefix-icon="el-icon-search" size="small" placeholder="请输入会议号" style="width:200px" />
+        <el-input v-model="meetingNum" prefix-icon="el-icon-search" size="small" placeholder="请输入会议号" style="width:200px" />
         <el-button type="primary" size="small" icon="el-icon-search" style="margin-left:1rem">
           搜索
         </el-button>
@@ -66,6 +66,7 @@ export default {
   name: 'Conference',
   data() {
     return {
+      meetingNum: '',
       jl: {
         name: '',
         titleLevel: ''

@@ -142,7 +142,7 @@
     <!-- 普通弹窗 -->
     <uni-popup ref="mapPopup" background-color="#fff">
       <view class="mapPopup-content">
-        <Map :showBtn="true" @getPosition="getPosition" @closeMapPopup="$refs.mapPopup.close()">
+        <Map :showBtn="true" :checkInOptions="{flag: true, ak: $store.state.ak}" @getPosition="getPosition" @closeMapPopup="$refs.mapPopup.close()">
         </Map>
       </view>
     </uni-popup>

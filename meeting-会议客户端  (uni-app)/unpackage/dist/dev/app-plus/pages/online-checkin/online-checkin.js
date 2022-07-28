@@ -2498,7 +2498,7 @@ try {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getCalendarId = exports.getCalendar = exports.addCalendar = exports.getUserInfoById = exports.joinConference = exports.faceRecognitionCheck = exports.conferenceIdViewTheConferenceStatus = exports.addOrUpdateParticipantPerson = exports.deleteParticipantsPersonList = exports.getParticipantsPersonList = exports.updateUserInfoImages = exports.updateNickname = exports.adminInfo = exports.closeMeeting = exports.saveMeeting = exports.viewConferenceInformationBasedTheId = exports.removeHistoryConference = exports.oneselfMeeting = exports.userHistoryConferencePull = exports.userHistoryConference = exports.logout = exports.register = exports.login = void 0;var _request = _interopRequireWildcard(__webpack_require__(/*! ./request.js */ 62));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getbaiduSDKAk = exports.getCalendarId = exports.getCalendar = exports.addCalendar = exports.getUserInfoById = exports.joinConference = exports.faceRecognitionCheck = exports.conferenceIdViewTheConferenceStatus = exports.addOrUpdateParticipantPerson = exports.deleteParticipantsPersonList = exports.getParticipantsPersonList = exports.updateUserInfoImages = exports.updateNickname = exports.adminInfo = exports.closeMeeting = exports.saveMeeting = exports.viewConferenceInformationBasedTheId = exports.removeHistoryConference = exports.oneselfMeeting = exports.userHistoryConferencePull = exports.userHistoryConference = exports.logout = exports.register = exports.login = void 0;var _request = _interopRequireWildcard(__webpack_require__(/*! ./request.js */ 62));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
 
 // 1.登录
 var login = function login(data) {return (0, _request.request1)({ url: '/app/login', data: data, method: 'post' });};
@@ -2556,7 +2556,9 @@ exports.getUserInfoById = getUserInfoById;var addCalendar = function addCalendar
 // 1.查看本用户的日程
 exports.addCalendar = addCalendar;var getCalendar = function getCalendar(data) {return (0, _request.default)({ url: '/calendar/getCalendar', data: data });};
 // 2.日程详情
-exports.getCalendar = getCalendar;var getCalendarId = function getCalendarId(id) {return (0, _request.default)({ url: '/calendar/getCalendarId', data: { id: id } });};exports.getCalendarId = getCalendarId;
+exports.getCalendar = getCalendar;var getCalendarId = function getCalendarId(id) {return (0, _request.default)({ url: '/calendar/getCalendarId', data: { id: id } });};
+// 3.获取百度地图ak
+exports.getCalendarId = getCalendarId;var getbaiduSDKAk = function getbaiduSDKAk() {return (0, _request.default)({ url: '/user-info/getbaiduSDKAk' });};exports.getbaiduSDKAk = getbaiduSDKAk;
 
 /***/ }),
 /* 62 */
@@ -5835,6 +5837,12 @@ module.exports = {
       ],
       "borderStyle": [
         "solid",
+        0,
+        5,
+        35
+      ],
+      "borderColor": [
+        "#ffffff",
         0,
         5,
         35

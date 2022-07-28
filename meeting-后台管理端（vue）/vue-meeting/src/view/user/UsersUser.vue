@@ -8,7 +8,7 @@
           <el-select style="margin-right: 1rem;" size="small" v-model="value" clearable placeholder="请选择登录方式">
             <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </el-option>
           </el-select>
-          <el-input prefix-icon="el-icon-search" size="small" placeholder="请输入昵称" style="width:200px" />
+          <el-input prefix-icon="el-icon-search" v-model="searchUser" size="small" placeholder="请输入昵称" style="width:200px" />
           <el-button type="primary" size="small" icon="el-icon-search" style="margin-left:1rem">
             搜索
           </el-button>
@@ -92,6 +92,7 @@ export default {
   name: 'UsersUser',
   data() {
     return {
+      searchUser: '',
       value: '',
       userList: [],
       dialogFormVisible: false,

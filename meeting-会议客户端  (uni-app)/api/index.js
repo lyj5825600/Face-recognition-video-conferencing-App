@@ -57,3 +57,5 @@ export const addCalendar = data => request({url: '/calendar/addCalendar', data, 
 export const getCalendar = data => request({url: '/calendar/getCalendar', data})
 // 2.日程详情
 export const getCalendarId = id => request({url: '/calendar/getCalendarId', data: {id}})
+// 3.获取百度地图ak
+export const getbaiduSDKAk = () => request({url: '/user-info/getbaiduSDKAk'})

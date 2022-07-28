@@ -1,8 +1,8 @@
 <template>
   <view class="meeting-detail" @click="closeBigMap">
     <MtDetail :mtDetail="mtDetail"/>
-    <view class="map-wrap" :class="bigMap ? 'big-map-wrap' : ''">
-      <Map :allMap="true" @openBigMap="openBigMap" @getUserPosition="getUserPosition" :showBtn="false" :checkInOptions="{flag: false, longitude: mtDetail.meetingLongitude, latitude: mtDetail.meetingLatitude}"></Map>
+    <view class="map-wrap" :class="bigMap ? 'big-map-wrap' : ''" v-if="mtDetail.meetingType === 1">
+      <Map :allMap="true" @openBigMap="openBigMap" @getUserPosition="getUserPosition" :showBtn="false" :checkInOptions="{flag: false, longitude: mtDetail.meetingLongitude, latitude: mtDetail.meetingLatitude, ak: $store.state.ak}"></Map>
     </view>
     <navigator hover-class="join-actived" class="join-btn" :url="`/pages/online-checkin/online-checkin?flag=0&meetingNumber=${mtDetail.meetingNumber}&startTime=${mtDetail.meetingStartTime}&endTime=${mtDetail.meetingEndTime}&userLatitude=${userPoint.lat}&userLongitude=${userPoint.lng}&isSign=${mtDetail.meetingType}&meetingAddress=${mtDetail.meetingAddress}`">开始签到</navigator>
   </view>
