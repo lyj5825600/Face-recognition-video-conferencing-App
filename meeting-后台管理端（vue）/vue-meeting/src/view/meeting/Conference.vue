@@ -181,7 +181,9 @@ export default {
     },
     // 关闭会议
     async closeCurMeeting(meetingNumber) {
-      await this.postRequest('/api/meeting/adminCloseMeeting', { meetingNumber })
+      const params = new URLSearchParams()
+      params.append('meetingNumber', meetingNumber)
+      const res = await this.postRequest('/api/meeting/adminCloseMeeting', params)
       this.initMeeting()
     },
     async getMeetingDetail(id) {
