@@ -1,6 +1,7 @@
 package com.jie.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.connection.RedisGeoCommands.GeoLocation;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -71,7 +72,8 @@ public class SignServiceImpl extends ServiceImpl<SignMapper, Sign> implements Si
     private RedisTemplate<String, String> redisTemplate;
     @Autowired
     private ParticipantsPersonMapper participantsPersonMapper;
-
+    @Value("${faceRecognition.pytorch}")
+    private String faceRecognition;
     /**
      * 会议号 会议名 会议发起人 会议开始时间
      * 根据账号获取分页用户历史会议信息
@@ -168,7 +170,7 @@ public class SignServiceImpl extends ServiceImpl<SignMapper, Sign> implements Si
         // 人脸识别返回用户nickname
         JSONObject json = new JSONObject();
         json.put("img_addres", sign.getFaceImage().substring(22, sign.getFaceImage().length()));
-        sign.setNickname(JSONObject.parseObject(HttpUtil.sendPost(json, CommonConst.FACENETURL), FacenetVO.class).getName());
+        sign.setNickname(JSONObject.parseObject(HttpUtil.sendPost(json, faceRecognition+CommonConst.FACENETURL), FacenetVO.class).getName());
         //根据会议号获取最新会议信息然后判断是否有此号人物
         if (isNickname(sign)) {
             return sign.getNickname();

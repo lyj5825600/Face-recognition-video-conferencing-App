@@ -165,8 +165,8 @@ export default {
             type: 'pie',
             roseType: 'radius',
             data: [
-              {value: 210, name: '人脸签到'},
-              {value: 132, name: '手动签到'},
+              {value: 212, name: '人脸签到'},
+              {value: 119, name: '手动签到'},
             ]
           }
         ]

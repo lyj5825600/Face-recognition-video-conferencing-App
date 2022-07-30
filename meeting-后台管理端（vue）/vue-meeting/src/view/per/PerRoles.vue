@@ -2,7 +2,7 @@
   <el-card style="position: relative">
     <div class="title">角色管理</div>
     <div class="operation-container">
-      <el-button type="primary" size="small" icon="el-icon-plus">
+      <el-button type="primary" size="small" icon="el-icon-plus" @click="openMenuModel(null)">
         新增
       </el-button>
       <el-button type="danger" :disabled="multipleSelection.length == 0" size="small" icon="el-icon-delete" @click="isDelete = true">
@@ -60,7 +60,7 @@
         </el-form>
         <div slot="footer">
           <el-button @click="roleMenu = false">取 消</el-button>
-          <el-button type="primary">
+          <el-button type="primary" @click="addRoleMenu">
             确 定
           </el-button>
         </div>
@@ -161,7 +161,10 @@ export default {
       },
       dialogVisible: false,
       isDelete: false,
-      roleForm: {},
+      roleForm: {
+        roleName: '',
+        roleLabel: ''
+      },
       multipleSelection: [],
       titleLevels: ['admin', 'user', 'test'],
       menuProps: {
@@ -180,11 +183,19 @@ export default {
       console.log(this.$refs.resourceTree.getCheckedKeys())
     },
     openMenuModel(role) {
-      this.$nextTick(function() {
-        this.$refs.menuTree.setCheckedKeys([])
-      })
+      this.$refs.roleTitle.innerHTML = role ? '修改角色' : '新增角色'
       if (role != null) {
         this.roleForm = JSON.parse(JSON.stringify(role))
+        this.menuIdList = this.menuList.map(item => item.id)
+      } else {
+        this.$nextTick(() => {
+          this.$refs.menuTree.setCheckedKeys([])
+        })
+        this.menuIdList = []
+        this.roleForm = {
+          roleName: '',
+          roleLabel: ''
+        }
       }
       this.roleMenu = true
     },
@@ -200,6 +211,9 @@ export default {
     showEditView(data) {
       Object.assign(this.updateJl, data)
       this.dialogVisible = true
+    },
+    addRoleMenu() {
+      this.roleMenu = false
     },
     //更新
     doUpdate() {
@@ -218,19 +232,19 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       })
-        .then(() => {
-          this.getRequest('/api/role/roles/list/' + data.id).then(resp => {
-            if (resp) {
-              this.initJls()
-            }
+          .then(() => {
+            this.getRequest('/api/role/roles/list/' + data.id).then(resp => {
+              if (resp) {
+                this.initJls()
+              }
+            })
           })
-        })
-        .catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
+          .catch(() => {
+            this.$message({
+              type: 'info',
+              message: '已取消删除'
+            })
           })
-        })
     },
     //查找方法
     initJls() {
@@ -249,7 +263,6 @@ export default {
     getMenu() {
       this.axios.get('/api/system/cfg/menu').then(res => {
         this.menuList = res
-        this.menuIdList = res.map(item => item.id)
       })
     }
   }

@@ -18,9 +18,9 @@
         <el-table :data="meetingList" border stripe size="small" @selection-change="handleSelectionChange" style="width: 100%;">
           <el-table-column type="selection" width="70"> </el-table-column>
           <!-- <el-table-column prop="id" label="编号" width="70"> </el-table-column> -->
-          <el-table-column prop="meetingNumber" label="会议号"> </el-table-column>
+          <el-table-column prop="meetingNumber" label="会议号" width="150"> </el-table-column>
           <el-table-column prop="meetingName" label="会议名称" width="260"> </el-table-column>
-          <el-table-column prop="nickname" label="创建者" width="260"> </el-table-column>
+          <el-table-column prop="nickname" label="创建者" width="240"> </el-table-column>
           <el-table-column prop="meetingDelete" label="会议是否关闭" width="130">
             <template slot-scope="scope">
               <div v-if="scope.row.meetingDelete === 1">会议已关闭</div>
@@ -34,6 +34,10 @@
           </el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
+              <el-button type="text" size="mini" @click="openMeetingDetail(scope.row)">
+                <i class="el-icon-chat-line-round" />
+                详情
+              </el-button>
               <el-popconfirm title="确定关闭吗？" v-if="scope.row.meetingDelete === 0" style="margin-left:10px" @confirm="closeCurMeeting(scope.row.meetingNumber)">
                 <el-button size="mini" type="text" slot="reference"> <i class="el-icon-edit" /> 关闭会议 </el-button>
               </el-popconfirm>
@@ -55,6 +59,59 @@
           </el-button>
         </div>
       </el-dialog>
+      <el-dialog title="会议详情" :visible.sync="meetingDetailDialog" width="60%">
+        <el-descriptions class="margin-top" :column="3" border>
+          <el-descriptions-item>
+            <template slot="label">
+              <i class="el-icon-user"></i>
+              创建者
+            </template>
+            {{ meetingDetail.nickname }}
+          </el-descriptions-item>
+          <el-descriptions-item label="会议号">
+            {{ meetingDetail.meetingNumber }}
+          </el-descriptions-item>
+          <el-descriptions-item label="会议名称">
+            {{ meetingDetail.meetingName }}
+          </el-descriptions-item>
+          <el-descriptions-item label="会议类型">
+            <div>{{ meetingDetail.meetingType === 1 ? '线下会议' : '线上会议' }}</div>
+          </el-descriptions-item>
+          <el-descriptions-item v-if="meetingDetail.meetingType === 1">
+            <template slot="label">
+              <i class="el-icon-location-outline"></i>
+              会议地址
+            </template>
+            {{ meetingDetail.meetingAddress }}
+          </el-descriptions-item>
+          <el-descriptions-item label="会议描述" v-if="meetingDetail.meetingType === 1">{{ meetingDetail.meetingDescribed }}</el-descriptions-item>
+          <el-descriptions-item label="会议开始时间" v-if="meetingDetail.meetingStartTime">
+            {{ meetingDetail.meetingStartTime.replace('T', ' ') }}
+          </el-descriptions-item>
+          <el-descriptions-item label="会议结束时间" v-if="meetingDetail.meetingEndTime">
+            {{ meetingDetail.meetingEndTime.replace('T', ' ') }}
+          </el-descriptions-item>
+          <el-descriptions-item label="会议状态">
+            {{ meetingDetail.meetingDelete === 1 ? '已关闭' : '进行中' }}
+          </el-descriptions-item>
+          <el-descriptions-item label="参会人">
+            <el-button @click="openInnerVisible(true, meetingDetail.successfullyPerson)" type="primary" size="medium" style="width: 100%" plain>查询参会人</el-button>
+          </el-descriptions-item>
+          <el-descriptions-item label="未参会人">
+            <el-button @click="openInnerVisible(false, meetingDetail.failedPerson)" type="danger" size="medium" style="width: 100%" plain>查询未参会人</el-button>
+          </el-descriptions-item>
+        </el-descriptions>
+        <el-dialog width="30%" :title="innerVisibleTitle" :visible.sync="innerVisible" append-to-body>
+          <el-table :data="innerTableData" height="200" border style="width: 100%">
+            <template v-if="innerVisibleType">
+              <el-table-column property="signNickname" label="参会人名字"></el-table-column>
+            </template>
+            <template v-else>
+              <el-table-column property="meetingNickname" label="未参会人名字"></el-table-column>
+            </template>
+          </el-table>
+        </el-dialog>
+      </el-dialog>
     </div>
     <!-- 分页 -->
     <el-pagination class="pagination-container" background @size-change="sizeChange" @current-change="currentChange" :current-page="meetOps.current" :page-size="meetOps.size" :total="count" :page-sizes="[10, 20]" layout="total, sizes, prev, pager, next, jumper" />
@@ -66,7 +123,13 @@ export default {
   name: 'Conference',
   data() {
     return {
+      meetingDetail: {},
+      innerVisible: false,
+      innerVisibleTitle: '参会人列表',
+      meetingDetailDialog: false,
       meetingNum: '',
+      innerTableData: [],
+      innerVisibleType: false,
       jl: {
         name: '',
         titleLevel: ''
@@ -120,6 +183,20 @@ export default {
     async closeCurMeeting(meetingNumber) {
       await this.postRequest('/api/meeting/adminCloseMeeting', { meetingNumber })
       this.initMeeting()
+    },
+    async getMeetingDetail(id) {
+      const res = await this.axios.get('/api/meeting/viewConferenceInformationBasedTheId/' + id)
+      this.meetingDetail = res.obj
+      this.meetingDetailDialog = true
+    },
+    openMeetingDetail(data) {
+      this.getMeetingDetail(data.id)
+    },
+    openInnerVisible(type, data) {
+      this.innerVisibleType = type
+      this.innerVisibleTitle = type ? '参会人列表' : '未参会人列表'
+      this.innerTableData = data
+      this.innerVisible = true
     }
   }
 }
