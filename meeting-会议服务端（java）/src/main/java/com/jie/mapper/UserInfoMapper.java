@@ -17,7 +17,6 @@ import org.apache.ibatis.annotations.Param;
 public interface UserInfoMapper extends BaseMapper<UserInfo> {
     /**
      * 插入并返回主键
-     * @return
      */
     int addUserInfo(UserInfo userInfo);
 

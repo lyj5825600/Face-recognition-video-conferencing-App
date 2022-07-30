@@ -102,7 +102,7 @@ public class ParticipantListServiceImpl extends ServiceImpl<ParticipantListMappe
 
     //python进行异步往深度学习进行图片填充
     public void addFacenetImage(String username,String images,String nickname){
-        // 人脸识别返回用户nickname
+        //
         CompletableFuture.runAsync(() -> {
             com.alibaba.fastjson.JSONObject json = new com.alibaba.fastjson.JSONObject();
             json.put("imgbase64", images.substring(22, images.length()));

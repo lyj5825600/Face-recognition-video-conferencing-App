@@ -1,6 +1,8 @@
 package com.jie.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.jie.util.*;
+import com.jie.vo.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.connection.RedisGeoCommands.GeoLocation;
 import com.alibaba.fastjson.JSONObject;
@@ -20,14 +22,6 @@ import com.jie.mapper.SignMapper;
 import com.jie.service.MeetingService;
 import com.jie.service.SignService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.jie.util.BeanCopyUtils;
-import com.jie.util.HttpUtil;
-import com.jie.util.PageUtils;
-import com.jie.util.RespBean;
-import com.jie.vo.ConditionVO;
-import com.jie.vo.FacenetVO;
-import com.jie.vo.PageResult;
-import com.jie.vo.SignVO;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,7 +90,7 @@ public class SignServiceImpl extends ServiceImpl<SignMapper, Sign> implements Si
     }
 
     /**
-     * TODO MQ进行流量削峰
+     *
      * 签到接口对接
      *
      * @param signVO
@@ -127,6 +121,38 @@ public class SignServiceImpl extends ServiceImpl<SignMapper, Sign> implements Si
             return RespBean.success("已签到,请不要重复签到", nickname);
         }
         return RespBean.success("签到成功", nickname);
+    }
+
+    /**
+     * 调用远程RPC深度学习模型进行活体检测接口
+     * @return
+     */
+    @Override
+    public boolean livingTests() {
+        //远程调用调用远程RPC深度学习模型进行活体检测接口
+        JSONObject json = new JSONObject();
+        json.put("username", UserUtils.getLoginUser().getUsername());
+        if (JSONObject.parseObject(HttpUtil.sendPost(json, faceRecognition+CommonConst.LIVINGFACETEST), LivingVO.class).getCode().equals("签到成功")){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 活体识别图片添加
+     * @param
+     */
+    @Override
+    public void addlivingFaceImage(String imgBase64,String username) {
+        // 人脸识别返回用户nickname
+        CompletableFuture.runAsync(() -> {
+            com.alibaba.fastjson.JSONObject json = new com.alibaba.fastjson.JSONObject();
+            json.put("imgbase64", imgBase64.substring(22, imgBase64.length()));
+            json.put("username", username);
+            String name = JSONObject.parseObject(HttpUtil.sendPost(json, faceRecognition+CommonConst.ADDLIVINGFACEIMAGE), FacenetVO.class).getName();
+            log.info("图片" + name);
+        });
+
     }
 
     //判断线下会议的用户是否在会议地址附近，若在则可进行签到

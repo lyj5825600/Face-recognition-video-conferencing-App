@@ -4,12 +4,15 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.jie.constant.CommonConst;
 import com.jie.constant.MeetingConst;
 import com.jie.dto.MeetingStatisticalDTO;
+import com.jie.dto.UserDetailDTO;
 import com.jie.entity.*;
 import com.jie.entity.Calendar;
 import com.jie.mapper.*;
 import com.jie.service.MeetingStatisticalService;
 import com.jie.util.RespBean;
 import com.jie.util.UserUtils;
+import lombok.SneakyThrows;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.geo.Metrics;
@@ -36,15 +39,9 @@ import java.util.concurrent.TimeUnit;
  */
 @SpringBootTest
 public class BackApplicationTests {
-    @Autowired
-    private RoleResourceMapper roleResourceMapper;
-    @Autowired
-    private ResourceMapper resourceMapper;
+    //初始化
     @org.junit.jupiter.api.Test
     public void test(){
-//        for (Resource resource : resourceMapper.selectList(null)) {
-//            roleResourceMapper.insert(RoleResource.builder().roleId(2).resourceId(resource.getId()).build());
-//        }
 
     }
     public void arrayMaxCount(int[]arr){

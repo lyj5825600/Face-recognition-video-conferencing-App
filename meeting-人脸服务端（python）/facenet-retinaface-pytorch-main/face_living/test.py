@@ -1,9 +1,3 @@
-# 测试pytorch环境
-# import torch
-# if __name__ == '__main__':
-#     print(torch.__version__);
-#     print(torch.cuda.is_available())
-
 # -*- coding: utf-8 -*-
 # @Time : 20-6-9 下午3:06
 # @Author : zhuying
@@ -18,13 +12,13 @@ import argparse
 import warnings
 import time
 
-from face_living.src.anti_spoof_predict import AntiSpoofPredict
-from face_living.src.generate_patches import CropImage
-from face_living.src.utility import parse_model_name
+from src.anti_spoof_predict import AntiSpoofPredict
+from src.generate_patches import CropImage
+from src.utility import parse_model_name
 warnings.filterwarnings('ignore')
 
 
-SAMPLE_IMAGE_PATH = "./face_living/images/sample/"
+SAMPLE_IMAGE_PATH = "./images/sample/"
 
 
 # 因为安卓端APK获取的视频流宽高比为3:4,为了与之一致，所以将宽高比限制为3:4
@@ -94,7 +88,7 @@ def test(image_name, model_dir, device_id):
     return label
 
 
-def livingFace(username,nickname):
+if __name__ == "__main__":
     desc = "test"
     parser = argparse.ArgumentParser(description=desc)
     parser.add_argument(
@@ -105,17 +99,12 @@ def livingFace(username,nickname):
     parser.add_argument(
         "--model_dir",
         type=str,
-        default="./face_living/resources/anti_spoof_models",
+        default="./resources/anti_spoof_models",
         help="model_lib used to test")
     parser.add_argument(
         "--image_name",
         type=str,
-        default=nickname,
+        default="13469358968.jpg",
         help="image used to test")
     args = parser.parse_args()
     print(test(args.image_name, args.model_dir, args.device_id))
-
-if __name__ == '__main__':
-    livingFace("哈哈哈", "test.jpg")
-
-

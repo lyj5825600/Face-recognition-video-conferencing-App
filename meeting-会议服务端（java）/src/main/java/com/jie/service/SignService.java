@@ -35,4 +35,12 @@ public interface SignService extends IService<Sign> {
      * @return
      */
     RespBean faceRecognition(SignVO signVO, String username);
+
+    /**
+     * 调用远程RPC深度学习模型进行活体检测接口
+     * @return
+     */
+    boolean livingTests();
+
+    void addlivingFaceImage(String ImgBase64,String username);
 }

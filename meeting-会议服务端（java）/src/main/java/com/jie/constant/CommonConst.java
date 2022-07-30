@@ -36,5 +36,14 @@ public class CommonConst {
      * python删除人脸接口
      */
     public static final String DELETEFACENETIMAGE="/deleteImages";
+    /**
+     * python活体检测接口
+     */
+    public static final String LIVINGFACETEST="/livingFaceTest";
+    /**
+     * python活体检测添加图片接口
+     */
+    public static final String ADDLIVINGFACEIMAGE="/addlivingFaceImage";
+
 
 }
