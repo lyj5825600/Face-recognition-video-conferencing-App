@@ -1,7 +1,7 @@
 # meeting-人脸识别APP端视频会议系统
 
 #### 介绍
-基于SpringBoot + Vue + uni-app开发的前后端分离APP端视频会议系统，采用SpringSecurity+JWT进行权限管理，Retinaface+ Facenet做人脸检测与人脸识别，支持会议系统的基本功能，人脸签到，视频会议，好友聊天，地图坐标签到等。
+基于SpringBoot + Vue+uni-app开发的前后端分离APP端视频会议系统，采用SpringSecurity采用RBAC模型实现动态鉴权，Retinaface+ Facenet实现人脸识别，支持会议系统的基本功能，人脸签到，签到活体检测，视频会议，好友聊天，地图坐标签到等。
 
 #### 在线地址
 在线接口文档地址： http://101.43.253.100:8082/doc.html
@@ -12,7 +12,7 @@ Gitee地址：https://gitee.com/mengxin-no1/meeting-jie
 #### 目录结构
 会议服务端卫位于meeting-会议服务端中采用java开发。
 
-会议人脸端位于meeting-人脸服务端中采用python开发（采用[Bubbliiiing大佬开源项目进行二开封装](https://github.com/bubbliiiing/facenet-retinaface-pytorch)）。
+会议人脸端位于meeting-人脸服务端中采用python开发（采用[Bubbliiiing大佬开源项目进行二开封装](https://github.com/bubbliiiing/facenet-retinaface-pytorch)与[小视科技开源进行活体检测](https://github.com/minivision-ai/Silent-Face-Anti-Spoofing)）。
 
 会议后台管理位于meeting-会议后台管理中采用vue开发（部分UI采用[风宇的博客项目后台](https://gitee.com/feng_meiyu/blog)）。
 
