@@ -1,1 +1,0 @@
-<view><image id="img" animation="{{animationData}}" src="../../static/images/icon/top.png" data-event-opts="{{[['tap',[['backTop',['$event']]]]]}}" bindtap="__e"></image></view>

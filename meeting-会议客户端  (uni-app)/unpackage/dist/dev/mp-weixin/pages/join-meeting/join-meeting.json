@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "会议号",
-  "enablePullDownRefresh": false,
-  "usingComponents": {
-    "popup": "/components/Popup/Popup"
-  }
-}

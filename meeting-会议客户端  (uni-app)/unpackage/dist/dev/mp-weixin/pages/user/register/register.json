@@ -1,7 +1,0 @@
-{
-  "navigationStyle": "custom",
-  "usingComponents": {
-    "nav-top": "/components/NavTop/NavTop",
-    "popup": "/components/Popup/Popup"
-  }
-}

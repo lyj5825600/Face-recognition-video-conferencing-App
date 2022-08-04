@@ -1,1 +1,0 @@
-<view class="uni-popup-message"><view class="{{['uni-popup-message__box','fixforpc-width','uni-popup__'+type]}}"><block wx:if="{{$slots.default}}"><slot></slot></block><block wx:else><text class="{{['uni-popup-message-text','uni-popup__'+type+'-text']}}">{{message}}</text></block></view></view>

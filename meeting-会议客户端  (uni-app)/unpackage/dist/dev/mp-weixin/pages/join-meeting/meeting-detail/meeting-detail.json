@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "会议详情",
-  "enablePullDownRefresh": false,
-  "usingComponents": {
-    "mt-detail": "/components/MtDetail/MtDetail"
-  }
-}

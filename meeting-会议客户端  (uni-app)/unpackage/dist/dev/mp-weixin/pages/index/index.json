@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "糖果云",
-  "usingComponents": {
-    "history-call": "/components/HistoryCall/HistoryCall",
-    "float-frame": "/components/FloatFrame/FloatFrame",
-    "popup": "/components/Popup/Popup",
-    "back-top": "/components/BackTop/BackTop"
-  }
-}
