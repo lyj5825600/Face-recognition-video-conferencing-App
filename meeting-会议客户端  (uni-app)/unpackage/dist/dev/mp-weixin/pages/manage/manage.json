@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "管理",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "search": "/components/Search/Search",
+    "participant-list": "/components/ParticipantList/ParticipantList",
+    "popup": "/components/Popup/Popup"
+  }
+}

@@ -1,0 +1,9 @@
+
+#img {
+  width: 30rpx;
+  height: 40rpx;
+  position: fixed;
+  right: -30rpx;
+  bottom: 100rpx;
+}
+

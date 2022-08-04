@@ -1,0 +1,424 @@
+<template>
+  <view class="live-camera">
+    <view class="title">
+      <text class="title-txt">{{ second }}秒后识别</text>
+    </view>
+    <live-pusher id="livePusher" ref="livePusher" class="livePusher" mode="FHD" beauty="1" whiteness="0" aspect="2:3"
+      min-bitrate="1000" audio-quality="16KHz" :auto-focus="true" :muted="true" :enable-camera="true"
+      :enable-mic="false" :zoom="false" @statechange="statechange" :style="{ width: '750rpx', height: '700rpx' }">
+    </live-pusher>
+    <!--提示语-->
+    <!--    <cover-view class="remind">
+        <text class="remind-text" style="">{{ message }}</text>
+    </cover-view> -->
+    <!--辅助线-->
+    <cover-view class="outline-box">
+      <cover-image class="outline-img" src="../../static/images/checkin/take_video_back.png"></cover-image>
+    </cover-view>
+    <view class="notice-wrap">
+      <view><text class="notice-title">注意事项</text></view>
+      <view class="notice-box">
+        <text class="notice-text">拍照签到的时候，必须要拍摄自己的正面照片，侧面照片会导致无法识别。另外，拍照的时候不要戴墨镜或者帽子，避免影响拍照签到的准确度。</text>
+      </view>
+    </view>
+    <!-- 提示信息弹窗 -->
+    <Popup ref="message" :popupType="popupMsgtype" :msgType="popupOptions.msgType"
+      :messageText="popupOptions.messageText" />
+    <Popup ref="descDialog" @inputVal="getInputVal" :inputVal="checkinName" :moveUp="false" popupType="dialog"
+      popupFormat="2" placeholder="请输入你的名字" inputTitle="编辑名字" />
+    <!-- 提示窗示例 -->
+    <Popup ref="alertDialog" @successdel="faceCheckin" @cancel="manualCheckin" popupType="dialog" popupFormat="3"
+      alertType="error" :alertTitle="checkInTxt" cancelText="手动签到" confirmText="人脸签到" :alertContent="checkInContent" />
+    <!--    <Popup ref="sucDialog" @successdel="quitCurPage" @cancel="manualCheckin" popupType="dialog" popupFormat="3" alertType="success" alertTitle="签到结果" cancelText="取消" confirmText="退出本页" :alertContent="sucTip" /> -->
+    <!-- 普通弹窗 -->
+    <uni-popup ref="popup1" background-color="#fff" :is-mask-click="false">
+      <view class="popup-content">
+        <view><text class="title" :style="{color: sucTip === '签到失败，用户不在线下会议地点附近' ? 'red' : '#74d964'}">签到结果</text></view>
+        <view><text class="text">{{ sucTip }}</text></view>
+        <view class="popup-btn">
+          <view class="popup-btn-content"><text class="txt-btn back-btn" :class="isSign == 1 ? 'offline-meeting' : ''" @click="quitCurPage">退出本页</text></view>
+          <view class="popup-btn-content" v-if="isSign != 1"><text class="txt-btn" @click="toMeetingVideo">进入会议</text></view>
+        </view>
+      </view>
+    </uni-popup>
+  </view>
+</template>
+
+<script>
+  import {
+    faceRecognitionCheck
+  } from '../../api/index.js'
+  import {
+    showToast
+  } from '../../utils/uniAsync.js'
+  import Popup from '../../components/Popup/Popup.vue'
+  export default {
+    data() {
+      return {
+        // 流视频对象
+        livePusher: null,
+        // 倒计时[s]
+        second: 0,
+        // 倒计时是否结束
+        ifPhoto: false,
+        // 判断是从哪个页面进入
+        flag: 1,
+        // 手动签到名
+        checkinName: '',
+        // 提示信息类型
+        popupMsgtype: 'message',
+        // 会议号
+        meetingNumber: '',
+        // 会议开始时间
+        meetingStartTime: '',
+        // 会议结束时间
+        meetingEndTime: '',
+        // 线下会议的用户位置纬度
+        userLatitude: '',
+        // 线下会议的用户位置经度
+        userLongitude: '',
+        // 会议类型
+        isSign: '',
+        // 线下会议的会议地址
+        meetingAddress: '',
+        popupOptions: {
+          msgType: '',
+          messageText: ''
+        },
+        // 历史会议记录参数对象
+        historyOptions: {
+          keywords: '',
+          // 页码值
+          current: 1,
+          // 条数
+          size: 10
+        },
+        // 定时器唯一标识
+        timer: 0,
+        sucTip: '',
+        checkInTxt: '人脸签到失败',
+        checkInContent: '继续人脸签到还是手动签到'
+      }
+    },
+    components: {
+      Popup
+    },
+    onLoad({
+      flag,
+      meetingNumber = '',
+      startTime = '',
+      endTime = '',
+      userLatitude = '',
+      userLongitude = '',
+      isSign = '',
+      meetingAddress = ''
+    }) {
+      this.flag = flag
+      if (meetingNumber && startTime && endTime && isSign) {
+        this.meetingNumber = meetingNumber
+        this.meetingStartTime = startTime
+        this.meetingEndTime = endTime
+        this.userLatitude = parseFloat(userLatitude)
+        this.userLongitude = parseFloat(userLongitude)
+        this.isSign = parseInt(isSign)
+        this.meetingAddress = meetingAddress
+      }
+    },
+    onShow() {
+      clearInterval(this.timer)
+      // 等下次DOM元素更新时执行
+      this.$nextTick(function() {
+        // 页面显示开启摄像头
+        this.startPreview()
+      })
+    },
+    onReady() {
+      console.log('初始化 直播组件');
+      this.livePusher = uni.createLivePusherContext('livePusher', this);
+    },
+    methods: {
+      // 去往视频会议页面
+      toMeetingVideo() {
+        uni.reLaunch({
+          url: `/pages/meeting-video/meeting-video?meetingNumber=${this.meetingNumber}&startTime=${this.meetingStartTime}&endTime=${this.meetingEndTime}&page=1`
+        })
+      },
+      faceCheckin() {
+        // 清除定时器
+        clearInterval(this.timer);
+        this.ifPhoto = false
+        this.getCount()
+      },
+      manualCheckin() {
+        this.$refs.descDialog.open()
+      },
+      // 签到成功或重复签到成功时点击弹出层确定时执行
+      quitCurPage() {
+        uni.navigateBack({
+          delta: 2
+        })
+      },
+      messageToggle({
+        msgType,
+        messageText
+      }) {
+        this.popupOptions = {
+          msgType,
+          messageText
+        }
+        this.$refs.message.open()
+        // 消息弹窗在中心时才需手动关闭
+        if (this.popupMsgtype === 'center') {
+          // 延时关闭
+          this.$refs.message.delayClose()
+        }
+      },
+      // 当用户手动签到确定
+      getInputVal(val) {
+        this.checkinName = val
+        this.faceRecognitionCheckFun({
+          faceImage: '',
+          nickname: this.checkinName,
+          meetingNumber: this.meetingNumber,
+          userLatitude: this.userLatitude,
+          userLongitude: this.userLongitude,
+          isSign: this.isSign,
+          meetingAddress: this.meetingAddress
+        }, false)
+      },
+      // 人脸签到
+      async faceRecognitionCheckFun(options, face = true) {
+        const res = await faceRecognitionCheck(options)
+        console.log(JSON.stringify(res))
+        if (res.code === 200) {
+          // this.messageToggle({ msgType: 'success', messageText: res.message + ',' + res.obj })
+          this.sucTip = res.obj + ',' + res.message 
+          // this.$refs.sucDialog.open()
+          this.$refs.popup1.open('center')
+          // 先清空
+          this.$store.commit('RESETHISTROYLIST')
+          // 再请求
+          this.$store.dispatch('getUserHistoryConference', this.historyOptions)
+        } else if (this.isSign == 1 && res.message === '签到失败，用户不在线下会议地点附近') {
+          this.sucTip = res.message
+          this.$refs.popup1.open('center')
+        } else {
+          // await showToast({title: '签到失败',icon: 'error',mask: true})
+          // 不论哪种签到都弹出提示框[签到失败的情况]
+          this.checkInTxt = face ? '人脸签到失败' : '手动签到失败'
+          this.checkInContent = face ? '继续人脸签到还是手动签到' : '继续手动签到还是人脸签到'
+          this.$refs.alertDialog.open()
+        }
+      },
+      // 开启相机
+      startPreview() {
+        this.livePusher.startPreview({
+          success: (res) => {
+            console.log(res)
+            // 倒计时
+            this.getCount()
+          }
+        })
+      },
+      // 停止相机
+      stopPreview() {
+        this.livePusher.stopPreview({
+          success(res) {
+            console.log('停止相机', res)
+          }
+        })
+      },
+      // 快照 抓拍
+      snapshot() {
+        // 得到this
+        const _this = this
+        this.livePusher.snapshot({
+          success(res) {
+            console.log('快照 抓拍', JSON.stringify(res))
+            // 快照抓拍后的临时图片地址
+            const snapshotsrc = res.message.tempImagePath
+            //app端, 把临时路径转为base64格式
+            _this.$store.dispatch('pathToBase64App', snapshotsrc).then(src => {
+              if (_this.flag == 0) {
+                _this.faceRecognitionCheckFun({
+                  faceImage: src,
+                  meetingNumber: _this.meetingNumber,
+                  nickname: '',
+                  userLatitude: _this.userLatitude,
+                  userLongitude: _this.userLongitude,
+                  isSign: _this.isSign,
+                  meetingAddress: _this.meetingAddress
+                })
+              } else {
+                uni.navigateBack({
+                  delta: 1
+                })
+              }
+            }).catch(err => {
+              console.error(err)
+            })
+            // 更新vuex中存储的人脸临时图片路径
+            _this.$store.commit('CHANGEIMGURL', snapshotsrc)
+          }
+        })
+      },
+      // 摄像头状态
+      statechange() {
+        if (this.ifPhoto) this.snapshot()
+      },
+      // 倒计时
+      getCount() {
+        this.second = 5
+        this.timer = setInterval(() => {
+          this.second--;
+          if (this.second < 4 && !this.ifPhoto && this.flag != 1) {
+            // 拍照
+            this.ifPhoto = true
+            this.statechange()
+          }
+          if (this.second < 1) {
+            // 为0时清除定时器
+            clearInterval(this.timer);
+            this.second = 0
+            if (this.flag == 1) {
+              // 拍照
+              this.ifPhoto = true
+              this.statechange()
+            }
+          }
+        }, 1000)
+      },
+      // 认证失败，重新认证
+      againAttest(msg) {
+        const _this = this
+        uni.showModal({
+          content: msg,
+          confirmText: '重新审核'
+        })
+      }
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+  // 标题 
+  .title {
+    align-items: center;
+    justify-content: center;
+
+    .title-txt {
+      font-size: 35rpx;
+    }
+  }
+
+  .live-camera {
+    .preview {
+      justify-content: center;
+      align-items: center;
+    }
+
+    // .remind {
+    //     position: absolute;
+    //     top: 880rpx;
+    //     width: 750rpx;
+    //     z-index: 100;
+    //     align-items: center;
+    //     justify-content: center;
+
+    //     .remind-text {
+    //         color: #dddddd;
+    //         font-weight: bold;
+    //     }
+    // }
+    // 识别扫描头像
+    .outline-box {
+      position: absolute;
+      top: 45rpx;
+      left: 0;
+      z-index: 99;
+      align-items: center;
+      justify-content: center;
+
+      .outline-img {
+        width: 750rpx;
+        height: 700rpx;
+      }
+    }
+
+    // 注意事项
+    .notice-wrap {
+      padding: 40rpx;
+
+      .notice-title {
+        font-weight: bold;
+      }
+
+      // 注意事项文本
+      .notice-box {
+        padding-top: 25rpx;
+
+        >.notice-text {
+          color: #ccc;
+          font-size: $uni-font-size-base;
+        }
+      }
+    }
+
+    // 自定义提示弹窗
+    .popup-content {
+      width: 620rpx;
+      align-items: center;
+
+      .title {
+        color: #74d964;
+        padding: 50rpx 0;
+      }
+
+      .text {
+        width: 620rpx;
+        padding-bottom: 40rpx;
+        border-bottom-color: #f0f0f0;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        text-align: center;
+        font-size: 36rpx;
+        /* 显示省略号 */
+        overflow: hidden;
+        // word-break: break-all; /* 允许在单词内换行 */
+        text-overflow: ellipsis; /* 超出部分省略号 */
+        // display: -webkit-box; /* 对象作为伸缩盒子模型显示 */
+        // -webkit-box-orient: vertical; /* 设置或检索伸缩盒对象的子元素的排列方式 */
+        // -webkit-line-clamp: 1; /* 显示的行数 */
+        lines: 1; // NVUE下要这个属性,来让文字超出隐藏变省略号
+        text-overflow: ellipsis;
+      }
+
+      .popup-btn {
+        width: 620rpx;
+        flex-direction: row;
+        align-items: center;
+        .popup-btn-content {
+          .txt-btn {
+            width: 310rpx;
+            text-align: center;
+            padding: 30rpx 0;
+            color: rgb(0, 122, 255);
+            font-size: 36rpx;
+            &.back-btn {
+              border-right-color: #f0f0f0;
+              border-right-width: 2rpx;
+              border-style: dotted;
+              color: red;
+            }
+            &.offline-meeting {
+              width: 620rpx;
+              border: 0;
+              border-color: #fff;
+            }
+          }
+        }
+
+      }
+    }
+  }
+</style>

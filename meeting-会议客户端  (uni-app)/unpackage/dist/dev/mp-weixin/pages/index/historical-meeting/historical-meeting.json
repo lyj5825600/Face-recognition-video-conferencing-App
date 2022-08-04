@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "历史会议",
+  "usingComponents": {
+    "search": "/components/Search/Search"
+  }
+}

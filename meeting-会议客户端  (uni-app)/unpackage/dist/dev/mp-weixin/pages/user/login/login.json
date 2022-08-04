@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "nav-top": "/components/NavTop/NavTop",
+    "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons",
+    "popup": "/components/Popup/Popup"
+  }
+}

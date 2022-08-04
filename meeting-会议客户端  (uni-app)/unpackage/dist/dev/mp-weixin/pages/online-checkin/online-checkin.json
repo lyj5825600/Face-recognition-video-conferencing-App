@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "在线签到",
+  "usingComponents": {
+    "popup": "/components/Popup/Popup",
+    "uni-popup": "/uni_modules/uni-popup/components/uni-popup/uni-popup"
+  }
+}
