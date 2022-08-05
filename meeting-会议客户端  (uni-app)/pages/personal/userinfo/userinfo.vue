@@ -69,13 +69,20 @@
           sourceType: ['album'],
           success: (res) => {
             const tempFilePaths = res.tempFilePaths[0]
-            //app端, 把临时路径转为base64格式
-            this.$store.dispatch('pathToBase64App', tempFilePaths).then(res => {
-              // 得到base64格式的图片,进行修改头像操作
-              const base64Src = res
-              this.updateUserInfoImagesFun(base64Src)
-            }).catch((err) => {
-              console.log(err)
+            uni.compressImage({
+              src: tempFilePaths,
+              width: '480px',
+              height: '640px',
+              success: result => {
+                //app端, 把临时路径转为base64格式
+                this.$store.dispatch('pathToBase64App', result.tempFilePath).then(res => {
+                  // 得到base64格式的图片,进行修改头像操作
+                  const base64Src = res
+                  this.updateUserInfoImagesFun(base64Src)
+                }).catch((err) => {
+                  console.log(err)
+                })
+              }
             })
           }
         })

@@ -21315,21 +21315,28 @@ var _Popup = _interopRequireDefault(__webpack_require__(/*! ../../../components/
         sourceType: ['album'],
         success: function success(res) {
           var tempFilePaths = res.tempFilePaths[0];
-          //app端, 把临时路径转为base64格式
-          _this2.$store.dispatch('pathToBase64App', tempFilePaths).then(function (res) {
-            // 得到base64格式的图片,进行修改头像操作
-            var base64Src = res;
-            _this2.updateUserInfoImagesFun(base64Src);
-          }).catch(function (err) {
-            __f__("log", err, " at pages/personal/userinfo/userinfo.vue:78");
-          });
+          uni.compressImage({
+            src: tempFilePaths,
+            width: '480px',
+            height: '640px',
+            success: function success(result) {
+              //app端, 把临时路径转为base64格式
+              _this2.$store.dispatch('pathToBase64App', result.tempFilePath).then(function (res) {
+                // 得到base64格式的图片,进行修改头像操作
+                var base64Src = res;
+                _this2.updateUserInfoImagesFun(base64Src);
+              }).catch(function (err) {
+                __f__("log", err, " at pages/personal/userinfo/userinfo.vue:83");
+              });
+            } });
+
         } });
 
     },
     // 退出登录
     loginout: function loginout() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
                   (0, _index.logout)());case 2:res = _context2.sent;
-                __f__("log", res, '登出', " at pages/personal/userinfo/userinfo.vue:86");
+                __f__("log", res, '登出', " at pages/personal/userinfo/userinfo.vue:93");
                 if (res.code === 200) {
                   _this3.messageToggle({ msgType: 'error', messageText: res.message });
                   uni.removeStorageSync('token');
@@ -21355,7 +21362,7 @@ var _Popup = _interopRequireDefault(__webpack_require__(/*! ../../../components/
                 if (res.code === 200) {
                   _this4.$store.dispatch('getAdminInfo');
                 }
-                __f__("log", JSON.stringify(res), " at pages/personal/userinfo/userinfo.vue:112");
+                __f__("log", JSON.stringify(res), " at pages/personal/userinfo/userinfo.vue:119");
                 // 关闭窗口后，恢复默认内容
                 _this4.$refs.inputDialog.close();case 9:case "end":return _context3.stop();}}}, _callee3);}))();
     } } };exports.default = _default;
@@ -27056,7 +27063,7 @@ var debugs = {};
 var debugEnviron;
 exports.debuglog = function(set) {
   if (isUndefined(debugEnviron))
-    debugEnviron = Object({"NODE_ENV":"development","VUE_APP_NAME":"糖果云","VUE_APP_PLATFORM":"app-plus","BASE_URL":"/"}).NODE_DEBUG || '';
+    debugEnviron = Object({"VUE_APP_NAME":"糖果云","VUE_APP_PLATFORM":"app-plus","NODE_ENV":"development","BASE_URL":"/"}).NODE_DEBUG || '';
   set = set.toUpperCase();
   if (!debugs[set]) {
     if (new RegExp('\\b' + set + '\\b', 'i').test(debugEnviron)) {

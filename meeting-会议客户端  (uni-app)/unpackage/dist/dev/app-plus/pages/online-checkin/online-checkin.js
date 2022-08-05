@@ -2963,12 +2963,7 @@ var render = function() {
                     "u-text",
                     {
                       staticClass: ["title"],
-                      style: {
-                        color:
-                          _vm.sucTip === "签到失败，用户不在线下会议地点附近"
-                            ? "red"
-                            : "#74d964"
-                      },
+                      style: { color: _vm.errorType ? "red" : "#74d964" },
                       appendAsTree: true,
                       attrs: { append: "tree" }
                     },
@@ -2987,20 +2982,33 @@ var render = function() {
                   )
                 ]),
                 _c("view", { staticClass: ["popup-btn"] }, [
-                  _c("view", { staticClass: ["popup-btn-content"] }, [
-                    _c(
-                      "u-text",
-                      {
-                        staticClass: ["txt-btn", "back-btn"],
-                        class: _vm.isSign == 1 ? "offline-meeting" : "",
-                        appendAsTree: true,
-                        attrs: { append: "tree" },
-                        on: { click: _vm.quitCurPage }
-                      },
-                      [_vm._v("退出本页")]
-                    )
-                  ]),
-                  _vm.isSign != 1
+                  _vm.sucTip !== "抱歉活体检测识别失败"
+                    ? _c("view", { staticClass: ["popup-btn-content"] }, [
+                        _c(
+                          "u-text",
+                          {
+                            staticClass: ["txt-btn", "back-btn"],
+                            class: _vm.isSign === 1 ? "offline-meeting" : "",
+                            appendAsTree: true,
+                            attrs: { append: "tree" },
+                            on: { click: _vm.quitCurPage }
+                          },
+                          [_vm._v("退出本页")]
+                        )
+                      ])
+                    : _c("view", { staticClass: ["popup-btn-content"] }, [
+                        _c(
+                          "u-text",
+                          {
+                            staticClass: ["txt-btn", "back-btn"],
+                            appendAsTree: true,
+                            attrs: { append: "tree" },
+                            on: { click: _vm.manualCheckin }
+                          },
+                          [_vm._v("手动签到")]
+                        )
+                      ]),
+                  _vm.isSign != 1 && !_vm.errorType
                     ? _c("view", { staticClass: ["popup-btn-content"] }, [
                         _c(
                           "u-text",
@@ -3013,7 +3021,18 @@ var render = function() {
                           [_vm._v("进入会议")]
                         )
                       ])
-                    : _vm._e()
+                    : _c("view", { staticClass: ["popup-btn-content"] }, [
+                        _c(
+                          "u-text",
+                          {
+                            staticClass: ["txt-btn"],
+                            appendAsTree: true,
+                            attrs: { append: "tree" },
+                            on: { click: _vm.faceCheckin }
+                          },
+                          [_vm._v("继续人脸签到")]
+                        )
+                      ])
                 ])
               ])
             ]
@@ -5172,6 +5191,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 var _index = __webpack_require__(/*! ../../api/index.js */ 61);
 
 
@@ -5200,6 +5221,7 @@ var _Popup = _interopRequireDefault(__webpack_require__(/*! ../../components/Pop
       meetingStartTime: '',
       // 会议结束时间
       meetingEndTime: '',
+      errorType: false,
       // 线下会议的用户位置纬度
       userLatitude: '',
       // 线下会议的用户位置经度
@@ -5260,7 +5282,7 @@ var _Popup = _interopRequireDefault(__webpack_require__(/*! ../../components/Pop
     });
   },
   onReady: function onReady() {
-    __f__("log", '初始化 直播组件', " at pages/online-checkin/online-checkin.nvue:136");
+    __f__("log", '初始化 直播组件', " at pages/online-checkin/online-checkin.nvue:139");
     this.livePusher = uni.createLivePusherContext('livePusher', this);
   },
   methods: {
@@ -5271,12 +5293,14 @@ var _Popup = _interopRequireDefault(__webpack_require__(/*! ../../components/Pop
 
     },
     faceCheckin: function faceCheckin() {
+      this.$refs.popup1.close();
       // 清除定时器
       clearInterval(this.timer);
       this.ifPhoto = false;
       this.getCount();
     },
     manualCheckin: function manualCheckin() {
+      this.$refs.popup1.close();
       this.$refs.descDialog.open();
     },
     // 签到成功或重复签到成功时点击弹出层确定时执行
@@ -5316,8 +5340,9 @@ var _Popup = _interopRequireDefault(__webpack_require__(/*! ../../components/Pop
     // 人脸签到
     faceRecognitionCheckFun: function faceRecognitionCheckFun(options) {var _arguments = arguments,_this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var face, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:face = _arguments.length > 1 && _arguments[1] !== undefined ? _arguments[1] : true;_context.next = 3;return (
                   (0, _index.faceRecognitionCheck)(options));case 3:res = _context.sent;
-                __f__("log", JSON.stringify(res), " at pages/online-checkin/online-checkin.nvue:192");
+                __f__("log", JSON.stringify(res), " at pages/online-checkin/online-checkin.nvue:197");
                 if (res.code === 200) {
+                  _this2.errorType = false;
                   // this.messageToggle({ msgType: 'success', messageText: res.message + ',' + res.obj })
                   _this2.sucTip = res.obj + ',' + res.message;
                   // this.$refs.sucDialog.open()
@@ -5327,6 +5352,11 @@ var _Popup = _interopRequireDefault(__webpack_require__(/*! ../../components/Pop
                   // 再请求
                   _this2.$store.dispatch('getUserHistoryConference', _this2.historyOptions);
                 } else if (_this2.isSign == 1 && res.message === '签到失败，用户不在线下会议地点附近') {
+                  _this2.errorType = true;
+                  _this2.sucTip = res.message;
+                  _this2.$refs.popup1.open('center');
+                } else if (res.message === '抱歉活体检测识别失败') {
+                  _this2.errorType = true;
                   _this2.sucTip = res.message;
                   _this2.$refs.popup1.open('center');
                 } else {
@@ -5341,7 +5371,7 @@ var _Popup = _interopRequireDefault(__webpack_require__(/*! ../../components/Pop
     startPreview: function startPreview() {var _this3 = this;
       this.livePusher.startPreview({
         success: function success(res) {
-          __f__("log", res, " at pages/online-checkin/online-checkin.nvue:217");
+          __f__("log", res, " at pages/online-checkin/online-checkin.nvue:228");
           // 倒计时
           _this3.getCount();
         } });
@@ -5351,7 +5381,7 @@ var _Popup = _interopRequireDefault(__webpack_require__(/*! ../../components/Pop
     stopPreview: function stopPreview() {
       this.livePusher.stopPreview({
         success: function success(res) {
-          __f__("log", '停止相机', res, " at pages/online-checkin/online-checkin.nvue:227");
+          __f__("log", '停止相机', res, " at pages/online-checkin/online-checkin.nvue:238");
         } });
 
     },
@@ -5361,29 +5391,36 @@ var _Popup = _interopRequireDefault(__webpack_require__(/*! ../../components/Pop
       var _this = this;
       this.livePusher.snapshot({
         success: function success(res) {
-          __f__("log", '快照 抓拍', JSON.stringify(res), " at pages/online-checkin/online-checkin.nvue:237");
+          __f__("log", '快照 抓拍', JSON.stringify(res), " at pages/online-checkin/online-checkin.nvue:248");
           // 快照抓拍后的临时图片地址
           var snapshotsrc = res.message.tempImagePath;
-          //app端, 把临时路径转为base64格式
-          _this.$store.dispatch('pathToBase64App', snapshotsrc).then(function (src) {
-            if (_this.flag == 0) {
-              _this.faceRecognitionCheckFun({
-                faceImage: src,
-                meetingNumber: _this.meetingNumber,
-                nickname: '',
-                userLatitude: _this.userLatitude,
-                userLongitude: _this.userLongitude,
-                isSign: _this.isSign,
-                meetingAddress: _this.meetingAddress });
+          uni.compressImage({
+            src: snapshotsrc,
+            width: '480px',
+            height: '640px',
+            success: function success(result) {
+              //app端, 把临时路径转为base64格式
+              _this.$store.dispatch('pathToBase64App', result.tempFilePath).then(function (src) {
+                if (_this.flag == 0) {
+                  _this.faceRecognitionCheckFun({
+                    faceImage: src,
+                    meetingNumber: _this.meetingNumber,
+                    nickname: '',
+                    userLatitude: _this.userLatitude,
+                    userLongitude: _this.userLongitude,
+                    isSign: _this.isSign,
+                    meetingAddress: _this.meetingAddress });
 
-            } else {
-              uni.navigateBack({
-                delta: 1 });
+                } else {
+                  uni.navigateBack({
+                    delta: 1 });
 
-            }
-          }).catch(function (err) {
-            __f__("error", err, " at pages/online-checkin/online-checkin.nvue:258");
-          });
+                }
+              }).catch(function (err) {
+                __f__("error", err, " at pages/online-checkin/online-checkin.nvue:274");
+              });
+            } });
+
           // 更新vuex中存储的人脸临时图片路径
           _this.$store.commit('CHANGEIMGURL', snapshotsrc);
         } });

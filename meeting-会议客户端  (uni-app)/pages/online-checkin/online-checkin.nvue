@@ -33,11 +33,13 @@
     <!-- 普通弹窗 -->
     <uni-popup ref="popup1" background-color="#fff" :is-mask-click="false">
       <view class="popup-content">
-        <view><text class="title" :style="{color: sucTip === '签到失败，用户不在线下会议地点附近' ? 'red' : '#74d964'}">签到结果</text></view>
+        <view><text class="title" :style="{color: errorType ? 'red' : '#74d964'}">签到结果</text></view>
         <view><text class="text">{{ sucTip }}</text></view>
         <view class="popup-btn">
-          <view class="popup-btn-content"><text class="txt-btn back-btn" :class="isSign == 1 ? 'offline-meeting' : ''" @click="quitCurPage">退出本页</text></view>
-          <view class="popup-btn-content" v-if="isSign != 1"><text class="txt-btn" @click="toMeetingVideo">进入会议</text></view>
+          <view class="popup-btn-content" v-if="sucTip !== '抱歉活体检测识别失败'"><text class="txt-btn back-btn" :class="isSign === 1 ? 'offline-meeting' : ''" @click="quitCurPage">退出本页</text></view>
+        <view class="popup-btn-content" v-else><text class="txt-btn back-btn" @click="manualCheckin">手动签到</text></view>
+          <view class="popup-btn-content" v-if="isSign != 1 && !errorType"><text class="txt-btn" @click="toMeetingVideo">进入会议</text></view>
+          <view class="popup-btn-content" v-else><text class="txt-btn" @click="faceCheckin">继续人脸签到</text></view>
         </view>
       </view>
     </uni-popup>
@@ -73,6 +75,7 @@
         meetingStartTime: '',
         // 会议结束时间
         meetingEndTime: '',
+        errorType: false,
         // 线下会议的用户位置纬度
         userLatitude: '',
         // 线下会议的用户位置经度
@@ -144,12 +147,14 @@
         })
       },
       faceCheckin() {
+        this.$refs.popup1.close()
         // 清除定时器
         clearInterval(this.timer);
         this.ifPhoto = false
         this.getCount()
       },
       manualCheckin() {
+        this.$refs.popup1.close()
         this.$refs.descDialog.open()
       },
       // 签到成功或重复签到成功时点击弹出层确定时执行
@@ -191,6 +196,7 @@
         const res = await faceRecognitionCheck(options)
         console.log(JSON.stringify(res))
         if (res.code === 200) {
+          this.errorType = false
           // this.messageToggle({ msgType: 'success', messageText: res.message + ',' + res.obj })
           this.sucTip = res.obj + ',' + res.message 
           // this.$refs.sucDialog.open()
@@ -200,6 +206,11 @@
           // 再请求
           this.$store.dispatch('getUserHistoryConference', this.historyOptions)
         } else if (this.isSign == 1 && res.message === '签到失败，用户不在线下会议地点附近') {
+          this.errorType = true
+          this.sucTip = res.message
+          this.$refs.popup1.open('center')
+        } else if (res.message === '抱歉活体检测识别失败') {
+          this.errorType = true
           this.sucTip = res.message
           this.$refs.popup1.open('center')
         } else {
@@ -237,25 +248,32 @@
             console.log('快照 抓拍', JSON.stringify(res))
             // 快照抓拍后的临时图片地址
             const snapshotsrc = res.message.tempImagePath
-            //app端, 把临时路径转为base64格式
-            _this.$store.dispatch('pathToBase64App', snapshotsrc).then(src => {
-              if (_this.flag == 0) {
-                _this.faceRecognitionCheckFun({
-                  faceImage: src,
-                  meetingNumber: _this.meetingNumber,
-                  nickname: '',
-                  userLatitude: _this.userLatitude,
-                  userLongitude: _this.userLongitude,
-                  isSign: _this.isSign,
-                  meetingAddress: _this.meetingAddress
-                })
-              } else {
-                uni.navigateBack({
-                  delta: 1
+            uni.compressImage({
+              src: snapshotsrc,
+              width: '480px',
+              height: '640px',
+              success: result => {
+                //app端, 把临时路径转为base64格式
+                _this.$store.dispatch('pathToBase64App', result.tempFilePath).then(src => {
+                  if (_this.flag == 0) {
+                    _this.faceRecognitionCheckFun({
+                      faceImage: src,
+                      meetingNumber: _this.meetingNumber,
+                      nickname: '',
+                      userLatitude: _this.userLatitude,
+                      userLongitude: _this.userLongitude,
+                      isSign: _this.isSign,
+                      meetingAddress: _this.meetingAddress
+                    })
+                  } else {
+                    uni.navigateBack({
+                      delta: 1
+                    })
+                  }
+                }).catch(err => {
+                  console.error(err)
                 })
               }
-            }).catch(err => {
-              console.error(err)
             })
             // 更新vuex中存储的人脸临时图片路径
             _this.$store.commit('CHANGEIMGURL', snapshotsrc)

@@ -51,13 +51,12 @@
       transform: translateX(-50%);
       width: 200rpx;
       height: 50rpx;
-      display: flex;
-      margin-top: 30rpx;
-      justify-content: center;
+      text-align: center;
       border-radius: 25px;	
       border: 3rpx solid #6699FF;
+      margin: 30rpx 15px 0;
       &.join-actived {
-        transform: translateX(-50%) scale(1.1) !important;
+        transform: scale(1.1) !important;
       }
     }
     .map-wrap {

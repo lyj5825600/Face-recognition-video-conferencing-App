@@ -5,7 +5,7 @@
       "style": {
         "navigationStyle": "custom"
       }
-    
+
     },
     {
       "path": "pages/index/index",
@@ -84,58 +84,46 @@
         "navigationStyle": "custom"
       }
 
+    }, {
+      "path": "pages/new-member/new-member",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarBackgroundColor": "#448cfc"
+      }
+
+    }, {
+      "path": "pages/index/historical-meeting/historical-meeting",
+      "style": {
+        "navigationBarTitleText": "历史会议"
+      }
+
+    }, {
+      "path": "pages/index/meeting-details/meeting-details",
+      "style": {
+        "navigationStyle": "custom"
+      }
+
+    }, {
+      "path": "pages/schedule/schedule-details/schedule-details",
+      "style": {
+        "navigationBarTitleText": "日程详情"
+      }
+
+    }, {
+      "path": "pages/join-meeting/meeting-detail/meeting-detail",
+      "style": {
+        "navigationBarTitleText": "会议详情",
+        "enablePullDownRefresh": false
+      }
+
+    }, {
+      "path": "pages/meeting-video/meeting-video",
+      "style": {
+        "navigationStyle": "custom"
+      }
+
     }
-      ,{
-            "path" : "pages/new-member/new-member",
-            "style" :                                                                                    
-            {
-                "navigationStyle":"custom",
-                "navigationBarBackgroundColor": "#448cfc"
-            }
-            
-        }
-        ,{
-            "path" : "pages/index/historical-meeting/historical-meeting",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "历史会议"
-            }
-            
-        }
-        ,{
-            "path" : "pages/index/meeting-details/meeting-details",
-            "style" :                                                                                    
-            {
-                "navigationStyle": "custom"
-            }
-            
-        }
-        ,{
-            "path" : "pages/schedule/schedule-details/schedule-details",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "日程详情"
-            }
-            
-        }
-        ,{
-            "path" : "pages/join-meeting/meeting-detail/meeting-detail",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "会议详情",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/meeting-video/meeting-video",
-            "style" :                                                                                    
-            {
-              "navigationStyle": "custom"
-            }
-            
-        }
-    ],
+  ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "糖果云",
