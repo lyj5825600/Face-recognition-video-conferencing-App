@@ -25,7 +25,7 @@ def cv2ImgAddText(img, label, left, top, textColor=(255, 255, 255)):
 
 class Retinaface(object):
     _defaults = {
-        "retinaface_model_path": 'model_data/Epoch1-Total_Loss8.0664.pth',
+        "retinaface_model_path": 'model_data/Retinaface_mobilenet0.25.pth',
         "retinaface_backbone": "mobilenet",
         "confidence": 0.5,
         "nms_iou": 0.3,

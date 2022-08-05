@@ -58,11 +58,17 @@ def facenets(my_img_json):
     # 深度学习模型返回数据
     jsonList = model_predict(img=img)
     return jsonList[0]
-# 人脸识别接口
+# 人脸识别+活体检测接口
 @app.post("/facenet")
 async def facenet(request):
-    facenet=facenets(request.json['img_addres'])
-    return json({"name":facenet})
+    # 先进行人脸活体检测
+    addlivingFaceImage(request.json['img_addres'],request.json['username']);
+    code=livingFace(request.json['username']);
+    # 人脸识别部分
+    if code==1:
+        facenet=facenets(request.json['img_addres'])
+        return json({"name":facenet})
+    return json({"name":"活体检测失败"})
 
 #深度人脸列表刷新接口
 def images():
@@ -112,7 +118,7 @@ async def deleteImages(request):
 ###################################活体检测部分###########################################
 warnings.filterwarnings('ignore')
 SAMPLE_IMAGE_PATH = "./face_living/images/sample/"
-# 添加
+# 添加方法
 def addlivingFaceImage(imgbase64,username):
     dirs=SAMPLE_IMAGE_PATH+username+'/'
     if not os.path.exists(dirs):
@@ -206,21 +212,6 @@ def livingFace(username):
         help="image used to test")
     args = parser.parse_args()
     return test(args.image_name, args.model_dir, args.device_id,username)
-
-#活体检测接口
-@app.post("/livingFaceTest")
-async def livingFaceTest(request):
-    flag=livingFace(request.json['username'])
-    code="签到失败"
-    if flag==1:
-        code="签到成功"
-        return json({"code":code})
-    return json({"code":code})
-# 添加活体检测标本接口
-@app.post("/addlivingFaceImage")
-async def addlivingFaceImages(request):
-    addlivingFaceImage(request.json['imgbase64'],request.json['username'])
-    return json({"name":request.json['username']})
 
 if __name__ == '__main__':
     app.run(debug=True, auto_reload=True,port=5000,workers=5)

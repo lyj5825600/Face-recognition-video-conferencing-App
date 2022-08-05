@@ -72,24 +72,5 @@ public class SignController {
         //人脸识别接口验证
         return signService.faceRecognition(signVO, UserUtils.getLoginUser().getUsername());
     }
-
-    /**
-     * 调用远程RPC深度学习模型进行活体检测接口
-     * @return
-     */
-    @ApiOperation(value = "活体检测接口")
-    @PostMapping("/livingFaceTest")
-    public RespBean<?> livingFaceTest(){
-        return RespBean.success("活体检测接口",signService.livingTests());
-    }
-    /**
-     * python活体检测添加图片接口
-     */
-    @ApiOperation(value = "活体检测图片添加接口")
-    @PostMapping("/addlivingFaceImage")
-    public RespBean<?> addlivingFaceImage(String ImgBase64){
-        signService.addlivingFaceImage(ImgBase64,UserUtils.getLoginUser().getUsername());
-        return RespBean.success("活体检测图片添加接口");
-    }
 }
 

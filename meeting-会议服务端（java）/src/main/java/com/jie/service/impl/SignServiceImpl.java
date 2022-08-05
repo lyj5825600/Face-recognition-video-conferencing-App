@@ -102,7 +102,7 @@ public class SignServiceImpl extends ServiceImpl<SignMapper, Sign> implements Si
         String nickname = "";
         int signWay = 0;
         if (signVO.getNickname().equals("")) {
-            //脸签到功能(如果相似度达到80%)则返回nickname 通过rpc调用远程人脸识别接口
+            //人脸签到功能(如果相似度达到80%)则返回nickname 通过rpc调用远程人脸识别接口
             nickname = faceSign(signVO);
         } else {
             nickname = manualSign(signVO);
@@ -111,6 +111,9 @@ public class SignServiceImpl extends ServiceImpl<SignMapper, Sign> implements Si
         if (Objects.isNull(nickname)) {
             log.info("签到失败");
             return RespBean.error("签到失败 用户不存在");
+        }
+        if (nickname.equals("活体检测失败")){
+            return RespBean.error("抱歉活体检测识别失败");
         }
 
         if (isUserIsNextToTheMeetingPlace(signVO, username)) {
@@ -128,10 +131,12 @@ public class SignServiceImpl extends ServiceImpl<SignMapper, Sign> implements Si
      * @return
      */
     @Override
-    public boolean livingTests() {
+    public boolean livingTests(String imgBase64) {
         //远程调用调用远程RPC深度学习模型进行活体检测接口
+        String username = UserUtils.getLoginUser().getUsername();
+        addlivingFaceImage(imgBase64,username);
         JSONObject json = new JSONObject();
-        json.put("username", UserUtils.getLoginUser().getUsername());
+        json.put("username", username);
         if (JSONObject.parseObject(HttpUtil.sendPost(json, faceRecognition+CommonConst.LIVINGFACETEST), LivingVO.class).getCode().equals("签到成功")){
             return true;
         }
@@ -142,17 +147,12 @@ public class SignServiceImpl extends ServiceImpl<SignMapper, Sign> implements Si
      * 活体识别图片添加
      * @param
      */
-    @Override
     public void addlivingFaceImage(String imgBase64,String username) {
-        // 人脸识别返回用户nickname
-        CompletableFuture.runAsync(() -> {
+        //进行上传图片
             com.alibaba.fastjson.JSONObject json = new com.alibaba.fastjson.JSONObject();
             json.put("imgbase64", imgBase64.substring(22, imgBase64.length()));
             json.put("username", username);
-            String name = JSONObject.parseObject(HttpUtil.sendPost(json, faceRecognition+CommonConst.ADDLIVINGFACEIMAGE), FacenetVO.class).getName();
-            log.info("图片" + name);
-        });
-
+            JSONObject.parseObject(HttpUtil.sendPost(json, faceRecognition+CommonConst.ADDLIVINGFACEIMAGE), FacenetVO.class);
     }
 
     //判断线下会议的用户是否在会议地址附近，若在则可进行签到
@@ -187,7 +187,7 @@ public class SignServiceImpl extends ServiceImpl<SignMapper, Sign> implements Si
     }
 
     /**
-     * 人脸签到功能(如果相似度达到80%)则返回nickname 通过rpc调用远程本地深度学习人脸识别接口
+     * 人脸活体检测+人脸识别（调用深度学习接口实现）
      *
      * @param sign
      * @return
@@ -196,9 +196,12 @@ public class SignServiceImpl extends ServiceImpl<SignMapper, Sign> implements Si
         // 人脸识别返回用户nickname
         JSONObject json = new JSONObject();
         json.put("img_addres", sign.getFaceImage().substring(22, sign.getFaceImage().length()));
+        json.put("username",UserUtils.getLoginUser().getUsername());
         sign.setNickname(JSONObject.parseObject(HttpUtil.sendPost(json, faceRecognition+CommonConst.FACENETURL), FacenetVO.class).getName());
         //根据会议号获取最新会议信息然后判断是否有此号人物
-        if (isNickname(sign)) {
+        if (sign.getNickname().equals("活体检测失败")){
+            return "活体检测失败";
+        }else if (isNickname(sign)) {
             return sign.getNickname();
         }
         return null;
