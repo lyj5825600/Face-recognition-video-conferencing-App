@@ -56,7 +56,7 @@
       border: 3rpx solid #6699FF;
       margin: 30rpx 15px 0;
       &.join-actived {
-        transform: scale(1.1) !important;
+        transform: translateX(-50%) scale(1.1) !important;
       }
     }
     .map-wrap {
