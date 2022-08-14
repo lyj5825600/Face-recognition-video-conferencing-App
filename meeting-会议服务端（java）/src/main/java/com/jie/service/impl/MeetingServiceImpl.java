@@ -135,7 +135,7 @@ public class MeetingServiceImpl extends ServiceImpl<MeetingMapper, Meeting> impl
     @Override
     @Transactional
     public RespBean saveMeeting(MettingVO mettingVO) {
-        //ai进行审核会议信息是否通过
+        //Ai平台进行审核会议信息是否通过
         BaiDuAiCheck baiDuAiCheck = checkService.checkText(mettingVO.getMeetingAddress() + mettingVO.getMeetingDescribed());
         if (baiDuAiCheck.getConclusion().equals("不合规")) {
             return RespBean.error("内容不合规审核不通过");
@@ -257,9 +257,7 @@ public class MeetingServiceImpl extends ServiceImpl<MeetingMapper, Meeting> impl
                 .eq(Meeting::getMeetingNumber, UserUtils.getLoginUser().getMeetingNumber())
                 .orderByDesc(Meeting::getCreateTime)
         );
-
         List<MeetingDTO> photoList = BeanCopyUtils.copyList(meetingPage.getRecords(), MeetingDTO.class);
-
         return new PageResult<>(photoList, (int) meetingPage.getTotal());
     }
 

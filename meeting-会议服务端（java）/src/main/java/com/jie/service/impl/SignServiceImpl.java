@@ -165,7 +165,6 @@ public class SignServiceImpl extends ServiceImpl<SignMapper, Sign> implements Si
         redisTemplate.opsForGeo().add(MeetingConst.MAPADDRESS + signVO.getMeetingNumber(), new GeoLocation(username, new Point(signVO.getUserLongitude(), signVO.getUserLatitude())));
         //判断用户是否在内会议地点1000米内
         Distance userAddress = redisTemplate.opsForGeo().distance(MeetingConst.MAPADDRESS + signVO.getMeetingNumber(), signVO.getMeetingAddress(), username, Metrics.NEUTRAL);
-//        log.info("当前用户是：" + username + "距离会议地点" + Objects.requireNonNull(userAddress).getValue() + "米" + userAddress.getMetric());
         if (userAddress.getValue() > 1000) {
             return true;
         }
@@ -176,6 +175,9 @@ public class SignServiceImpl extends ServiceImpl<SignMapper, Sign> implements Si
         //根据当前用户的会议号从redis中查找最新会议信息
         Meeting meeting = JSONObject.parseObject(redisTemplate.opsForValue().get(MeetingConst.MEETING + meetingNumber), Meeting.class);
         //参会人签到key
+        if (Objects.isNull(meeting)){
+            return false;
+        }
         String redisKey=MeetingConst.FREQUENT +meeting.getMeetingNumber();
         //判断是否签到
         if (redisTemplate.opsForSet().isMember(redisKey,nickname)){

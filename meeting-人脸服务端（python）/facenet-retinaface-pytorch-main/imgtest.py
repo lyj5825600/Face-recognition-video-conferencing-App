@@ -13,7 +13,7 @@ def get_filelist(dir, Filelist,name):
             get_filelist(newDir, Filelist,name)
     return Filelist
 if __name__ == '__main__':
-    retinaface = Retinaface(1)
+    retinaface = Retinaface()
     list_dir = "facedataset"
     image_paths = []
     names = []

@@ -173,7 +173,7 @@ def test(image_name, model_dir, device_id,username):
         color = (255, 0, 0)
     else:
         print("图片 '{}' 不是真实人脸. 虚假人脸识别率: {:.2f}.".format(image_name, value))
-        result_text = "FakeFace Score: {:.2f}".format(value)
+        result_text = "得分: {:.2f}".format(value)
         color = (0, 0, 255)
     print("识别速度 {:.2f} s".format(test_speed))
     cv2.rectangle(
@@ -214,4 +214,4 @@ def livingFace(username):
     return test(args.image_name, args.model_dir, args.device_id,username)
 
 if __name__ == '__main__':
-    app.run(debug=True, auto_reload=True,port=5000,workers=5)
+    app.run(debug=True, auto_reload=False,port=5000,fast=True)

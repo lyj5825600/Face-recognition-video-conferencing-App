@@ -24,7 +24,6 @@ public class CustomUrlDecisionManager implements AccessDecisionManager {
     @Override
     public void decide(Authentication authentication, Object o, Collection<ConfigAttribute> collection) throws AccessDeniedException, InsufficientAuthenticationException {
         // 获取用户权限列表
-        System.out.println(authentication);
         List<String> permissionList = authentication.getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority)

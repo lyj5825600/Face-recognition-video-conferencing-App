@@ -14,9 +14,9 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://101.43.253.100:3306/meeting?serverTimezone=GMT%2B8&allowMultiQueries=true
+    url: jdbc:mysql://自己mysql的ip:3306/meeting?serverTimezone=GMT%2B8&allowMultiQueries=true
     username: root
-    password: lyj5825600
+    password: 密码
     hikari:
       minimum-idle: 5
       # ?????????????600000?10???
@@ -34,14 +34,14 @@ spring:
       connection-test-query: SELECT 1
   #redis
   redis:
-    host: 101.43.253.100
+    host: 自己的redis的ip
     port: 6379
-    password: lyj5825600
+    password: redis密码
   rabbitmq:
-    host: 101.43.253.100
+    host: 自己rabbitmq的ip
     port: 5672
-    username: guest
-    password: guest
+    username: 账号
+    password: 密码
   main:
     allow-bean-definition-overriding: true
 mybatis-plus:
@@ -58,11 +58,11 @@ upload:
     # 本地文件存储路径
     path: /usr/local/upload/
   oss:
-    url: "https://teas-gulixueyuan.oss-cn-hangzhou.aliyuncs.com/"
-    endpoint: "http://oss-cn-hangzhou.aliyuncs.com"
-    accessKeyId: "LTAI5t8rwyqdBHejnMsnR6yh"
-    accessKeySecret: "vABfpr8PUtQ7k4ehIEgQFzClupkmCA"
-    bucketName: "teas-gulixueyuan"
+    url: 阿里云oss配置可以参考百度
+    endpoint:
+    accessKeyId:
+    accessKeySecret:
+    bucketName:
 
 logging:
   level:
@@ -86,8 +86,8 @@ qq:
 #视频会议appid(anyRTC SDK)
 anyRTC:
   trtc:
-    appId: 9e832ae64d960051527051fce57d122b
+    appId: 自己申请anyRTC的appid
 #百度地图sdk
 baiduSDK:
-  ak: ksGXOp0q7PWuHaSSD3tVBVoGNVapmOCK
+  ak: 自己申请百度地图的appid
 

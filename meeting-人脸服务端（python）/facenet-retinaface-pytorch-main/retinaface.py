@@ -25,7 +25,7 @@ def cv2ImgAddText(img, label, left, top, textColor=(255, 255, 255)):
 
 class Retinaface(object):
     _defaults = {
-        "retinaface_model_path": 'model_data/Retinaface_mobilenet0.25.pth',
+        "retinaface_model_path": 'model_data/Epoch1-Total_Loss8.0664.pth',
         "retinaface_backbone": "mobilenet",
         "confidence": 0.5,
         "nms_iou": 0.3,
@@ -316,17 +316,18 @@ class Retinaface(object):
             # -----------------------------------------------------#
             matches, face_distances = compare_faces(self.known_face_encodings, face_encoding,
                                                     tolerance=self.facenet_threhold)
-            name = "Unknown"
+            name = "得分为到达识别阈值 数据库未查询到人脸"
 
             # -----------------------------------------------------#
             #   取出这个最近人脸的评分
             #   取出当前输入进来的人脸，最接近的已知人脸的序号
             # -----------------------------------------------------#
             best_match_index = np.argmin(face_distances)
-            print(face_distances)
             if matches[best_match_index]:
                 name = self.known_face_names[best_match_index]
             face_names.append(name)
+            accuracy=boxes_conf_landms[0][4];
+            print('人脸确率为百分之',str(accuracy)+'%')
         return face_names
 
     def get_FPS(self, image, test_interval):
