@@ -57,15 +57,14 @@ MYSQL+RabbitMq+Swagger2+Websocket。
 | Node     | 14.17.6 |
 #### 项目截图
 视频会议演示：
-![输入图片说明](meeting-%E4%BA%BA%E8%84%B8%E6%9C%8D%E5%8A%A1%E7%AB%AF%EF%BC%88python%EF%BC%89/facenet-retinaface-pytorch-main/facedataset/23325757575/image.png)
+![输入图片说明](meeting-%E4%BA%BA%E8%84%B8%E6%9C%8D%E5%8A%A1%E7%AB%AF%EF%BC%88python%EF%BC%89/facenet-retinaface-pytorch-main/facedataset/23325757575/shiping.png)
 活体检测演示：
-![输入图片说明](meeting-%E4%BA%BA%E8%84%B8%E6%9C%8D%E5%8A%A1%E7%AB%AF%EF%BC%88python%EF%BC%89/facenet-retinaface-pytorch-main/facedataset/23325757575/image.png)
+![输入图片说明](meeting-%E4%BA%BA%E8%84%B8%E6%9C%8D%E5%8A%A1%E7%AB%AF%EF%BC%88python%EF%BC%89/facenet-retinaface-pytorch-main/facedataset/23325757575/huoti.png)
 人脸识别演示：
-![输入图片说明](meeting-%E4%BA%BA%E8%84%B8%E6%9C%8D%E5%8A%A1%E7%AB%AF%EF%BC%88python%EF%BC%89/facenet-retinaface-pytorch-main/facedataset/23325757575/image.png)
+![输入图片说明](meeting-%E4%BA%BA%E8%84%B8%E6%9C%8D%E5%8A%A1%E7%AB%AF%EF%BC%88python%EF%BC%89/facenet-retinaface-pytorch-main/facedataset/rlian.png)
 部分App端ui展示：
-![输入图片说明](meeting-%E4%BA%BA%E8%84%B8%E6%9C%8D%E5%8A%A1%E7%AB%AF%EF%BC%88python%EF%BC%89/facenet-retinaface-pytorch-main/facedataset/23325757575/image.png)
+![输入图片说明](meeting-%E4%BA%BA%E8%84%B8%E6%9C%8D%E5%8A%A1%E7%AB%AF%EF%BC%88python%EF%BC%89/facenet-retinaface-pytorch-main/facedataset/23325757575/app.png)
 #### 项目部署
-参考[部署文档](http://)
-
+部署文档在主干中
 #### 注意事项
 若部署失败或不成功可加作者QQ：1927545042来咨询
